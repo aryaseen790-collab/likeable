@@ -1,0 +1,277 @@
+[
+  {
+    "text": "How often do you smile when greeting people?",
+    "options": [
+      "Always",
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Ready to find out 'how Likeable are you?'",
+    "category": "First Impressions"
+  },
+  {
+    "text": "Do you remember and use people's names?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Names matter more than you think...",
+    "category": "First Impressions"
+  },
+  {
+    "text": "How good are you at listening to others?",
+    "options": [
+      "Excellent listener",
+      "Good listener",
+      "Average listener",
+      "Need improvement"
+    ],
+    "hook": "Great listeners are universally loved!",
+    "category": "Communication"
+  },
+  {
+    "text": "How often do you compliment others?",
+    "options": [
+      "Very often",
+      "Often",
+      "Occasionally",
+      "Rarely"
+    ],
+    "hook": "Kind words can brighten someone's day...",
+    "category": "Positivity"
+  },
+  {
+    "text": "Do you show genuine interest in others' stories?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Everyone loves feeling heard...",
+    "category": "Empathy"
+  },
+  {
+    "text": "How do you handle disagreements?",
+    "options": [
+      "Calmly and respectfully",
+      "Usually calm",
+      "Can get heated",
+      "Often argumentative"
+    ],
+    "hook": "Conflict resolution reveals true character...",
+    "category": "Emotional Intelligence"
+  },
+  {
+    "text": "Do you maintain eye contact during conversations?",
+    "options": [
+      "Always",
+      "Most of the time",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Eyes are the window to connection...",
+    "category": "Communication"
+  },
+  {
+    "text": "How often do you help others without being asked?",
+    "options": [
+      "Very often",
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Actions speak louder than words...",
+    "category": "Kindness"
+  },
+  {
+    "text": "Are you punctual for meetings and appointments?",
+    "options": [
+      "Always on time",
+      "Usually on time",
+      "Sometimes late",
+      "Often late"
+    ],
+    "hook": "Time is the currency of respect...",
+    "category": "Reliability"
+  },
+  {
+    "text": "Do you thank people for their help or kindness?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Gratitude goes a long way...",
+    "category": "Positivity"
+  },
+  {
+    "text": "How positive is your attitude in general?",
+    "options": [
+      "Very positive",
+      "Mostly positive",
+      "Neutral",
+      "Often negative"
+    ],
+    "hook": "Your energy affects everyone around you...",
+    "category": "Positivity"
+  },
+  {
+    "text": "Do you gossip about others?",
+    "options": [
+      "Never",
+      "Rarely",
+      "Sometimes",
+      "Often"
+    ],
+    "hook": "Words can build or destroy trust...",
+    "category": "Trustworthiness"
+  },
+  {
+    "text": "How well do you accept constructive criticism?",
+    "options": [
+      "Very well",
+      "Pretty well",
+      "Not easily",
+      "Poorly"
+    ],
+    "hook": "Growth requires openness to feedback...",
+    "category": "Emotional Intelligence"
+  },
+  {
+    "text": "Do you admit when you're wrong?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Humility is a powerful trait...",
+    "category": "Trustworthiness"
+  },
+  {
+    "text": "How often do you make others laugh?",
+    "options": [
+      "Very often",
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Laughter is the universal language...",
+    "category": "Social Skills"
+  },
+  {
+    "text": "Do you respect others' boundaries?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Not really"
+    ],
+    "hook": "Boundaries show emotional intelligence...",
+    "category": "Emotional Intelligence"
+  },
+  {
+    "text": "How empathetic are you to others' feelings?",
+    "options": [
+      "Very empathetic",
+      "Quite empathetic",
+      "Somewhat empathetic",
+      "Not very empathetic"
+    ],
+    "hook": "Empathy creates deep connections...",
+    "category": "Empathy"
+  },
+  {
+    "text": "Do you interrupt people when they're speaking?",
+    "options": [
+      "Never",
+      "Rarely",
+      "Sometimes",
+      "Often"
+    ],
+    "hook": "Patience in conversation matters...",
+    "category": "Communication"
+  },
+  {
+    "text": "How reliable are you with commitments?",
+    "options": [
+      "Very reliable",
+      "Mostly reliable",
+      "Sometimes flaky",
+      "Often unreliable"
+    ],
+    "hook": "Trust is built one promise at a time...",
+    "category": "Reliability"
+  },
+  {
+    "text": "Do you share credit with others for team successes?",
+    "options": [
+      "Always",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Generosity with credit multiplies success...",
+    "category": "Kindness"
+  },
+  {
+    "text": "How open-minded are you to different opinions?",
+    "options": [
+      "Very open-minded",
+      "Quite open-minded",
+      "Somewhat open-minded",
+      "Not very open-minded"
+    ],
+    "hook": "Openness enriches perspectives...",
+    "category": "Social Skills"
+  },
+  {
+    "text": "Do you stay calm under pressure?",
+    "options": [
+      "Always calm",
+      "Usually calm",
+      "Sometimes stressed",
+      "Often stressed"
+    ],
+    "hook": "Grace under pressure inspires others...",
+    "category": "Emotional Intelligence"
+  },
+  {
+    "text": "How often do you ask others about their day?",
+    "options": [
+      "Very often",
+      "Often",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Small questions show big care...",
+    "category": "Empathy"
+  },
+  {
+    "text": "Do you celebrate others' achievements?",
+    "options": [
+      "Always enthusiastically",
+      "Usually",
+      "Sometimes",
+      "Rarely"
+    ],
+    "hook": "Celebrating others costs nothing but means everything...",
+    "category": "Kindness"
+  },
+  {
+    "text": "How authentic are you in your interactions?",
+    "options": [
+      "Always genuine",
+      "Usually genuine",
+      "Sometimes fake it",
+      "Often insincere"
+    ],
+    "hook": "Authenticity is magnetic...",
+    "category": "Trustworthiness"
+  }
+]

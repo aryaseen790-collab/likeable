@@ -1,0 +1,48 @@
+---
+// GA4 with Consent Mode v2: nothing is stored until the visitor accepts.
+const GA_ID = 'G-KZTXC78Q70';
+---
+<div class="consent" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden data-consent>
+  <p>We use analytics cookies to understand how the test is used. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+  <div class="consent__actions">
+    <button type="button" class="btn btn--ghost btn--sm" data-consent-choice="denied">Reject All</button>
+    <button type="button" class="btn btn--primary btn--sm" data-consent-choice="granted">Accept All</button>
+  </div>
+</div>
+<script is:inline define:vars={{ GA_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  var stored = null;
+  try { stored = localStorage.getItem('lpt-consent'); } catch (e) {}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: stored === 'granted' ? 'granted' : 'denied',
+  });
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+  var load = function () {
+    var s = document.createElement('script');
+    s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 4000 }); else setTimeout(load, 2500);
+  document.addEventListener('DOMContentLoaded', function () {
+    var bar = document.querySelector('[data-consent]');
+    if (!stored) {
+      var reveal = function () { bar.hidden = false; removeEventListener('scroll', onScroll); clearTimeout(timer); };
+      var onScroll = function () { if (scrollY > innerHeight * 0.6) reveal(); };
+      var timer = setTimeout(reveal, 9000);
+      addEventListener('scroll', onScroll, { passive: true });
+    }
+    document.addEventListener('click', function (e) {
+      var choice = e.target.closest('[data-consent-choice]');
+      if (choice) {
+        var v = choice.getAttribute('data-consent-choice');
+        try { localStorage.setItem('lpt-consent', v); } catch (err) {}
+        gtag('consent', 'update', { analytics_storage: v });
+        bar.hidden = true;
+      }
+      if (e.target.closest('[data-consent-open]')) bar.hidden = false;
+    });
+  });
+</script>

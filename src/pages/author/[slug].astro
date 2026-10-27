@@ -1,0 +1,8 @@
+---
+import Archive from '../../components/Archive.astro';
+import { posts, site } from '../../lib/data';
+export function getStaticPaths() {
+  return [{ params: { slug: site.author.slug } }];
+}
+---
+<Archive path={`/author/${site.author.slug}/`} eyebrow="Author" title={site.author.name} intro={site.author.description || 'Every guide on Likeable Person Test, written by our editorial team.'} items={posts} featureFirst />

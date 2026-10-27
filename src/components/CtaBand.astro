@@ -1,0 +1,11 @@
+---
+const { title = 'Ready to Find Out "Am I Likeable?"', text = 'Take the free Likeable Person Test — 25 questions, 5 minutes, instant results.' } = Astro.props;
+---
+<section class="container section" style="padding-bottom:0">
+  <div class="cta-band" data-reveal>
+    <span class="eyebrow">Free · No sign-up</span>
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <a class="btn btn--primary btn--lg" href="/#take-test" data-magnetic>Take the Free Likeable Person Test</a>
+  </div>
+</section>

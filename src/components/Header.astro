@@ -1,0 +1,53 @@
+---
+import { site } from '../lib/data';
+const { path } = Astro.props as { path: string };
+const isActive = (href: string) => path === href || (href === '/blog/' && path.startsWith('/blog/'));
+---
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <a href="/" class="brand" aria-label={`${site.name} — Home`}>
+      <img src="/wp-content/uploads/2025/12/cropped-Likabke-Person-Test-Online-Icon-180x180.png" alt="" width="40" height="40" />
+      <span class="brand__word">Likeable Person<br /><b>Test Online</b></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul id="primary-menu">
+        {site.nav.map((item) => (
+          <li><a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a href={site.cta.href} class="btn btn--primary btn--sm site-header__cta" data-magnetic>{site.cta.label}</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+      <span class="sr-only">Menu</span><span class="menu-toggle__bars" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <ul>
+      {site.nav.map((item, i) => (
+        <li style={`--i:${i}`}><a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a></li>
+      ))}
+    </ul>
+    <a href={site.cta.href} class="btn btn--primary">{site.cta.label}</a>
+  </div>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const menu = header.querySelector<HTMLElement>('#mobile-menu')!;
+  const setOpen = (open: boolean) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    header.classList.toggle('is-open', open);
+    menu.hidden = !open;
+    document.documentElement.classList.toggle('menu-open', open);
+  };
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  let last = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    header.classList.toggle('is-scrolled', y > 24);
+    header.classList.toggle('is-hidden', y > 400 && y > last && !header.classList.contains('is-open'));
+    last = y;
+  }, { passive: true });
+</script>

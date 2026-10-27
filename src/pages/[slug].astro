@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Toc from '../components/Toc.astro';
+import PostCard from '../components/PostCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { posts, pages, site, categoryBySlug, formatDate, readingTime, related } from '../lib/data';
+import type { Post } from '../lib/data';
+
+export function getStaticPaths() {
+  return [
+    ...posts.map((post) => ({ params: { slug: post.slug }, props: { post } })),
+    ...['privacy-policy', 'terms-conditions'].map((slug) => ({ params: { slug }, props: { page: pages[slug] } })),
+  ];
+}
+const { post, page } = Astro.props as { post?: Post; page?: (typeof pages)[string] };
+const item = (post ?? page)!;
+const cat = post ? categoryBySlug(post.categories[0]) : undefined;
+const isCustom = post?.layout === 'custom';
+const showToc = !isCustom && item.toc.filter((t) => t.level === 2).length >= 3;
+---
+<Base path={item.path} schema={post?.schema ?? []} bodyClass={post ? 'single-post' : 'single-page'}>
+  {isCustom ? (
+    <article class="article-layout article-layout--single" style={`margin-top:calc(var(--header-h) + clamp(40px, 7vw, 96px))`}>
+      <div class="prose prose--custom" set:html={post!.html} />
+    </article>
+  ) : (
+    <article>
+      <header class="article-hero">
+        <div class="article-hero__inner" data-reveal>
+          <ol class="breadcrumbs" aria-label="Breadcrumb">
+            <li><a href="/">Home</a></li>
+            {cat && <li><a href={cat.path}>{cat.name}</a></li>}
+            {!post && <li aria-current="page">{item.title}</li>}
+          </ol>
+          {cat && <a class="chip" href={cat.path} style="margin-bottom:22px"><span class="chip-dot"></span>{cat.name}</a>}
+          <h1 set:html={item.title} />
+          <div class="article-meta">
+            {post && <span>By <a href={`/author/${site.author.slug}/`}>{site.author.name}</a></span>}
+            {post && <span class="dot" aria-hidden="true"></span>}
+            <time datetime={item.date}>{post ? 'Posted on ' : 'Last updated '}{formatDate(post ? item.date : item.modified)}</time>
+            {post && <span class="dot" aria-hidden="true"></span>}
+            {post && <span>{readingTime(post.html)} min read</span>}
+          </div>
+        </div>
+        {post?.featured && (
+          <div class="article-figure">
+            <div class="article-figure__frame" data-drop-3d>
+              <img src={post.featured.src} srcset={post.featured.srcset} sizes="(max-width: 1200px) 100vw, 1160px" width={post.featured.width} height={post.featured.height} alt={post.featured.alt} fetchpriority="high" decoding="async" />
+            </div>
+          </div>
+        )}
+      </header>
+      <div class:list={['article-layout', { 'article-layout--single': !showToc }]}>
+        {showToc && <Toc items={item.toc} />}
+        <div>
+          {showToc && (
+            <details class="toc-mobile glass">
+              <summary>Table of Contents</summary>
+              <Toc items={item.toc} />
+            </details>
+          )}
+          <div class="prose" set:html={(post ?? page)!.html} />
+          {post && (
+            <aside class="author-box glass">
+              <div class="author-box__avatar" aria-hidden="true">L</div>
+              <div>
+                <a href={`/author/${site.author.slug}/`}>{site.author.name}</a>
+                <p>Research-led guides on likeability, first impressions and social skills — written to help you act on your Likeable Person Test results.</p>
+              </div>
+            </aside>
+          )}
+        </div>
+      </div>
+    </article>
+  )}
+  {post && (
+    <section class="container section" style="padding-bottom:0">
+      <span class="eyebrow">Keep reading</span>
+      <h2 class="h2" style="margin-bottom:36px">Related <em>articles</em></h2>
+      <div class="post-grid">{related(post).map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+  <CtaBand />
+</Base>

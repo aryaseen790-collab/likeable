@@ -1,0 +1,6 @@
+# WordPress feed URLs -> static RSS
+/feed/              /rss.xml   301
+/feed               /rss.xml   301
+/comments/feed/     /rss.xml   301
+/blog/page/1/       /blog/     301
+/page/1/            /          301

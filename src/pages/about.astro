@@ -1,0 +1,32 @@
+---
+// Linked from the Complete Guide and Results Guide author boxes ("About us →").
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../lib/data';
+---
+<Base path="/about/" title="About Us - Likeable Person Test" description="Who builds the free Likeable Person Test, and the research it draws on.">
+  <header class="article-hero">
+    <div class="article-hero__inner" data-reveal>
+      <ol class="breadcrumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">About Us</li></ol>
+      <h1>About <em>Likeable Person Test</em></h1>
+      <p class="lead">{site.footerBlurb}</p>
+    </div>
+  </header>
+  <div class="article-layout article-layout--single">
+    <div class="prose">
+      <h2 id="editorial-team">Likeable Person Test Editorial Team</h2>
+      <p><strong>Personality &amp; Social Psychology</strong></p>
+      <p>We built this test because we were frustrated with likeability quizzes that give you a fun label and nothing actionable. The research on what actually makes people likeable is solid and specific — we wanted a tool that reflected that. Our content draws on peer-reviewed sources including the Reysen Likability Scale and warmth-competence research from Harvard Business School, and we update it when new findings are worth incorporating.</p>
+      <p>We built this test because we wanted a likeability assessment that gives people something specific to do after they finish it. Our content draws on peer-reviewed social psychology research and we update it when new findings change the picture meaningfully.</p>
+      <h2 id="read-more">Start here</h2>
+      <ul>
+        <li><a href="/complete-guide/">Likeable Person Test — The Complete Guide</a></li>
+        <li><a href="/likeable-person-test-results/">Likeable Person Test Results Explained</a></li>
+        <li><a href="/blog/">Our Blog</a></li>
+      </ul>
+      <h2 id="contact">Contact</h2>
+      <p>Questions or feedback? Email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </div>
+  <CtaBand />
+</Base>

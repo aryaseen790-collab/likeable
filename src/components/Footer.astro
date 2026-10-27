@@ -1,0 +1,40 @@
+---
+import { site, posts } from '../lib/data';
+const latest = posts.slice(0, 5);
+const year = new Date().getUTCFullYear();
+---
+<footer class="site-footer">
+  <div class="footer-orb" aria-hidden="true"></div>
+  <div class="site-footer__inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label={site.name}>
+        <img src="/wp-content/uploads/2025/12/Header-Logo-Bg-300x98.png" srcset="/wp-content/uploads/2025/12/Header-Logo-Bg-300x98.png 300w, /wp-content/uploads/2025/12/Header-Logo-Bg-768x250.png 768w" sizes="240px" width="240" height="78" alt={site.logo.alt} loading="lazy" />
+      </a>
+      <p>{site.footerBlurb}</p>
+      <a class="footer-mail" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+    <div>
+      <h2 class="footer-title">Quick Links</h2>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-title">Resources</h2>
+      <ul class="footer-links">
+        {latest.map((p) => <li><a href={p.path}>{p.title}</a></li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <p>Copyright © {year} Likeable Person Test. All rights reserved.</p>
+    <ul>
+      <li><a href="/privacy-policy/">Privacy Policy</a></li>
+      <li><a href="/terms-conditions/">Terms &amp; Conditions</a></li>
+      <li><button type="button" class="linklike" data-consent-open>Cookie settings</button></li>
+    </ul>
+  </div>
+</footer>

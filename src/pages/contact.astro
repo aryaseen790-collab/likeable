@@ -1,0 +1,16 @@
+---
+// Linked from the Privacy Policy ("By visiting this page on our website").
+import Base from '../layouts/Base.astro';
+import { site } from '../lib/data';
+---
+<Base path="/contact/" title="Contact Us - Likeable Person Test" description="Get in touch with the Likeable Person Test team.">
+  <section class="archive-hero container">
+    <div data-reveal>
+      <span class="eyebrow">Contact Us</span>
+      <h1 class="display">Say <em>hello</em></h1>
+      <p class="lead">Questions about the test, your results, or our Privacy Policy? We read every message.</p>
+      <p><a class="btn btn--primary btn--lg" href={`mailto:${site.email}`} data-magnetic>{site.email}</a></p>
+      <p style="margin-top:28px"><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms-conditions/">Terms &amp; Conditions</a></p>
+    </div>
+  </section>
+</Base>

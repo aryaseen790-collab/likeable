@@ -1,0 +1,9 @@
+---
+import Archive from '../../../components/Archive.astro';
+import { posts, pages, site, paginate } from '../../../lib/data';
+export function getStaticPaths() {
+  return paginate(posts, site.blogPerPage).slice(1).map((p) => ({ params: { n: String(p.page) }, props: p }));
+}
+const { page, total, items } = Astro.props;
+---
+<Archive path={`/blog/page/${page}/`} eyebrow={`Our Blog · Page ${page}`} title={pages.blog.title} intro={pages.blog.intro} items={items} page={page} total={total} base="/blog" />

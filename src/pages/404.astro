@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { posts } from '../lib/data';
+---
+<Base path="/404/" title="Page not found - Likeable Person Test" noindex>
+  <section class="archive-hero container">
+    <span class="eyebrow">Error 404</span>
+    <h1 class="display">Lost in <em>orbit</em></h1>
+    <p class="lead">This page drifted out of range. Try the test or one of our latest guides.</p>
+    <p><a class="btn btn--primary btn--lg" href="/#take-test">Take the Free Likeable Person Test</a></p>
+  </section>
+  <section class="container"><div class="post-grid">{posts.slice(0, 3).map((p) => <PostCard post={p} />)}</div></section>
+</Base>

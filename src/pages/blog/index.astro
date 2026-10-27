@@ -1,0 +1,6 @@
+---
+import Archive from '../../components/Archive.astro';
+import { posts, pages, site, paginate } from '../../lib/data';
+const [first] = paginate(posts, site.blogPerPage);
+---
+<Archive path="/blog/" eyebrow="Our Blog" title={pages.blog.title} intro={pages.blog.intro} items={first.items} page={1} total={first.total} base="/blog" featureFirst />

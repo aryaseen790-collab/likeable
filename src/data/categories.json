@@ -1,0 +1,34 @@
+[
+  {
+    "id": 11,
+    "slug": "discover",
+    "name": "Discover",
+    "description": "",
+    "count": 2,
+    "path": "/category/discover/"
+  },
+  {
+    "id": 13,
+    "slug": "how-to-improvement",
+    "name": "How-To & Improvement",
+    "description": "",
+    "count": 2,
+    "path": "/category/how-to-improvement/"
+  },
+  {
+    "id": 14,
+    "slug": "relationships",
+    "name": "Relationships",
+    "description": "",
+    "count": 2,
+    "path": "/category/relationships/"
+  },
+  {
+    "id": 12,
+    "slug": "science",
+    "name": "Science",
+    "description": "",
+    "count": 1,
+    "path": "/category/science/"
+  }
+]

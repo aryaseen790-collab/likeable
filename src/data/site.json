@@ -1,0 +1,61 @@
+{
+  "name": "Likeable Person Test Online",
+  "origin": "https://likeable-person-test.com",
+  "tagline": "Unlock your social charm. Take the free 5-minute Likeable Person Test and see your score.",
+  "email": "info@likeable-person-test.com",
+  "logo": {
+    "src": "/wp-content/uploads/2025/12/Header-Logo-Bg.png",
+    "alt": "Likeable Person Test"
+  },
+  "footerBlurb": "Stop wondering how others see you. Take this test to reveal your authentic charm score and learn to amplify your natural charisma.",
+  "icons": [
+    {
+      "rel": "icon",
+      "sizes": "32x32",
+      "href": "/wp-content/uploads/2025/12/cropped-Likabke-Person-Test-Online-Icon-32x32.png"
+    },
+    {
+      "rel": "icon",
+      "sizes": "192x192",
+      "href": "/wp-content/uploads/2025/12/cropped-Likabke-Person-Test-Online-Icon-192x192.png"
+    },
+    {
+      "rel": "apple-touch-icon",
+      "sizes": null,
+      "href": "/wp-content/uploads/2025/12/cropped-Likabke-Person-Test-Online-Icon-180x180.png"
+    }
+  ],
+  "author": {
+    "slug": "admin",
+    "name": "Likable Person Test Team",
+    "description": ""
+  },
+  "nav": [
+    {
+      "label": "Guide",
+      "href": "/complete-guide/"
+    },
+    {
+      "label": "Test Results",
+      "href": "/likeable-person-test-results/"
+    },
+    {
+      "label": "Our Blog",
+      "href": "/blog/"
+    },
+    {
+      "label": "Privacy Policy",
+      "href": "/privacy-policy/"
+    },
+    {
+      "label": "Terms & Conditions",
+      "href": "/terms-conditions/"
+    }
+  ],
+  "cta": {
+    "label": "Take the test now!",
+    "href": "/#take-test"
+  },
+  "blogPerPage": 6,
+  "homePerPage": 6
+}

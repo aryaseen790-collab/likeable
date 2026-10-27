@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from './PostCard.astro';
+import CtaBand from './CtaBand.astro';
+import type { Post } from '../lib/data';
+interface Props { path: string; eyebrow: string; title: string; intro?: string; items: Post[]; page?: number; total?: number; base?: string; featureFirst?: boolean }
+const { path, eyebrow, title, intro, items, page = 1, total = 1, base = '', featureFirst = false } = Astro.props;
+const href = (n: number) => (n === 1 ? `${base}/` : `${base}/page/${n}/`);
+---
+<Base path={path} title={title} description={intro}>
+  <section class="archive-hero container">
+    <div data-reveal>
+      <span class="eyebrow">{eyebrow}</span>
+      <h1 class="display" set:html={title} />
+      {intro && <p class="lead">{intro}</p>}
+    </div>
+  </section>
+  <section class="container">
+    <div class="post-grid">
+      {items.map((p, i) => <PostCard post={p} feature={featureFirst && i === 0 && page === 1} eager={i < 2} />)}
+    </div>
+    {total > 1 && (
+      <nav class="pagination" aria-label="Posts pagination">
+        {page > 1 && <a href={href(page - 1)} rel="prev">← Previous</a>}
+        {Array.from({ length: total }, (_, i) => i + 1).map((n) => (n === page ? <span aria-current="page">{n}</span> : <a href={href(n)}>{n}</a>))}
+        {page < total && <a href={href(page + 1)} rel="next">Next →</a>}
+      </nav>
+    )}
+  </section>
+  <CtaBand />
+</Base>

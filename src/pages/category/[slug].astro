@@ -1,0 +1,9 @@
+---
+import Archive from '../../components/Archive.astro';
+import { categories, postsIn } from '../../lib/data';
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+---
+<Archive path={c.path} eyebrow="Category" title={c.name} intro={c.description || `Articles in ${c.name}.`} items={postsIn(c.slug)} />
