@@ -12,6 +12,8 @@ export type QuizHooks = {
 
 export const CATEGORIES = ['First Impressions', 'Communication', 'Positivity', 'Empathy', 'Emotional Intelligence', 'Kindness', 'Reliability', 'Trustworthiness', 'Social Skills'];
 const COLORS = ['#38d6ff', '#5b84ff', '#fbbf24', '#f472b6', '#a78bfa', '#34d399', '#60a5fa', '#f76a0c', '#e879f9'];
+// '/' in production; '/likeable/' on the GitHub Pages preview.
+const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const LEARN_MORE: Record<string, string> = {
   'First Impressions': '/how-to-make-a-great-first-impression/',
   Communication: '/how-to-be-more-likable/',
@@ -240,7 +242,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     const top = sorted[0];
     const low = sorted[sorted.length - 1];
     el.strength.innerHTML = `<b>${top.name}</b> <span>${top.score}%</span>`;
-    el.focus.innerHTML = `<b>${low.name}</b> <span>${low.score}%</span>${LEARN_MORE[low.name] ? ` <a href="${LEARN_MORE[low.name]}">How to improve →</a>` : ''}`;
+    el.focus.innerHTML = `<b>${low.name}</b> <span>${low.score}%</span>${LEARN_MORE[low.name] ? ` <a href="${BASE}${LEARN_MORE[low.name].slice(1)}">How to improve →</a>` : ''}`;
     countUp(overall);
     requestAnimationFrame(() => root.classList.add('has-result'));
     hooks.onResult?.(categories.map((c) => c.score / 100));
@@ -280,7 +282,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     start(false);
   }
 
-  const shareUrl = () => `${location.origin}/?r=${answers.map((a) => a ?? 0).join('')}#take-test`;
+  const shareUrl = () => `${location.origin}${BASE}?r=${answers.map((a) => a ?? 0).join('')}#take-test`;
 
   async function share() {
     const { overall } = score(questions, answers);
