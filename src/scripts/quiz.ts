@@ -11,7 +11,7 @@ export type QuizHooks = {
 };
 
 export const CATEGORIES = ['First Impressions', 'Communication', 'Positivity', 'Empathy', 'Emotional Intelligence', 'Kindness', 'Reliability', 'Trustworthiness', 'Social Skills'];
-const COLORS = ['#38d6ff', '#5b84ff', '#fbbf24', '#f472b6', '#a78bfa', '#34d399', '#60a5fa', '#f76a0c', '#e879f9'];
+const COLORS = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
 // '/' in production; '/likeable/' on the GitHub Pages preview.
 const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const LEARN_MORE: Record<string, string> = {
@@ -233,7 +233,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
         const b = categoryBand(c.score);
         return `<div class="lpt-category-card" style="--c:${COLORS[i]}">
           <div class="lpt-category-header"><div class="lpt-category-name">${c.name}</div><div class="lpt-category-score">${c.score}%</div></div>
-          <div class="lpt-category-bar"><div class="lpt-category-bar-fill ${b.cls}" style="--w:${c.score}%"></div></div>
+          <div class="lpt-category-bar"><div class="lpt-category-bar-fill ${b.cls}" style="--w:${c.score / 100}"></div></div>
           <div class="lpt-category-feedback">${b.feedback}</div></div>`;
       })
       .join('');

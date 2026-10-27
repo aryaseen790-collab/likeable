@@ -3,59 +3,77 @@ import Base from '../layouts/Base.astro';
 import '../styles/home.css';
 import PostCard from '../components/PostCard.astro';
 import { home, posts, site, dimensions, paginate } from '../lib/data';
+import { sectionToTopics, parseFaq, parseCta } from '../lib/topics';
 
 const byCls = (cls: string) => home.sections.find((s) => s.cls === cls)!;
-const contentSections = ['lpt-what-section', 'lpt-likable-section', 'lpt-social-section', 'lpt-unlikable-section', 'lpt-personality-section', 'lpt-popular-section', 'lpt-tips-section'].map(byCls);
-const faq = byCls('lpt-faq-section');
-const cta = byCls('lpt-cta-section');
+const topics = ['lpt-what-section', 'lpt-likable-section', 'lpt-social-section', 'lpt-unlikable-section', 'lpt-personality-section', 'lpt-popular-section', 'lpt-tips-section'].flatMap(
+  (cls) => sectionToTopics(byCls(cls).html),
+);
+const faq = parseFaq(byCls('lpt-faq-section').html);
+const cta = parseCta(byCls('lpt-cta-section').html);
 const dims = dimensions();
-const colors = ['#38d6ff', '#5b84ff', '#fbbf24', '#f472b6', '#a78bfa', '#34d399', '#60a5fa', '#f76a0c', '#e879f9'];
+const colors = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
 const [blogPage] = paginate(posts, site.homePerPage);
-
 const steps = [
-  { n: '01', title: 'Answer 25 questions', text: 'Quick, honest answers about how you greet, listen, help and follow through. No sign-up, no email.' },
-  { n: '02', title: 'Watch your orbit form', text: 'Each answer pulls one of nine dimensions toward your core. Your shape builds in real time.' },
-  { n: '03', title: 'Get your breakdown', text: 'An instant overall score, nine category scores, your top strength, your focus area and a free report.' },
+  { icon: '📝', title: 'Answer 25 questions', text: 'Quick, honest answers about how you greet, listen, help and follow through. No sign-up, no email.' },
+  { icon: '🪐', title: 'Watch your orbit form', text: 'Each answer pulls one of the nine dimensions toward you, live, as you go.' },
+  { icon: '📊', title: 'Get your breakdown', text: 'An instant overall score, nine category scores, your top strength, your focus area and a free report.' },
 ];
 ---
 <Base path="/" schema={home.schema} bodyClass="home">
-  <canvas class="orbit-canvas" data-orbit aria-hidden="true"></canvas>
-  <div class="orbit-fallback" aria-hidden="true"><span></span></div>
-
   <!-- HERO -->
-  <section class="hero" data-hero>
-    <div class="hero__inner container">
-      <div class="hero__content">
-        <div class="chip hero__badge" data-hero-in><span class="chip-dot"></span>Free · 5 Minutes · 25 Questions</div>
-        <h1 class="display hero__title" data-hero-in>The Free Likeable Person Test — <em>Am I Likeable?</em></h1>
-        <p class="lead hero__sub" data-hero-in>Take our research-backed likability test to discover your social strengths, blind spots, and the specific traits that shape how others see you — with a detailed breakdown across 9 key dimensions. Find out exactly how likeable you are in just 5 minutes.</p>
-        <div class="hero__ctas" data-hero-in>
-          <a href="/#take-test" class="btn btn--primary btn--lg" data-magnetic>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <div class="chip" data-reveal><span class="chip-dot"></span>Free · 5 Minutes · 25 Questions</div>
+        <h1 class="display hero__title" data-reveal>The Free Likeable Person Test — <em>Am I Likeable?</em></h1>
+        <p class="lead hero__sub" data-reveal>Take our research-backed likability test to discover your social strengths, blind spots, and the specific traits that shape how others see you — with a detailed breakdown across 9 key dimensions. Find out exactly how likeable you are in just 5 minutes.</p>
+        <div class="hero__ctas" data-reveal>
+          <a href="/#take-test" class="btn btn--primary btn--lg">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>Take the Free Likeable Person Test
           </a>
           <a href="/#what-makes" class="btn btn--ghost btn--lg">Learn more <span aria-hidden="true">→</span></a>
         </div>
-        <dl class="hero__stats" data-hero-in>
-          <div><dt>Questions</dt><dd><span data-count="25">25</span></dd></div>
-          <div><dt>Categories</dt><dd><span data-count="9">9</span></dd></div>
-          <div><dt>Average time</dt><dd><span data-count="5">5</span> min</dd></div>
+        <dl class="hero__stats" data-reveal>
+          <div><dd><span data-count="25">25</span></dd><dt>Questions</dt></div>
+          <div><dd><span data-count="9">9</span></dd><dt>Categories</dt></div>
+          <div><dd><span data-count="5">5</span> min</dd><dt>Average time</dt></div>
         </dl>
       </div>
+      <div class="hero__visual" data-reveal>
+        <div class="orbit-panel" data-orbit-slot="hero">
+          <div class="orbit-fallback" aria-hidden="true">
+            <span class="orbit-fallback__core">😊</span>
+            {dims.map((d, i) => <span class="orbit-fallback__sat" style={`--i:${i};--c:${colors[i]}`}>{d.icon}</span>)}
+          </div>
+          <canvas class="orbit-canvas" data-orbit aria-hidden="true"></canvas>
+          <span class="orbit-panel__tag orbit-panel__tag--a">💛 Empathy</span>
+          <span class="orbit-panel__tag orbit-panel__tag--b">🤝 Trust</span>
+          <span class="orbit-panel__tag orbit-panel__tag--c">👋 First impressions</span>
+        </div>
+      </div>
     </div>
-    <a href="#how" class="hero__scroll" aria-label="Scroll to how it works"><span></span></a>
   </section>
 
-  <!-- HOW IT WORKS: 3D drop scroll -->
-  <section class="drop-section" id="how" data-drop>
-    <div class="drop-section__pin">
-      <div class="container drop-section__head">
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {[0, 1].map(() => dims.map((d) => <span class="marquee__item">{d.icon} {d.name.replace(/^\d+\.\s*/, '')}</span>))}
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how" id="how">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
         <span class="eyebrow">How it works</span>
         <h2 class="h2">Five minutes. <em>Nine dimensions.</em> One clear picture.</h2>
       </div>
-      <div class="drop-stage container" data-drop-stage>
+      <div class="how__grid">
         {steps.map((s, i) => (
-          <article class="drop-card glass" data-drop-card style={`--i:${i}`}>
-            <span class="drop-card__n">{s.n}</span>
+          <article class="how-card card" data-reveal data-tilt>
+            <span class="how-card__icon" aria-hidden="true">{s.icon}</span>
+            <span class="how-card__n">Step {i + 1}</span>
             <h3>{s.title}</h3>
             <p>{s.text}</p>
           </article>
@@ -67,48 +85,52 @@ const steps = [
   <!-- THE TEST -->
   <section class="quiz-section" id="take-test" data-quiz-section>
     <div class="container">
-      <header class="quiz-section__head" data-reveal>
-        <div class="lpt-section-label">The Test</div>
-        <h2 class="lpt-section-title">Free Likeable Person Test — <em>Your Likability Assessment</em></h2>
+      <header class="section-head section-head--center" data-reveal>
+        <span class="eyebrow">The Test</span>
+        <h2 class="h2">Free Likeable Person Test — <em>Your Likability Assessment</em></h2>
         <p class="lead">Answer all 25 questions honestly to find out how likeable you are. Results are instant and completely private — no login required. This likable person test is 100% free.</p>
       </header>
 
-      <div class="quiz glass" data-quiz data-state="start" data-no-reveal>
+      <div class="quiz card" data-quiz data-state="start">
         <div class="quiz__bar">
           <h2 class="quiz__title">Free Likeable Person Test Online</h2>
           <p>Take the free likability test and discover how likeable you really are. Answer honestly for accurate results.</p>
         </div>
 
         <div class="quiz__start" data-step="start">
+          <div class="quiz__start-emojis" aria-hidden="true">{dims.map((d) => <span>{d.icon}</span>)}</div>
           <p class="quiz__start-hook">Ready to find out "am I a likeable person?"</p>
           <p class="quiz__start-desc">This likeability test will assess your social skills, empathy, and interpersonal traits. Answer 25 questions honestly to discover your likability score and get a full personality breakdown!</p>
           <div class="quiz__start-actions">
-            <button type="button" class="btn btn--primary btn--lg" data-action="start" data-magnetic>Start the Likeable Person Test</button>
+            <button type="button" class="btn btn--primary btn--lg" data-action="start">Start the Likeable Person Test</button>
             <button type="button" class="btn btn--ghost" data-action="resume" data-resume hidden>Resume</button>
           </div>
           <ul class="quiz__perks">
-            <li>🔒 Private — answers never leave your device</li>
+            <li>🔒 Private — answers stay on your device</li>
             <li>⌨️ Keys 1–4 to answer, ← → to move</li>
             <li>📄 Free downloadable report</li>
           </ul>
         </div>
 
         <div class="quiz__run" data-step="run" hidden>
-          <div class="quiz__top">
-            <div class="quiz__ring" data-ring aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" /><circle cx="22" cy="22" r="19" /></svg></div>
-            <p class="quiz__count"><b data-current>1</b> of <span data-total>25</span></p>
-            <span class="quiz__cat" data-cat></span>
+          <div class="quiz__main">
+            <div class="quiz__top">
+              <div class="quiz__ring" data-ring aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" /><circle cx="22" cy="22" r="19" /></svg></div>
+              <p class="quiz__count"><b data-current>1</b> of <span data-total>25</span></p>
+              <span class="quiz__cat" data-cat></span>
+            </div>
+            <div class="quiz__card" data-card aria-live="polite">
+              <p class="quiz__hook" data-hook></p>
+              <h3 class="quiz__q" id="quiz-q" data-q></h3>
+              <div class="quiz__options" role="radiogroup" aria-labelledby="quiz-q" data-options></div>
+            </div>
+            <div class="quiz__nav">
+              <button type="button" class="btn btn--ghost btn--sm" data-action="prev" data-prev>Previous</button>
+              <ol class="quiz__dims" data-dims aria-hidden="true"></ol>
+              <button type="button" class="btn btn--primary btn--sm" data-action="next" data-next>Next</button>
+            </div>
           </div>
-          <div class="quiz__card" data-card aria-live="polite">
-            <p class="quiz__hook" data-hook></p>
-            <h3 class="quiz__q" id="quiz-q" data-q></h3>
-            <div class="quiz__options" role="radiogroup" aria-labelledby="quiz-q" data-options></div>
-          </div>
-          <div class="quiz__nav">
-            <button type="button" class="btn btn--ghost btn--sm" data-action="prev" data-prev>Previous</button>
-            <ol class="quiz__dims" data-dims aria-hidden="true"></ol>
-            <button type="button" class="btn btn--primary btn--sm" data-action="next" data-next>Next</button>
-          </div>
+          <div class="orbit-panel orbit-panel--quiz" data-orbit-slot="quiz" aria-hidden="true"></div>
         </div>
 
         <div class="quiz__result" data-step="result" hidden>
@@ -116,26 +138,27 @@ const steps = [
           <h2 class="quiz__result-title">Your Likability Test Results</h2>
           <div class="result-hero">
             <div class="score-ring" data-score-ring>
-              <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38d6ff" /><stop offset=".5" stop-color="#8b5cf6" /><stop offset="1" stop-color="#ff9a4d" /></linearGradient></defs><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" /></svg>
+              <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22b8e6" /><stop offset=".5" stop-color="#7c4dff" /><stop offset="1" stop-color="#f76a0c" /></linearGradient></defs><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" /></svg>
               <div class="score-ring__value"><span data-overall>0%</span><small data-label></small></div>
             </div>
             <div class="result-hero__text">
               <div class="lpt-overall-feedback" data-feedback></div>
               <div class="result-highlights">
-                <div class="result-highlight result-highlight--top"><span>Top strength</span><p data-strength></p></div>
-                <div class="result-highlight result-highlight--focus"><span>Focus area</span><p data-focus></p></div>
+                <div class="result-highlight result-highlight--top"><span>🏆 Top strength</span><p data-strength></p></div>
+                <div class="result-highlight result-highlight--focus"><span>🎯 Focus area</span><p data-focus></p></div>
               </div>
             </div>
+            <div class="orbit-panel orbit-panel--result" data-orbit-slot="result" aria-hidden="true"></div>
           </div>
           <div class="result-body">
-            <div class="radar" data-radar></div>
+            <div class="radar card" data-radar></div>
             <div class="lpt-categories-grid" data-grid></div>
           </div>
           <div class="lpt-action-buttons">
             <button type="button" class="btn btn--primary" data-action="share">↗ Share my result</button>
-            <button type="button" class="btn btn--ghost" data-action="copy">🔗 Copy link</button>
-            <button type="button" class="btn btn--ghost" data-action="download">📥 Download Report</button>
-            <button type="button" class="btn btn--ghost" data-action="retry">🔄 Take the Test Again</button>
+            <button type="button" class="btn" data-action="copy">🔗 Copy link</button>
+            <button type="button" class="btn" data-action="download">📥 Download Report</button>
+            <button type="button" class="btn" data-action="retry">🔄 Take the Test Again</button>
           </div>
           <p class="quiz__share-msg" data-share-msg role="status"></p>
         </div>
@@ -143,37 +166,68 @@ const steps = [
     </div>
   </section>
 
-  <!-- NINE DIMENSIONS: horizontal pinned track -->
-  <section class="dims-section" data-dims-section>
-    <div class="dims-section__pin">
-      <div class="container dims-section__head">
+  <!-- NINE DIMENSIONS -->
+  <section class="section dims">
+    <div class="container">
+      <div class="section-head" data-reveal>
         <span class="eyebrow">What the test measures</span>
         <h2 class="h2">The 9 dimensions of <em>likeability</em></h2>
       </div>
-      <div class="dims-track" data-dims-track>
+      <div class="dims__grid">
         {dims.map((d, i) => (
-          <article class="dim-card" style={`--c:${colors[i]}`} data-tilt>
-            <span class="dim-card__orb" aria-hidden="true"></span>
+          <article class="dim-card card" style={`--c:${colors[i]}`} data-n={String(i + 1).padStart(2, '0')} data-reveal data-tilt>
             <span class="dim-card__icon" aria-hidden="true">{d.icon}</span>
             <h3>{d.name.replace(/^\d+\.\s*/, '')}</h3>
             <p>{d.desc}</p>
-            <span class="dim-card__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           </article>
         ))}
-        <a class="dim-card dim-card--cta" href="/complete-guide/">
-          <span class="dim-card__icon" aria-hidden="true">📘</span>
-          <h3>Read the Complete Guide</h3>
-          <p>The science behind every dimension, and how to read your score.</p>
-          <span class="dim-card__n" aria-hidden="true">→</span>
-        </a>
       </div>
+      <a class="dims__guide" href="/complete-guide/" data-reveal>
+        <span aria-hidden="true">📘</span>
+        <span><b>Read the Complete Guide</b> — the science behind every dimension, and how to read your score.</span>
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
-  <!-- ORIGINAL CONTENT SECTIONS -->
-  <div class="home-content">
-    {contentSections.map((s) => <Fragment set:html={s.html} />)}
-  </div>
+  <!-- KNOWLEDGE TOPICS (original home content, bento layout) -->
+  <section class="section learn" aria-label="Learn about likeability">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
+        <span class="eyebrow">Learn</span>
+        <h2 class="h2">Everything that shapes <em>how people see you</em></h2>
+      </div>
+      <nav class="topic-nav" aria-label="Topics" data-toc>
+        {topics.filter((t) => t.label).map((t) => <a href={`#${t.id}`}>{t.label}</a>)}
+      </nav>
+      {topics.map((t) => (
+        <article class="topic" id={t.id}>
+          <header class="topic__head" data-reveal>
+            {t.label && <span class="eyebrow">{t.label}</span>}
+            {t.titleHtml && <h2 class="topic__title" id={t.headingId} set:html={t.titleHtml} />}
+            {t.intro.length > 0 && <div class="topic__intro">{t.intro.map((p) => <p set:html={p} />)}</div>}
+          </header>
+          <div class="bento">
+            {t.tiles.map((tile) =>
+              tile.kind === 'image' ? (
+                <figure class="tile tile--image" data-reveal set:html={tile.html} />
+              ) : tile.kind === 'cards' ? (
+                <div class={`tile tile--cards tile--${tile.variant}`} data-reveal set:html={tile.html} />
+              ) : tile.kind === 'quote' ? (
+                <blockquote class="tile tile--quote" data-reveal set:html={tile.html} />
+              ) : (
+                <div class:list={['tile tile--text', { 'tile--wide': tile.wide }]} data-reveal>
+                  {tile.eyebrow && <span class="eyebrow">{tile.eyebrow}</span>}
+                  {tile.title && <h3 id={tile.id} set:html={tile.title} />}
+                  <Fragment set:html={tile.html} />
+                </div>
+              ),
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
 
   <!-- BLOG -->
   <section class="section home-blog">
@@ -183,7 +237,7 @@ const steps = [
           <span class="eyebrow">Read &amp; improve</span>
           <h2 class="h2">{home.blog.heading || 'Our Blog'}</h2>
         </div>
-        <a class="btn btn--ghost" href="/blog/">All articles →</a>
+        <a class="btn" href="/blog/">All articles →</a>
       </div>
       <div class="post-grid">
         {blogPage.items.map((p, i) => <PostCard post={p} feature={i === 0} />)}
@@ -198,8 +252,28 @@ const steps = [
     </div>
   </section>
 
-  <Fragment set:html={faq.html} />
-  <Fragment set:html={cta.html} />
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="container faq__grid">
+      <div class="faq__intro" data-reveal>
+        <span class="eyebrow">{faq.label || 'FAQ'}</span>
+        <h2 class="h2" id={faq.titleId} set:html={faq.titleHtml} />
+        {faq.intro.map((p) => <p class="lead" set:html={p} />)}
+        {faq.image && <div class="faq__image" set:html={faq.image} />}
+      </div>
+      <div class="faq-list">{faq.items.map((d) => <Fragment set:html={d} />)}</div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="container">
+    <div class="cta-band" data-reveal>
+      <span class="eyebrow">Free · No sign-up</span>
+      <h2 id={cta.titleId} set:html={cta.titleHtml} />
+      <p set:html={cta.text} />
+      <a class="btn btn--lg" href={cta.cta.href}>{cta.cta.label}</a>
+    </div>
+  </section>
 
   <script>
     import { initHome } from '../scripts/home';

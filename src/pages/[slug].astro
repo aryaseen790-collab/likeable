@@ -20,7 +20,7 @@ const showToc = !isCustom && item.toc.filter((t) => t.level === 2).length >= 3;
 ---
 <Base path={item.path} schema={post?.schema ?? []} bodyClass={post ? 'single-post' : 'single-page'}>
   {isCustom ? (
-    <article class="article-layout article-layout--single" style={`margin-top:calc(var(--header-h) + clamp(40px, 7vw, 96px))`}>
+    <article class="article-layout article-layout--single" style="margin-top:clamp(40px, 7vw, 88px)">
       <div class="prose prose--custom" set:html={post!.html} />
     </article>
   ) : (

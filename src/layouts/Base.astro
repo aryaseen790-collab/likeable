@@ -30,15 +30,21 @@ const canonical = seo?.canonical ?? new URL(path, site.origin).href;
 const jsonld = [...(seo?.jsonld ?? []), ...schema];
 ---
 <!doctype html>
-<html lang="en-US" dir="ltr">
+<html lang="en-US" dir="ltr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
-      // Hide reveal targets before first paint; restore them if the motion bundle never runs.
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.documentElement.classList.add('js-motion');
-        setTimeout(function () { if (!window.__motionReady) document.documentElement.classList.remove('js-motion'); }, 3500);
-      }
+      // Theme before first paint (light by default), and reveal targets hidden only when motion runs.
+      (function () {
+        var t = 'light';
+        try { t = localStorage.getItem('lpt-theme') || 'light'; } catch (e) {}
+        var d = document.documentElement;
+        d.dataset.theme = t === 'dark' ? 'dark' : 'light';
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.classList.add('js-motion');
+          setTimeout(function () { if (!window.__motionReady) d.classList.remove('js-motion'); }, 3500);
+        }
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
@@ -47,8 +53,8 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
     {!noindex && <link rel="canonical" href={canonical} />}
     {seo?.prev && <link rel="prev" href={seo.prev} />}
     {seo?.next && <link rel="next" href={seo.next} />}
-    <meta name="theme-color" content="#06051a" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f6f7fb" data-theme-color />
+    <meta name="color-scheme" content="light dark" />
     {site.icons.map((i) => <link rel={i.rel} href={i.href} sizes={i.sizes ?? undefined} />)}
     <link rel="alternate" type="application/rss+xml" title={`${site.name} » Feed`} href="/rss.xml" />
     {jsonld.map((j) => <script type="application/ld+json" is:inline set:html={j} />)}
@@ -56,7 +62,7 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="bg-cosmos" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow-a"></div><div class="bg-glow bg-glow-b"></div></div>
+    <div class="page-glow" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
     <Header path={path} />
     <main id="main">
