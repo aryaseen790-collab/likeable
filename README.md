@@ -40,17 +40,22 @@ npm run verify
 
 The importer caches HTTP responses in `.cache/wp/`. Delete that folder to force a fresh pull.
 
-## Deploying (Cloudflare Pages)
+## Deploying (GitHub Pages)
 
-The domain is already on Cloudflare, so Pages is the simplest host:
+`.github/workflows/pages.yml` deploys every push to this branch.
 
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-- **Environment:** `NODE_VERSION=22`
+- **With the custom domain** set in *Settings → Pages*, the site is built for the domain root and indexed normally.
+- **Without it**, the site is built for `https://<owner>.github.io/<repo>/` and marked `noindex`. That job is done by `scripts/rebase.mjs`.
 
-`public/_redirects` maps the old `/feed/` URLs to `/rss.xml`. `public/_headers` sets long-lived caching for hashed assets and uploads.
+DNS for `likeable-person-test.com` (Cloudflare, set to *DNS only* until GitHub has issued the HTTPS certificate):
 
-Before switching DNS, run `npm run verify`. Then spot-check a few URLs on the Pages preview domain.
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
+| CNAME | `www` | `aryaseen790-collab.github.io` |
+
+GitHub Pages ignores `public/_redirects` and `public/_headers`. Those only apply on Cloudflare Pages, which remains an alternative host (build `npm run build`, output `dist`, `NODE_VERSION=22`).
 
 ## Themes
 

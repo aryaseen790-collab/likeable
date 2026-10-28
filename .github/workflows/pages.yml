@@ -1,4 +1,7 @@
-name: Preview (GitHub Pages)
+name: Deploy (GitHub Pages)
+# Serves the site on the repo's Pages URL. With a custom domain set in
+# Settings → Pages, base_path is empty and the site is built for the domain root
+# (indexable). Without one, it is built for /<repo>/ and marked noindex.
 on:
   push:
     branches: [claude/tender-pasteur-a0loor, main]
@@ -13,18 +16,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SITE_BASE: /${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
       - run: node scripts/rebase.mjs
-      - uses: actions/configure-pages@v5
+        env:
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
+      - run: npm run check:links
+        if: steps.pages.outputs.base_path == ''
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
