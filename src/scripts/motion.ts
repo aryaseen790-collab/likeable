@@ -6,6 +6,7 @@
 export const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = () => matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+// Elements that fade/rise in when scrolled into view.
 const REVEAL_AUTO = '.prose > h2, .prose > figure, .prose > .cta-box, .prose > blockquote, .post-card, .lpt-dim-card, .lptr-score-card, .lptr-cat-item';
 const TILT_SELECTOR = '[data-tilt]';
 
@@ -16,30 +17,29 @@ export function scrollToEl(el: HTMLElement) {
 }
 
 export function initMotion() {
-  (window as any).__motionReady = true;
   initScrollProgress();
   initTocSpy();
-  if (prefersReducedMotion()) {
-    document.documentElement.classList.remove('js-motion');
-    return;
-  }
+  if (prefersReducedMotion()) return;
   initReveals();
   if (finePointer()) initTilt();
 }
 
 export function initReveals(root: ParentNode = document) {
   root.querySelectorAll<HTMLElement>(REVEAL_AUTO).forEach((el) => el.hasAttribute('data-reveal') || el.setAttribute('data-reveal', ''));
-  const els = [...root.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)')];
-  if (!('IntersectionObserver' in window)) return els.forEach((el) => el.classList.add('is-in'));
+  if (!('IntersectionObserver' in window)) return;
+  // Leave anything already on screen alone; only hide what starts below the fold.
+  const fold = innerHeight;
+  const els = [...root.querySelectorAll<HTMLElement>('[data-reveal]:not(.reveal-pending)')].filter((el) => el.getBoundingClientRect().top > fold);
+  els.forEach((el) => el.classList.add('reveal-pending'));
+  requestAnimationFrame(() => els.forEach((el) => el.classList.add('reveal-ready')));
   const io = new IntersectionObserver(
     (entries) => {
-      // Stagger items that enter together.
       let i = 0;
       for (const e of entries) {
         if (!e.isIntersecting) continue;
         const el = e.target as HTMLElement;
         if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', `${Math.min(i++, 5) * 70}ms`);
-        el.classList.add('is-in');
+        el.classList.remove('reveal-pending');
         io.unobserve(el);
       }
     },

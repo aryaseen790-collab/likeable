@@ -3,6 +3,8 @@ import '@fontsource/dm-serif-display/latin-400.css';
 import '@fontsource/dm-serif-display/latin-400-italic.css';
 import '@fontsource-variable/work-sans/wght.css';
 import '../styles/global.css';
+import workSansUrl from '@fontsource-variable/work-sans/files/work-sans-latin-wght-normal.woff2?url';
+import dmSerifUrl from '@fontsource/dm-serif-display/files/dm-serif-display-latin-400-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Consent from '../components/Consent.astro';
@@ -34,18 +36,15 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
-      // Theme before first paint (light by default), and reveal targets hidden only when motion runs.
+      // Theme before first paint (light by default).
       (function () {
         var t = 'light';
         try { t = localStorage.getItem('lpt-theme') || 'light'; } catch (e) {}
-        var d = document.documentElement;
-        d.dataset.theme = t === 'dark' ? 'dark' : 'light';
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          d.classList.add('js-motion');
-          setTimeout(function () { if (!window.__motionReady) d.classList.remove('js-motion'); }, 3500);
-        }
+        document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
       })();
     </script>
+    <link rel="preload" href={workSansUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={dmSerifUrl} as="font" type="font/woff2" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     {meta.map((m) => ('name' in m ? <meta name={m.name} content={m.content} /> : <meta property={m.property} content={m.content} />))}

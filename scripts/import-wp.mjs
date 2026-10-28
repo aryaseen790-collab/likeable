@@ -82,7 +82,7 @@ function localSrcset(srcset) {
 // ---------------------------------------------------------------------------
 // Content cleaning: Kadence/Gutenberg markup -> semantic HTML
 // ---------------------------------------------------------------------------
-const KEEP_ATTRS = new Set(['href', 'src', 'srcset', 'sizes', 'alt', 'width', 'height', 'id', 'colspan', 'rowspan', 'title', 'target', 'rel', 'datetime', 'open', 'scope']);
+const KEEP_ATTRS = new Set(['href', 'src', 'srcset', 'sizes', 'alt', 'width', 'height', 'loading', 'decoding', 'id', 'colspan', 'rowspan', 'title', 'target', 'rel', 'datetime', 'open', 'scope']);
 
 function cleanHtml(html, { keepClassPrefixes = [], dropPostGrids = true } = {}) {
   const $ = cheerio.load(html, null, false);

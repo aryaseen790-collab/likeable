@@ -202,8 +202,10 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 [data-tilt]:hover { --lift: -4px; box-shadow: var(--shadow); }
 
 /* Reveal: compositor-only (opacity + transform), runs once */
-html.js-motion [data-reveal] { opacity: 0; transform: perspective(900px) translateY(36px) rotateX(8deg); transition: opacity 0.7s var(--ease), transform 0.8s var(--ease); transition-delay: var(--d, 0ms); }
-html.js-motion [data-reveal].is-in { opacity: 1; transform: none; }
+/* Only elements that start below the fold are hidden (by JS), so nothing on the
+   first screen ever waits for scripts — keeps LCP fast. */
+[data-reveal].reveal-pending { opacity: 0; transform: perspective(900px) translateY(36px) rotateX(8deg); }
+[data-reveal].reveal-ready { transition: opacity 0.7s var(--ease), transform 0.8s var(--ease); transition-delay: var(--d, 0ms); }
 
 /* ---------- Post cards / archive ---------- */
 .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: clamp(18px, 2.2vw, 28px); }
@@ -377,5 +379,5 @@ details[open] > summary::after { transform: translateY(-30%) rotate(-135deg); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-  html.js-motion [data-reveal] { opacity: 1; transform: none; }
+  [data-reveal].reveal-pending { opacity: 1; transform: none; }
 }

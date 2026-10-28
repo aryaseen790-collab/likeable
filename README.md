@@ -63,7 +63,10 @@ Light is the default. The sun/moon button in the header switches themes, and the
 
 ## Performance and accessibility
 
-- The hero headline is the LCP element. The WebGL scene loads on idle and fades in over a static CSS emoji orbit.
+- Lighthouse mobile: about 99 on the home page (LCP ≈ 2.0 s, TBT ≈ 0 ms) and 98 on a post.
+- Nothing on the first screen waits for JavaScript. Scroll reveals only apply to elements that start below the fold.
+- Three.js and Google Analytics load on the visitor's first interaction (scroll, tap, mouse move or key). Until then a static CSS emoji orbit is shown.
+- Imported images are `loading="lazy"` with a `srcset` built from WordPress's resized copies (`enhanceImages` in `src/lib/data.ts`). The hero fonts are preloaded.
 - Initial JS is about 10 KB gzipped; Three.js (about 134 KB gzipped) is a separate lazy chunk.
 - Scrolling is native, with no smooth-scroll library, pinning or scroll-scrubbed tweens. Reveals touch only `transform` and `opacity`, and there is no `backdrop-filter` except on the header.
 - Pixel ratio is capped. The render loop runs only while the orbit panel is on screen and the tab is visible.

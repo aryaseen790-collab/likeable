@@ -25,7 +25,10 @@ const GA_ID = 'G-KZTXC78Q70';
     s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
   };
-  if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 4000 }); else setTimeout(load, 2500);
+  // Load gtag.js on the first interaction so it never blocks the first paint.
+  var evts = ['pointerdown', 'pointermove', 'touchstart', 'wheel', 'scroll', 'keydown'];
+  var once = function () { evts.forEach(function (e) { removeEventListener(e, once); }); load(); };
+  evts.forEach(function (e) { addEventListener(e, once, { passive: true }); });
   document.addEventListener('DOMContentLoaded', function () {
     var bar = document.querySelector('[data-consent]');
     if (!stored) {

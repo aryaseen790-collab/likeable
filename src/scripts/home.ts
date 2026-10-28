@@ -25,6 +25,18 @@ export function initHome() {
     target.appendChild(canvas);
     if (orbit) target.classList.add('has-canvas');
   };
+  let booted = false;
+  const onFirstInteraction = (fn: () => void) => {
+    const events = ['pointerdown', 'pointermove', 'touchstart', 'wheel', 'scroll', 'keydown'];
+    const go = () => {
+      events.forEach((e) => removeEventListener(e, go));
+      if (!booted) {
+        booted = true;
+        fn();
+      }
+    };
+    events.forEach((e) => addEventListener(e, go, { passive: true, once: true }));
+  };
   const webgl = (() => {
     try {
       const c = document.createElement('canvas');
@@ -41,8 +53,9 @@ export function initHome() {
         if (pendingScores) orbit.setScores(pendingScores);
         canvas.parentElement?.classList.add('has-canvas');
       });
-    if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1500 });
-    else setTimeout(boot, 400);
+    // Three.js is ~130 KB gz: wait for the visitor's first interaction so it never
+    // competes with the first paint. Until then the static CSS emoji orbit shows.
+    onFirstInteraction(boot);
   }
   addEventListener('themechange', () => orbit?.setTheme(theme()));
 
