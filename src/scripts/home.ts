@@ -86,6 +86,18 @@ export function initHome() {
     },
   });
 
+  // ---- "Take the test" links land on the quiz card; put focus on its Start
+  // button too, so keyboard and screen-reader users are on the real control.
+  const focusStart = () => {
+    if (quizRoot.dataset.state !== 'start') return;
+    setTimeout(() => quizRoot.querySelector<HTMLButtonElement>('[data-action="start"]')?.focus({ preventScroll: true }), 450);
+  };
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href$="#take-test"]');
+    if (a && a.pathname === location.pathname) focusStart();
+  });
+  if (location.hash === '#take-test') focusStart();
+
   // ---- Hero stat counters (markup already shows final values without JS)
   if (!reduced) {
     document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {

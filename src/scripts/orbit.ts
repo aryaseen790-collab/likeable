@@ -62,7 +62,7 @@ export function createOrbit(canvas: HTMLCanvasElement, { reduced = false, theme 
   const world = new THREE.Group();
   scene.add(world);
   const system = new THREE.Group();
-  system.rotation.x = 0.58;
+  system.rotation.x = 0.95; // tilted toward the viewer so the orbit fills the panel
   world.add(system);
   const glowTex = glowTexture();
 
@@ -147,7 +147,9 @@ export function createOrbit(canvas: HTMLCanvasElement, { reduced = false, theme 
     // Keep the outermost orbit inside the panel on narrow canvases.
     const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
     const halfW = halfH * camera.aspect;
-    world.scale.setScalar(Math.min(1, (Math.min(halfW, halfH * 1.2) * 0.9) / 3.35));
+    // Fit the outer orbit (radius ~3.1 plus emoji) inside the panel both ways.
+    const tiltY = Math.sin(system.rotation.x);
+    world.scale.setScalar(Math.min(1.15, (halfW * 0.86) / 3.45, (halfH * 0.86) / (3.45 * tiltY + 0.35)));
     render();
   }
 
