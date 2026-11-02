@@ -27,6 +27,7 @@ Requires Node 22.12+ (`.nvmrc`).
 | `src/scripts/home.ts` | Home page wiring: lazy orbit, quiz ↔ orbit hooks, theme sync. |
 | `src/lib/topics.ts` | Rebuilds the imported home sections as bento "topics" (same text, same order). |
 | `src/scripts/quiz.ts` | The 25-question test. It keeps the original questions, scoring and feedback copy, and adds keyboard/swipe input, resume, a radar chart, shareable result links (`/?r=…`) and the text report download. |
+| `scripts/minify-html.mjs` | Post-build HTML minifier (see Performance). |
 | `scripts/check-links.mjs` | Fails the build if any internal link, image or legacy WordPress URL is missing. |
 
 ## Updating content
@@ -67,6 +68,7 @@ Light is the default. The sun/moon button in the header switches themes, and the
 - Nothing on the first screen waits for JavaScript. Scroll reveals only apply to elements that start below the fold.
 - Three.js and Google Analytics load on the visitor's first interaction (scroll, tap, mouse move or key). Until then a static CSS emoji orbit is shown.
 - Imported images are `loading="lazy"` with a `srcset` built from WordPress's resized copies (`enhanceImages` in `src/lib/data.ts`). The hero fonts are preloaded.
+- `npm run build` runs `scripts/minify-html.mjs` after Astro. It collapses whitespace, strips comments and minifies inline JS/CSS. It also compacts JSON-LD, dropping the old SEO plugin's duplicated `articleBody` text and repeated `@graph` nodes. All HTML is 783 → 660 KB raw (160 → 131 KB gzipped), and the guide page is 37% smaller. Visible text, links and the other structured-data fields are unchanged.
 - Initial JS is about 10 KB gzipped; Three.js (about 134 KB gzipped) is a separate lazy chunk.
 - Scrolling is native, with no smooth-scroll library, pinning or scroll-scrubbed tweens. Reveals touch only `transform` and `opacity`, and there is no `backdrop-filter` except on the header.
 - Pixel ratio is capped. The render loop runs only while the orbit panel is on screen and the tab is visible.
