@@ -1,12 +1,15 @@
 ---
 import type { Post } from '../lib/data';
 import { categoryBySlug } from '../lib/data';
-import { t, lpath, categoryName, formatDateIn, authorName, alternates, DEFAULT_LANG } from '../lib/i18n';
+import { t, lpath, categoryName, formatDateIn, authorName, alternates, langOf, DEFAULT_LANG } from '../lib/i18n';
 interface Props { post: Post; lang?: string; feature?: boolean; eager?: boolean }
 const { post, lang = DEFAULT_LANG, feature = false, eager = false } = Astro.props;
 const cat = categoryBySlug(post.categories[0]);
 const catHref = cat && (alternates(cat.path).some((a) => a.lang.code === lang) ? lpath(lang, cat.path) : cat.path);
 const img = post.featured;
+// Untranslated posts appear in English on translated pages: mark that text's language.
+const contentLang = (post as { lang?: string }).lang ?? DEFAULT_LANG;
+const textLang = contentLang !== lang ? langOf(contentLang).tag : undefined;
 ---
 <article class:list={['post-card', { 'post-card--feature': feature }]}>
   <a class="post-card__media" href={post.path} tabindex="-1" aria-hidden="true">
@@ -28,8 +31,8 @@ const img = post.featured;
       {cat && <a href={catHref}>{lang === DEFAULT_LANG ? cat.name : categoryName(lang, cat.slug)}</a>}
       <time datetime={post.date}>{formatDateIn(lang, post.date)}</time>
     </div>
-    <h2 class="post-card__title"><a href={post.path}>{post.title}</a></h2>
-    <p class="post-card__excerpt">{post.excerpt.replace(/\s*(&#8230;|…|\[…\])\s*$/, '…')}</p>
+    <h2 class="post-card__title" lang={textLang}><a href={post.path}>{post.title}</a></h2>
+    <p class="post-card__excerpt" lang={textLang}>{post.excerpt.replace(/\s*(&#8230;|…|\[…\])\s*$/, '…')}</p>
     <span class="post-card__more">{t(lang, 'post.readArticle')} <span aria-hidden="true">→</span></span>
     <span class="sr-only">{t(lang, 'post.by')} {authorName(lang)}</span>
   </div>

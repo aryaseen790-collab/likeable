@@ -1,9 +1,9 @@
 ---
 import Archive from '../../../components/Archive.astro';
 import { site, paginate } from '../../../lib/data';
-import { liveLangs, postsIn, t, lpath, DEFAULT_LANG } from '../../../lib/i18n';
-export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG && postsIn(l.code).length > 0).map((l) => ({ params: { lang: l.code } }));
+import { liveLangs, blogPostsIn, t, lpath, DEFAULT_LANG } from '../../../lib/i18n';
+export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG).map((l) => ({ params: { lang: l.code } }));
 const { lang } = Astro.params as { lang: string };
-const [first] = paginate(postsIn(lang), site.blogPerPage);
+const [first] = paginate(blogPostsIn(lang), site.blogPerPage);
 ---
 <Archive path={lpath(lang, '/blog/')} enPath="/blog/" lang={lang} eyebrow={t(lang, 'blog.heading')} title={t(lang, 'blog.title')} metaTitle={t(lang, 'meta.blogTitle')} intro={t(lang, 'blog.intro')} items={first.items} page={1} total={first.total} base="/blog" featureFirst />

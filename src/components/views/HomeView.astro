@@ -4,7 +4,7 @@ import '../../styles/home.css';
 import PostCard from '../PostCard.astro';
 import { home, site, dimensions, paginate } from '../../lib/data';
 import { sectionToTopics, parseFaq, parseCta } from '../../lib/topics';
-import { t, lpath, homeIn, postsIn, langOf, DEFAULT_LANG } from '../../lib/i18n';
+import { t, lpath, homeIn, postIn, blogPostsIn, langOf, DEFAULT_LANG } from '../../lib/i18n';
 
 interface Props { lang: string }
 const { lang } = Astro.props;
@@ -21,9 +21,8 @@ const icons = dimensions().map((d) => d.icon);
 const dims = icons.map((icon, i) => ({ icon, name: T(`dim.${i}.name`), desc: T(`dim.${i}.desc`) }));
 const colors = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
 // Until posts are translated, the blog section lists the English articles.
-const localPosts = postsIn(lang);
-const blogLang = localPosts.length ? lang : DEFAULT_LANG;
-const [blogPage] = paginate(postsIn(blogLang), site.homePerPage);
+const blogLang = lang;
+const [blogPage] = paginate(blogPostsIn(blogLang), site.homePerPage);
 const steps = [
   { icon: '📝', title: T('how.s1title'), text: T('how.s1text') },
   { icon: '🪐', title: T('how.s2title'), text: T('how.s2text') },
@@ -213,7 +212,7 @@ const schema =
           </article>
         ))}
       </div>
-      <a class="dims__guide" href={postsIn(lang).some((p) => p.slug === 'complete-guide') ? L('/complete-guide/') : '/complete-guide/'} data-reveal>
+      <a class="dims__guide" href={postIn(lang, 'complete-guide') ? L('/complete-guide/') : '/complete-guide/'} data-reveal>
         <span aria-hidden="true">📘</span>
         <span set:html={T('dims.guide')} />
         <span aria-hidden="true">→</span>
@@ -270,7 +269,7 @@ const schema =
         </div>
         <a class="btn" href={lpath(blogLang, '/blog/')}>{T('blog.all')}</a>
       </div>
-      <div class="post-grid" lang={blogLang !== lang ? langOf(blogLang).tag : undefined}>
+      <div class="post-grid">
         {blogPage.items.map((p, i) => <PostCard post={p} lang={blogLang} feature={i === 0} />)}
       </div>
       {lang === DEFAULT_LANG && blogPage.total > 1 && (

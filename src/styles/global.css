@@ -163,11 +163,11 @@ button { font: inherit; color: inherit; }
 .lang-switch summary::after { display: none; }
 .lang-switch summary svg { width: 18px; height: 18px; }
 .lang-switch summary:hover { border-color: var(--accent); }
-.lang-switch ul { position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 70; display: grid; grid-template-columns: repeat(2, minmax(140px, 1fr)); gap: 2px; width: max-content; max-width: min(92vw, 380px); max-height: min(70vh, 520px); overflow: auto; margin: 0; padding: 8px; list-style: none; border-radius: 18px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow); }
-.lang-switch a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.92rem; }
+.lang-switch ul { position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 70; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; width: max-content; max-width: min(92vw, 520px); max-height: calc(100vh - 100px); overflow: auto; overscroll-behavior: contain; margin: 0; padding: 8px; list-style: none; border-radius: 18px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow); }
+.lang-switch a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.92rem; line-height: 1.35; white-space: nowrap; }
 .lang-switch a:hover { background: var(--accent-soft); color: var(--heading); }
 .lang-switch a[aria-current] { background: var(--accent); color: #fff; }
-@media (max-width: 560px) { .lang-switch { position: static; } .lang-switch ul { inset-inline: 16px; top: calc(100% - 4px); width: auto; max-width: none; } }
+@media (max-width: 560px) { .lang-switch { position: static; } .lang-switch ul { inset-inline: 16px; top: calc(100% - 4px); width: auto; max-width: none; } .lang-switch a { padding: 8px; font-size: 0.86rem; white-space: normal; } }
 @media (max-width: 1080px) { .lang-switch { margin-inline-start: auto; } .lang-switch + .theme-toggle { margin-left: 0; } }
 
 /* ---------- Scripts without DM Serif / Work Sans glyphs ---------- */

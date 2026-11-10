@@ -162,6 +162,8 @@ export function postIn(lang: string, slug: string): LocalPost | null {
   };
 }
 export const postsIn = (lang: string) => enPosts.map((p) => postIn(lang, p.slug)).filter(Boolean) as LocalPost[];
+/** Every post for a language's blog: the translation where there is one, else the English original. */
+export const blogPostsIn = (lang: string): LocalPost[] => enPosts.map((p) => postIn(lang, p.slug) ?? { ...p, lang: DEFAULT_LANG });
 
 export function pageIn(lang: string, slug: string) {
   const pg = enPages[slug];
@@ -195,7 +197,7 @@ export function alternates(enPath: string): { lang: Lang; href: string }[] {
     if (!isLive(code)) return false;
     const slug = enPath.replace(/^\/|\/$/g, '');
     if (enPath === '/' || ['about', 'contact'].includes(slug)) return true;
-    if (slug === 'blog' || slug.startsWith('blog/')) return postsIn(code).length > 0;
+    if (slug === 'blog' || slug.startsWith('blog/')) return true;
     if (enPosts.some((p) => p.slug === slug)) return !!postIn(code, slug);
     if (enPages[slug]?.html) return !!pageIn(code, slug);
     if (slug.startsWith('category/')) return postsIn(code).some((p) => p.categories.includes(slug.split('/')[1]));

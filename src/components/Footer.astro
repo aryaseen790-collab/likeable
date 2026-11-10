@@ -1,11 +1,11 @@
 ---
 import { site } from '../lib/data';
-import { t, lpath, postsIn, isLive, alternates, DEFAULT_LANG } from '../lib/i18n';
+import { t, lpath, blogPostsIn, isLive, alternates, langOf, DEFAULT_LANG } from '../lib/i18n';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 // Link a page in this language when it exists there, else the English page.
 const L = (p: string) => (alternates(p).some((a) => a.lang.code === lang) ? lpath(lang, p) : p);
-const latest = postsIn(isLive(lang) ? lang : DEFAULT_LANG).slice(0, 5);
+const latest = blogPostsIn(isLive(lang) ? lang : DEFAULT_LANG).slice(0, 5);
 const year = new Date().getUTCFullYear();
 ---
 <footer class="site-footer">
@@ -29,7 +29,7 @@ const year = new Date().getUTCFullYear();
     <div>
       <h2 class="footer-title">{T('footer.resources')}</h2>
       <ul class="footer-links">
-        {latest.map((p) => <li><a href={p.path}>{p.title}</a></li>)}
+        {latest.map((p) => <li><a href={p.path} lang={p.lang !== lang ? langOf(p.lang).tag : undefined}>{p.title}</a></li>)}
       </ul>
     </div>
   </div>

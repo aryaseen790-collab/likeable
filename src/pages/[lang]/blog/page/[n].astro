@@ -1,11 +1,11 @@
 ---
 import Archive from '../../../../components/Archive.astro';
 import { site, paginate } from '../../../../lib/data';
-import { liveLangs, postsIn, t, lpath, DEFAULT_LANG } from '../../../../lib/i18n';
+import { liveLangs, blogPostsIn, t, lpath, DEFAULT_LANG } from '../../../../lib/i18n';
 export function getStaticPaths() {
   return liveLangs()
     .filter((l) => l.code !== DEFAULT_LANG)
-    .flatMap((l) => paginate(postsIn(l.code), site.blogPerPage).slice(1).map((p) => ({ params: { lang: l.code, n: String(p.page) }, props: p })));
+    .flatMap((l) => paginate(blogPostsIn(l.code), site.blogPerPage).slice(1).map((p) => ({ params: { lang: l.code, n: String(p.page) }, props: p })));
 }
 const { lang } = Astro.params as { lang: string };
 const { page, total, items } = Astro.props;
