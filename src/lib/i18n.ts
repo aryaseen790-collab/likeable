@@ -77,7 +77,13 @@ let sourceCache: ReturnType<typeof sourceDocs> | null = null;
 const sources = () => (sourceCache ??= sourceDocs());
 
 /** Validated translation of a document, or null when missing/stale/broken. */
+const translatedCache = new Map<string, ReturnType<typeof validate>>();
 function translated(lang: string, name: string) {
+  const key = `${lang}/${name}`;
+  if (!translatedCache.has(key)) translatedCache.set(key, validate(lang, name));
+  return translatedCache.get(key)!;
+}
+function validate(lang: string, name: string) {
   if (lang === DEFAULT_LANG) return null;
   const file = doc(lang, name);
   const src = sources()[name];
@@ -99,7 +105,8 @@ function translated(lang: string, name: string) {
 }
 
 /** Languages whose home page (interface + quiz + home content) is complete. */
-export const liveLangs = (): Lang[] => LANGS.filter((l) => l.code === DEFAULT_LANG || (ui[l.code] && translated(l.code, 'home') && translated(l.code, 'quiz')));
+let liveCache: Lang[] | null = null;
+export const liveLangs = (): Lang[] => (liveCache ??= LANGS.filter((l) => l.code === DEFAULT_LANG || (ui[l.code] && translated(l.code, 'home') && translated(l.code, 'quiz'))));
 export const isLive = (code: string) => liveLangs().some((l) => l.code === code);
 
 /** Home sections (same shape as src/data/home.json sections) in `lang`. */
