@@ -140,7 +140,13 @@ function tocFrom(html: string): TocItem[] {
 
 export type LocalPost = Post & { lang: string; seoTitle?: string; seoDescription?: string };
 /** A post in `lang`, or null if it is not translated. English returns the original. */
+const postCache = new Map<string, LocalPost | null>();
 export function postIn(lang: string, slug: string): LocalPost | null {
+  const key = `${lang}/${slug}`;
+  if (!postCache.has(key)) postCache.set(key, buildPost(lang, slug));
+  return postCache.get(key)!;
+}
+function buildPost(lang: string, slug: string): LocalPost | null {
   const p = enPosts.find((x) => x.slug === slug);
   if (!p) return null;
   if (lang === DEFAULT_LANG) return { ...p, lang };
@@ -165,7 +171,13 @@ export const postsIn = (lang: string) => enPosts.map((p) => postIn(lang, p.slug)
 /** Every post for a language's blog: the translation where there is one, else the English original. */
 export const blogPostsIn = (lang: string): LocalPost[] => enPosts.map((p) => postIn(lang, p.slug) ?? { ...p, lang: DEFAULT_LANG });
 
+const pageCache = new Map<string, ReturnType<typeof buildPage>>();
 export function pageIn(lang: string, slug: string) {
+  const key = `${lang}/${slug}`;
+  if (!pageCache.has(key)) pageCache.set(key, buildPage(lang, slug));
+  return pageCache.get(key)!;
+}
+function buildPage(lang: string, slug: string) {
   const pg = enPages[slug];
   if (!pg?.html) return null;
   if (lang === DEFAULT_LANG) return { ...pg, html: pg.html, lang, seoTitle: undefined as string | undefined, seoDescription: undefined as string | undefined };
