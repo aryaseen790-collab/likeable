@@ -16,9 +16,11 @@ const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e
 // Article rich results do not use it, so it is dropped. Exact duplicate nodes
 // in a @graph (the plugin emits the BreadcrumbList twice) are dropped too.
 const slimNode = (node) => {
-  if (node && typeof node === 'object' && !Array.isArray(node)) {
+  if (Array.isArray(node)) node.forEach(slimNode);
+  else if (node && typeof node === 'object') {
     const types = [].concat(node['@type'] || []);
     if (types.some((t) => /Article|BlogPosting/.test(t))) delete node.articleBody;
+    Object.values(node).forEach(slimNode); // nested nodes (e.g. WebPage.mainEntity)
   }
   return node;
 };

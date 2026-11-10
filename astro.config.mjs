@@ -9,4 +9,6 @@ export default defineConfig({
   build: { format: 'directory', inlineStylesheets: 'auto' },
   compressHTML: true,
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
+  // Never inline small scripts into each page: serve them as cached files.
+  vite: { build: { assetsInlineLimit: 0 } },
 });

@@ -45,8 +45,9 @@ function widthOf(file: string): number | undefined {
   } catch {}
   return undefined;
 }
-function srcsetFor(src: string) {
-  if (variantCache.has(src)) return variantCache.get(src)!;
+function srcsetFor(src: string, maxWidth = Infinity) {
+  const key = `${src}|${maxWidth}`;
+  if (variantCache.has(key)) return variantCache.get(key)!;
   let out = '';
   const m = src.match(/^(\/wp-content\/uploads\/.+\/)([^/]+?)\.(webp|jpe?g|png)$/i);
   if (m) {
@@ -59,20 +60,22 @@ function srcsetFor(src: string) {
         .filter(([, w]) => w && Number(w) > 150)
         .sort((a, b) => Number(a[1]) - Number(b[1]));
       const full = widthOf(path.join(UPLOADS, src));
-      if (sizes.length) out = [...sizes.map(([f, w]) => `${dir}${f} ${w}w`), ...(full ? [`${src} ${full}w`] : [])].join(', ');
+      const entries = [...sizes.map(([f, w]) => [`${dir}${f}`, Number(w)] as const), ...(full ? [[src, full] as const] : [])].filter(([, w]) => w <= maxWidth);
+      if (sizes.length && entries.length) out = entries.map(([u, w]) => `${u} ${w}w`).join(', ');
     } catch {}
   }
-  variantCache.set(src, out);
+  variantCache.set(key, out);
   return out;
 }
-export function enhanceImages(html: string, sizes = '(max-width: 860px) 100vw, 800px') {
+// maxWidth trims the srcset for images that never display large (e.g. 400px tiles).
+export function enhanceImages(html: string, sizes = '(max-width: 860px) 100vw, 800px', maxWidth = Infinity) {
   return html.replace(/<img\b([^>]*)>/g, (_tag, attrs: string) => {
     let a = attrs;
     if (!/\sloading=/.test(a)) a += ' loading="lazy"';
     if (!/\sdecoding=/.test(a)) a += ' decoding="async"';
     if (!/\ssrcset=/.test(a)) {
       const src = a.match(/\ssrc="([^"]+)"/)?.[1];
-      const set = src && srcsetFor(src);
+      const set = src && srcsetFor(src, maxWidth);
       if (set) a += ` srcset="${set}" sizes="${sizes}"`;
     }
     return `<img${a}>`;
@@ -88,7 +91,7 @@ export const pages = Object.fromEntries(
 );
 export const categories = categoriesJson as Category[];
 export const seo = seoJson as Record<string, Seo>;
-export const home = { ...homeJson, sections: homeJson.sections.map((x) => ({ ...x, html: enhanceImages(x.html, '(max-width: 620px) 100vw, (max-width: 900px) 50vw, 400px') })) };
+export const home = { ...homeJson, sections: homeJson.sections.map((x) => ({ ...x, html: enhanceImages(x.html, '(max-width: 620px) 100vw, (max-width: 900px) 50vw, 400px', 1024) })) };
 export const questions = questionsJson as { text: string; options: string[]; hook: string; category: string }[];
 
 export const categoryBySlug = (slug: string) => categories.find((c) => c.slug === slug);
