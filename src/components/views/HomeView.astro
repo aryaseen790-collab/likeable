@@ -20,7 +20,10 @@ const cta = parseCta(byCls('lpt-cta-section').html);
 const icons = dimensions().map((d) => d.icon);
 const dims = icons.map((icon, i) => ({ icon, name: T(`dim.${i}.name`), desc: T(`dim.${i}.desc`) }));
 const colors = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
-const [blogPage] = paginate(postsIn(lang), site.homePerPage);
+// Until posts are translated, the blog section lists the English articles.
+const localPosts = postsIn(lang);
+const blogLang = localPosts.length ? lang : DEFAULT_LANG;
+const [blogPage] = paginate(postsIn(blogLang), site.homePerPage);
 const steps = [
   { icon: '📝', title: T('how.s1title'), text: T('how.s1text') },
   { icon: '🪐', title: T('how.s2title'), text: T('how.s2text') },
@@ -265,10 +268,10 @@ const schema =
           <span class="eyebrow">{T('blog.eyebrow')}</span>
           <h2 class="h2">{lang === DEFAULT_LANG ? home.blog.heading || 'Our Blog' : T('blog.heading')}</h2>
         </div>
-        <a class="btn" href={L('/blog/')}>{T('blog.all')}</a>
+        <a class="btn" href={lpath(blogLang, '/blog/')}>{T('blog.all')}</a>
       </div>
       <div class="post-grid">
-        {blogPage.items.map((p, i) => <PostCard post={p} lang={lang} feature={i === 0} />)}
+        {blogPage.items.map((p, i) => <PostCard post={p} lang={blogLang} feature={i === 0} />)}
       </div>
       {lang === DEFAULT_LANG && blogPage.total > 1 && (
         <nav class="pagination" aria-label={T('pagination.label')}>

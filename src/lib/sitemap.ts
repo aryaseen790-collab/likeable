@@ -1,6 +1,7 @@
 import { posts, pages, categories, site } from './data';
+import { alternates } from './i18n';
 
-type Url = { loc: string; lastmod?: string; images?: string[] };
+type Url = { loc: string; lastmod?: string; images?: string[]; alts?: { tag: string; href: string }[] };
 const abs = (p: string) => new URL(p, site.origin).href;
 const iso = (d: string) => new Date(d.endsWith('Z') ? d : `${d}Z`).toISOString().replace('.000Z', '+00:00');
 
@@ -11,33 +12,46 @@ export function urlset(urls: Url[]) {
   const items = urls
     .map(
       (u) =>
-        `\t<url>\n\t\t<loc>${u.loc}</loc>${u.lastmod ? `\n\t\t<lastmod>${u.lastmod}</lastmod>` : ''}${(u.images ?? [])
+        `\t<url>\n\t\t<loc>${u.loc}</loc>${u.lastmod ? `\n\t\t<lastmod>${u.lastmod}</lastmod>` : ''}${(u.alts ?? [])
+          .map((a) => `\n\t\t<xhtml:link rel="alternate" hreflang="${a.tag}" href="${a.href}"/>`)
+          .join('')}${(u.images ?? [])
           .map((i) => `\n\t\t<image:image>\n\t\t\t<image:loc>${i}</image:loc>\n\t\t</image:image>`)
           .join('')}\n\t</url>`,
     )
     .join('\n');
-  return xml(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${items}\n</urlset>`);
+  return xml(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${items}\n</urlset>`);
 }
+
+// Every English URL plus its translations, each listing all language versions.
+const withTranslations = (urls: (Url & { enPath: string })[]): Url[] =>
+  urls.flatMap(({ enPath, ...u }) => {
+    const alts = alternates(enPath);
+    if (alts.length < 2) return [u];
+    const links = [...alts.map((a) => ({ tag: a.lang.tag, href: abs(a.href) })), { tag: 'x-default', href: abs(enPath) }];
+    return alts.map((a) => ({ ...u, loc: abs(a.href), alts: links, images: a.lang.code === 'en' ? u.images : undefined }));
+  });
 
 const imagesIn = (html: string) => [...new Set([...html.matchAll(/<img[^>]+src="(\/wp-content\/uploads\/[^"]+)"/g)].map((m) => abs(m[1])))];
 
 export const postUrls = (): Url[] =>
-  posts.map((p) => ({ loc: abs(p.path), lastmod: iso(p.modified), images: [...(p.featured ? [abs(p.featured.src)] : []), ...imagesIn(p.html)] }));
+  withTranslations(posts.map((p) => ({ enPath: p.path, loc: abs(p.path), lastmod: iso(p.modified), images: [...(p.featured ? [abs(p.featured.src)] : []), ...imagesIn(p.html)] })));
 
 export const pageUrls = (): Url[] => {
   const newest = posts.map((p) => p.modified).sort().pop()!;
-  return [
-    { loc: abs('/'), lastmod: iso(newest) },
-    ...['blog', 'privacy-policy', 'terms-conditions'].map((s) => ({ loc: abs(pages[s].path), lastmod: iso(pages[s].modified) })),
-    { loc: abs('/about/') },
-    { loc: abs('/contact/') },
-  ];
+  return withTranslations([
+    { enPath: '/', loc: abs('/'), lastmod: iso(newest) },
+    ...['blog', 'privacy-policy', 'terms-conditions'].map((s) => ({ enPath: pages[s].path, loc: abs(pages[s].path), lastmod: iso(pages[s].modified) })),
+    { enPath: '/about/', loc: abs('/about/') },
+    { enPath: '/contact/', loc: abs('/contact/') },
+  ]);
 };
 
 export const categoryUrls = (): Url[] =>
-  categories.map((c) => {
-    const latest = posts.filter((p) => p.categories.includes(c.slug)).map((p) => p.modified).sort().pop();
-    return { loc: abs(c.path), lastmod: latest ? iso(latest) : undefined };
-  });
+  withTranslations(
+    categories.map((c) => {
+      const latest = posts.filter((p) => p.categories.includes(c.slug)).map((p) => p.modified).sort().pop();
+      return { enPath: c.path, loc: abs(c.path), lastmod: latest ? iso(latest) : undefined };
+    }),
+  );
 
 export const lastmodOf = (urls: Url[]) => urls.map((u) => u.lastmod ?? '').sort().pop();

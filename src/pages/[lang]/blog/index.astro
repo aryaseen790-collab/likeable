@@ -2,7 +2,7 @@
 import Archive from '../../../components/Archive.astro';
 import { site, paginate } from '../../../lib/data';
 import { liveLangs, postsIn, t, lpath, DEFAULT_LANG } from '../../../lib/i18n';
-export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG).map((l) => ({ params: { lang: l.code } }));
+export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG && postsIn(l.code).length > 0).map((l) => ({ params: { lang: l.code } }));
 const { lang } = Astro.params as { lang: string };
 const [first] = paginate(postsIn(lang), site.blogPerPage);
 ---

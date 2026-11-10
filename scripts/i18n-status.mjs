@@ -7,7 +7,7 @@ const SRC = path.resolve('src/i18n/source');
 const docs = fs.readdirSync(SRC).filter((f) => f.endsWith('.json')).map((f) => f.replace('.json', ''));
 const en = JSON.parse(fs.readFileSync('src/i18n/ui/en.json', 'utf8'));
 const markers = (s) => [...(s.match(/<\/?[a-z]+>|\{\w+\}/g) || [])].sort().join('|');
-const langs = fs.readdirSync('src/i18n').filter((d) => /^[a-z]{2}$/.test(d)).sort();
+const langs = fs.readdirSync('src/i18n').filter((d) => /^[a-z]{2}$/.test(d) && d !== 'ui').sort();
 const uiLangs = fs.readdirSync('src/i18n/ui').map((f) => f.replace('.json', '')).filter((l) => l !== 'en');
 for (const lang of [...new Set([...langs, ...uiLangs])].sort()) {
   const row = [];
