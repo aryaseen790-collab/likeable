@@ -51,35 +51,94 @@ const schema =
       ];
 ---
 <Base path={L('/')} enPath="/" lang={lang} title={T('meta.homeTitle')} description={T('meta.homeDescription')} schema={schema} bodyClass="home">
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO + TEST: the quiz sits in the first screen so visitors can start straight away -->
+  <section class="hero" data-quiz-state="start">
     <div class="container hero__grid">
-      <div class="hero__copy">
+      <div class="hero__intro">
         <div class="chip"><span class="chip-dot"></span>{T('hero.badge')}</div>
         <h1 class="display hero__title" set:html={T('hero.title')} />
+      </div>
+      <div class="hero__more">
         <p class="lead hero__sub">{T('hero.subtitle')}</p>
-        <div class="hero__ctas">
-          <a href={`${L('/')}#take-test`} class="btn btn--primary btn--lg">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>{T('hero.cta')}
-          </a>
-          <a href={`${L('/')}#what-makes`} class="btn btn--ghost btn--lg">{T('hero.learnMore')} <span aria-hidden="true">→</span></a>
-        </div>
         <dl class="hero__stats">
           <div><dd><span data-count="25">25</span></dd><dt>{T('hero.statQuestions')}</dt></div>
           <div><dd><span data-count="9">9</span></dd><dt>{T('hero.statCategories')}</dt></div>
           <div><dd><span data-count="5">5</span> {T('hero.minutes')}</dd><dt>{T('hero.statTime')}</dt></div>
         </dl>
+        <a href={`${L('/')}#what-makes`} class="hero__learn">{T('hero.learnMore')} <span aria-hidden="true">→</span></a>
       </div>
-      <div class="hero__visual">
-        <div class="orbit-panel" data-orbit-slot="hero">
-          <div class="orbit-fallback" aria-hidden="true">
-            <span class="orbit-fallback__core">😊</span>
-            {dims.map((d, i) => <span class="orbit-fallback__sat" style={`--i:${i};--c:${colors[i]}`}>{d.icon}</span>)}
+      <div class="hero__test">
+        <div class="quiz card" id="take-test" data-quiz data-state="start" data-lang={lang}>
+          <div class="quiz__bar">
+            <h2 class="quiz__title">{T('test.barTitle')}</h2>
+            <p>{T('test.barText')}</p>
           </div>
-          <canvas class="orbit-canvas" data-orbit aria-hidden="true"></canvas>
-          <span class="orbit-panel__tag orbit-panel__tag--a">💛 {T('hero.tagEmpathy')}</span>
-          <span class="orbit-panel__tag orbit-panel__tag--b">🤝 {T('hero.tagTrust')}</span>
-          <span class="orbit-panel__tag orbit-panel__tag--c">👋 {T('hero.tagFirst')}</span>
+
+          <div class="quiz__start" data-step="start">
+            <div class="quiz__start-emojis" aria-hidden="true">{dims.map((d) => <span>{d.icon}</span>)}</div>
+            <p class="quiz__start-hook">{T('test.hook')}</p>
+            <p class="quiz__start-desc">{T('test.desc')}</p>
+            <div class="quiz__start-actions">
+              <button type="button" class="btn btn--primary btn--lg" data-action="start">{T('test.start')}</button>
+              <button type="button" class="btn btn--ghost" data-action="resume" data-resume hidden>{T('test.resume', { n: '', total: 25 })}</button>
+            </div>
+            <ul class="quiz__perks">
+              <li>{T('test.perkPrivate')}</li>
+              <li>{T('test.perkKeys')}</li>
+              <li>{T('test.perkReport')}</li>
+            </ul>
+          </div>
+
+          <div class="quiz__run" data-step="run" hidden>
+            <div class="quiz__main">
+              <div class="quiz__top">
+                <div class="quiz__ring" data-ring aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" /><circle cx="22" cy="22" r="19" /></svg></div>
+                <p class="quiz__count"><b data-current>1</b> {T('test.of')} <span data-total>25</span></p>
+                <span class="quiz__cat" data-cat></span>
+              </div>
+              <div class="quiz__card" data-card aria-live="polite">
+                <p class="quiz__hook" data-hook></p>
+                <h3 class="quiz__q" id="quiz-q" data-q></h3>
+                <div class="quiz__options" role="radiogroup" aria-labelledby="quiz-q" data-options></div>
+              </div>
+              <div class="quiz__nav">
+                <button type="button" class="btn btn--ghost btn--sm" data-action="prev" data-prev>{T('test.previous')}</button>
+                <ol class="quiz__dims" data-dims aria-hidden="true"></ol>
+                <button type="button" class="btn btn--primary btn--sm" data-action="next" data-next>{T('test.next')}</button>
+              </div>
+            </div>
+            <div class="orbit-panel orbit-panel--quiz" data-orbit-slot="quiz" aria-hidden="true"><canvas class="orbit-canvas" data-orbit aria-hidden="true"></canvas></div>
+          </div>
+
+          <div class="quiz__result" data-step="result" hidden>
+            <p class="quiz__shared">{T('test.shared')} <button type="button" class="linklike" data-action="retry">{T('test.takeYourself')}</button></p>
+            <h2 class="quiz__result-title">{T('test.resultsTitle')}</h2>
+            <div class="result-hero">
+              <div class="score-ring" data-score-ring>
+                <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22b8e6" /><stop offset=".5" stop-color="#7c4dff" /><stop offset="1" stop-color="#f76a0c" /></linearGradient></defs><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" /></svg>
+                <div class="score-ring__value"><span data-overall>0%</span><small data-label></small></div>
+              </div>
+              <div class="result-hero__text">
+                <div class="lpt-overall-feedback" data-feedback></div>
+                <div class="result-highlights">
+                  <div class="result-highlight result-highlight--top"><span>{T('test.topStrength')}</span><p data-strength></p></div>
+                  <div class="result-highlight result-highlight--focus"><span>{T('test.focusArea')}</span><p data-focus></p></div>
+                </div>
+              </div>
+              <div class="orbit-panel orbit-panel--result" data-orbit-slot="result" aria-hidden="true"></div>
+            </div>
+            <div class="result-body">
+              <div class="radar card" data-radar></div>
+              <div class="lpt-categories-grid" data-grid></div>
+            </div>
+            <div class="lpt-action-buttons">
+              <button type="button" class="btn btn--primary" data-action="share">{T('test.share')}</button>
+              <button type="button" class="btn" data-action="copy">{T('test.copy')}</button>
+              <button type="button" class="btn" data-action="download">{T('test.download')}</button>
+              <button type="button" class="btn" data-action="retry">{T('test.retry')}</button>
+            </div>
+            <p class="quiz__share-msg" data-share-msg role="status"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -108,90 +167,6 @@ const schema =
             <p>{s.text}</p>
           </article>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- THE TEST -->
-  <section class="quiz-section" data-quiz-section>
-    <div class="container">
-      <header class="section-head section-head--center" data-reveal>
-        <span class="eyebrow">{T('test.eyebrow')}</span>
-        <h2 class="h2" set:html={T('test.title')} />
-        <p class="lead">{T('test.lead')}</p>
-      </header>
-
-      <div class="quiz card" id="take-test" data-quiz data-state="start" data-lang={lang}>
-        <div class="quiz__bar">
-          <h2 class="quiz__title">{T('test.barTitle')}</h2>
-          <p>{T('test.barText')}</p>
-        </div>
-
-        <div class="quiz__start" data-step="start">
-          <div class="quiz__start-emojis" aria-hidden="true">{dims.map((d) => <span>{d.icon}</span>)}</div>
-          <p class="quiz__start-hook">{T('test.hook')}</p>
-          <p class="quiz__start-desc">{T('test.desc')}</p>
-          <div class="quiz__start-actions">
-            <button type="button" class="btn btn--primary btn--lg" data-action="start">{T('test.start')}</button>
-            <button type="button" class="btn btn--ghost" data-action="resume" data-resume hidden>{T('test.resume', { n: '', total: 25 })}</button>
-          </div>
-          <ul class="quiz__perks">
-            <li>{T('test.perkPrivate')}</li>
-            <li>{T('test.perkKeys')}</li>
-            <li>{T('test.perkReport')}</li>
-          </ul>
-        </div>
-
-        <div class="quiz__run" data-step="run" hidden>
-          <div class="quiz__main">
-            <div class="quiz__top">
-              <div class="quiz__ring" data-ring aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" /><circle cx="22" cy="22" r="19" /></svg></div>
-              <p class="quiz__count"><b data-current>1</b> {T('test.of')} <span data-total>25</span></p>
-              <span class="quiz__cat" data-cat></span>
-            </div>
-            <div class="quiz__card" data-card aria-live="polite">
-              <p class="quiz__hook" data-hook></p>
-              <h3 class="quiz__q" id="quiz-q" data-q></h3>
-              <div class="quiz__options" role="radiogroup" aria-labelledby="quiz-q" data-options></div>
-            </div>
-            <div class="quiz__nav">
-              <button type="button" class="btn btn--ghost btn--sm" data-action="prev" data-prev>{T('test.previous')}</button>
-              <ol class="quiz__dims" data-dims aria-hidden="true"></ol>
-              <button type="button" class="btn btn--primary btn--sm" data-action="next" data-next>{T('test.next')}</button>
-            </div>
-          </div>
-          <div class="orbit-panel orbit-panel--quiz" data-orbit-slot="quiz" aria-hidden="true"></div>
-        </div>
-
-        <div class="quiz__result" data-step="result" hidden>
-          <p class="quiz__shared">{T('test.shared')} <button type="button" class="linklike" data-action="retry">{T('test.takeYourself')}</button></p>
-          <h2 class="quiz__result-title">{T('test.resultsTitle')}</h2>
-          <div class="result-hero">
-            <div class="score-ring" data-score-ring>
-              <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22b8e6" /><stop offset=".5" stop-color="#7c4dff" /><stop offset="1" stop-color="#f76a0c" /></linearGradient></defs><circle cx="60" cy="60" r="52" /><circle cx="60" cy="60" r="52" /></svg>
-              <div class="score-ring__value"><span data-overall>0%</span><small data-label></small></div>
-            </div>
-            <div class="result-hero__text">
-              <div class="lpt-overall-feedback" data-feedback></div>
-              <div class="result-highlights">
-                <div class="result-highlight result-highlight--top"><span>{T('test.topStrength')}</span><p data-strength></p></div>
-                <div class="result-highlight result-highlight--focus"><span>{T('test.focusArea')}</span><p data-focus></p></div>
-              </div>
-            </div>
-            <div class="orbit-panel orbit-panel--result" data-orbit-slot="result" aria-hidden="true"></div>
-          </div>
-          <div class="result-body">
-            <div class="radar card" data-radar></div>
-            <div class="lpt-categories-grid" data-grid></div>
-          </div>
-          <div class="lpt-action-buttons">
-            <button type="button" class="btn btn--primary" data-action="share">{T('test.share')}</button>
-            <button type="button" class="btn" data-action="copy">{T('test.copy')}</button>
-            <button type="button" class="btn" data-action="download">{T('test.download')}</button>
-            <button type="button" class="btn" data-action="retry">{T('test.retry')}</button>
-          </div>
-          <p class="quiz__share-msg" data-share-msg role="status"></p>
-        </div>
       </div>
     </div>
   </section>

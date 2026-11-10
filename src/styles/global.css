@@ -187,8 +187,8 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Right-to-left (Arabic, Urdu) ---------- */
 [dir='rtl'] .site-nav { margin-left: 0; margin-right: auto; }
-[dir='rtl'] .hero__copy .chip, [dir='rtl'] .chip { direction: rtl; }
-[dir='rtl'] .post-card__more span, [dir='rtl'] .dims__guide > span:last-child, [dir='rtl'] .hero__ctas .btn span { display: inline-block; transform: scaleX(-1); }
+[dir='rtl'] .chip { direction: rtl; }
+[dir='rtl'] .post-card__more span, [dir='rtl'] .dims__guide > span:last-child, [dir='rtl'] .hero__learn span { display: inline-block; transform: scaleX(-1); }
 [dir='rtl'] details:not(.lang-switch) > summary { padding: 17px 20px 17px 54px; }
 [dir='rtl'] details:not(.lang-switch) > summary::after { right: auto; left: 22px; }
 [dir='rtl'] .toc a { border-left: 0; border-right: 2px solid var(--border); padding: 6px 14px 6px 10px; }

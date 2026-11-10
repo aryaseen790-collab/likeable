@@ -96,6 +96,8 @@ export function initQuiz(root: HTMLElement, bundle: QuizBundle, hooks: QuizHooks
   function show(step: keyof typeof steps) {
     for (const [k, node] of Object.entries(steps)) node.hidden = k !== step;
     root.dataset.state = step;
+    // The home hero lays itself out around the quiz: side by side at the start, full width once it runs.
+    root.closest<HTMLElement>('[data-quiz-state]')?.setAttribute('data-quiz-state', step);
   }
 
   function catScores() {
