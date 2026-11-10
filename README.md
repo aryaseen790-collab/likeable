@@ -41,6 +41,23 @@ npm run verify
 
 The importer caches HTTP responses in `.cache/wp/`. Delete that folder to force a fresh pull.
 
+## Translations
+
+The site is published in English plus 19 languages (listed in `src/i18n/languages.ts`), each under its own prefix such as `/es/` or `/ar/`. Arabic and Urdu render right to left.
+
+- `src/i18n/ui/` holds the interface strings for each language.
+- `src/i18n/source/` holds the English text of every page, post and quiz, split into numbered segments. Inline tags become placeholders like `<1>…</1>`.
+- `src/i18n/<lang>/<doc>.json` is the translation of one document. It copies the source `source` hash, translates every `meta` value and segment, and keeps each placeholder exactly.
+
+When English content changes:
+
+```bash
+npm run i18n:extract   # rewrite src/i18n/source from src/data
+npm run i18n:status    # show which translations are now out of date
+```
+
+A translation whose hash, segment count or placeholders no longer match the source is skipped at build time, and that page falls back to English with a build warning. It never shows broken markup.
+
 ## Deploying (GitHub Pages)
 
 `.github/workflows/pages.yml` deploys every push to this branch.
