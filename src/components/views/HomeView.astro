@@ -270,7 +270,7 @@ const schema =
         </div>
         <a class="btn" href={lpath(blogLang, '/blog/')}>{T('blog.all')}</a>
       </div>
-      <div class="post-grid">
+      <div class="post-grid" lang={blogLang !== lang ? langOf(blogLang).tag : undefined}>
         {blogPage.items.map((p, i) => <PostCard post={p} lang={blogLang} feature={i === 0} />)}
       </div>
       {lang === DEFAULT_LANG && blogPage.total > 1 && (

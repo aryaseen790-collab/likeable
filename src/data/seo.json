@@ -523,7 +523,7 @@
   },
   "/am-i-likable-signs/": {
     "title": "Am I Likable? Signs People Genuinely Like You",
-    "canonical": "https://likeable-person-test.com/am-i-likable-signs",
+    "canonical": "https://likeable-person-test.com/am-i-likable-signs/",
     "prev": null,
     "next": null,
     "meta": [
@@ -565,7 +565,7 @@
       },
       {
         "property": "og:url",
-        "content": "https://likeable-person-test.com/am-i-likable-signs"
+        "content": "https://likeable-person-test.com/am-i-likable-signs/"
       },
       {
         "property": "og:image",

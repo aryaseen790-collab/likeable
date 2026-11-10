@@ -32,7 +32,10 @@ const seo = isEn ? seoMap[path] : undefined;
 const pageTitle = seo?.title ?? title ?? site.name;
 const url = new URL(path, site.origin).href;
 const ogImage = image ? new URL(image, site.origin).href : `${site.origin}${site.logo.src}`;
-const meta = seo?.meta ?? [
+const alts = noindex ? [] : alternates(enPath);
+// Other language versions of this page, for Open Graph consumers (Facebook, LinkedIn…).
+const ogAlternates = alts.filter((a) => a.lang.code !== lang).map((a) => ({ property: 'og:locale:alternate', content: a.lang.og }));
+const baseMeta = seo?.meta ?? [
   ...(description ? [{ name: 'description', content: description }] : []),
   { property: 'og:locale', content: L.og },
   { property: 'og:site_name', content: isEn ? site.name : t(lang, 'meta.siteName') },
@@ -46,8 +49,10 @@ const meta = seo?.meta ?? [
   ...(description ? [{ name: 'twitter:description', content: description }] : []),
   { name: 'twitter:image', content: ogImage },
 ];
-const alts = noindex ? [] : alternates(enPath);
-const canonical = seo?.canonical ?? url;
+const at = baseMeta.findIndex((m) => 'property' in m && m.property === 'og:locale') + 1 || baseMeta.length;
+const meta = [...baseMeta.slice(0, at), ...ogAlternates, ...baseMeta.slice(at)];
+// Site URLs all end in '/'; an imported canonical without it would point at a redirect.
+const canonical = (seo?.canonical ?? url).replace(/^(https?:\/\/[^?#]*\/[^/.?#]+)$/, '$1/');
 const jsonld = [...(seo?.jsonld ?? []), ...schema];
 ---
 <!doctype html>
