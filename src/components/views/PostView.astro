@@ -19,7 +19,7 @@ const isCustom = post?.layout === 'custom';
 const showToc = !isCustom && item.toc.filter((x) => x.level === 2).length >= 3;
 const relatedPosts = post ? (related(post).map((p) => postIn(lang, p.slug)).filter(Boolean) as LocalPost[]) : [];
 const authorHref = alternates(`/author/${site.author.slug}/`).some((a) => a.lang.code === lang) ? lpath(lang, `/author/${site.author.slug}/`) : `/author/${site.author.slug}/`;
-const title = item.seoTitle || `${item.title.replace(/<[^>]+>/g, '')} - ${T('meta.siteName')}`;
+const title = item.seoTitle || item.title.replace(/<[^>]+>/g, '');
 const description = item.seoDescription || post?.excerpt;
 // Translated pages get their own structured data (English keeps the imported graph).
 const pageSchema = isEn

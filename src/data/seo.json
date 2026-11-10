@@ -83,7 +83,7 @@
     ]
   },
   "/blog/": {
-    "title": "Our Blog - Likeable Person Test",
+    "title": "Our Blog",
     "canonical": "https://likeable-person-test.com/blog/",
     "prev": null,
     "next": null,
@@ -114,7 +114,7 @@
       },
       {
         "property": "og:title",
-        "content": "Our Blog - Likeable Person Test"
+        "content": "Our Blog"
       },
       {
         "property": "og:description",
@@ -146,7 +146,7 @@
       },
       {
         "name": "twitter:title",
-        "content": "Our Blog - Likeable Person Test"
+        "content": "Our Blog"
       },
       {
         "name": "twitter:description",
@@ -166,7 +166,7 @@
     ]
   },
   "/blog/page/2/": {
-    "title": "Our Blog - Likeable Person Test - Page 2",
+    "title": "Our Blog - Page 2",
     "canonical": "https://likeable-person-test.com/blog/",
     "prev": null,
     "next": null,
@@ -197,7 +197,7 @@
       },
       {
         "property": "og:title",
-        "content": "Our Blog - Likeable Person Test - Page 2"
+        "content": "Our Blog - Page 2"
       },
       {
         "property": "og:description",
@@ -229,7 +229,7 @@
       },
       {
         "name": "twitter:title",
-        "content": "Our Blog - Likeable Person Test - Page 2"
+        "content": "Our Blog - Page 2"
       },
       {
         "name": "twitter:description",
@@ -332,7 +332,7 @@
     ]
   },
   "/privacy-policy/": {
-    "title": "Privacy Policy - Likeable Person Test",
+    "title": "Privacy Policy",
     "canonical": "https://likeable-person-test.com/privacy-policy/",
     "prev": null,
     "next": null,
@@ -363,7 +363,7 @@
       },
       {
         "property": "og:title",
-        "content": "Privacy Policy - Likeable Person Test"
+        "content": "Privacy Policy"
       },
       {
         "property": "og:description",
@@ -395,7 +395,7 @@
       },
       {
         "name": "twitter:title",
-        "content": "Privacy Policy - Likeable Person Test"
+        "content": "Privacy Policy"
       },
       {
         "name": "twitter:description",
@@ -415,7 +415,7 @@
     ]
   },
   "/terms-conditions/": {
-    "title": "Terms & Conditions - Likeable Person Test",
+    "title": "Terms & Conditions",
     "canonical": "https://likeable-person-test.com/terms-conditions/",
     "prev": null,
     "next": null,
@@ -446,7 +446,7 @@
       },
       {
         "property": "og:title",
-        "content": "Terms & Conditions - Likeable Person Test"
+        "content": "Terms & Conditions"
       },
       {
         "property": "og:description",
@@ -478,7 +478,7 @@
       },
       {
         "name": "twitter:title",
-        "content": "Terms & Conditions - Likeable Person Test"
+        "content": "Terms & Conditions"
       },
       {
         "name": "twitter:description",
@@ -498,7 +498,7 @@
     ]
   },
   "/author/admin/": {
-    "title": "Likable Person Test Team - Likeable Person Test",
+    "title": "Likable Person Test Team",
     "canonical": "https://likeable-person-test.com/author/admin/",
     "prev": null,
     "next": null,
@@ -1136,7 +1136,7 @@
     ]
   },
   "/category/discover/": {
-    "title": "Discover - Likeable Person Test",
+    "title": "Discover",
     "canonical": "https://likeable-person-test.com/category/discover/",
     "prev": null,
     "next": null,
@@ -1159,7 +1159,7 @@
     ]
   },
   "/category/how-to-improvement/": {
-    "title": "How-To & Improvement - Likeable Person Test",
+    "title": "How-To & Improvement",
     "canonical": "https://likeable-person-test.com/category/how-to-improvement/",
     "prev": null,
     "next": null,
@@ -1183,7 +1183,7 @@
     ]
   },
   "/category/relationships/": {
-    "title": "Relationships - Likeable Person Test",
+    "title": "Relationships",
     "canonical": "https://likeable-person-test.com/category/relationships/",
     "prev": null,
     "next": null,
@@ -1207,7 +1207,7 @@
     ]
   },
   "/category/science/": {
-    "title": "Science - Likeable Person Test",
+    "title": "Science",
     "canonical": "https://likeable-person-test.com/category/science/",
     "prev": null,
     "next": null,
