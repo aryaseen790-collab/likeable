@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import Toc from '../Toc.astro';
+import PostCard from '../PostCard.astro';
+import CtaBand from '../CtaBand.astro';
+import { categoryBySlug, related, site } from '../../lib/data';
+import { t, lpath, categoryName, formatDateIn, readingTimeIn, authorName, postIn, alternates, langOf, DEFAULT_LANG, type LocalPost } from '../../lib/i18n';
+
+type LocalPage = { path: string; title: string; date: string; modified: string; toc: { id: string; text: string; level: number }[]; html: string; seoTitle?: string; seoDescription?: string };
+interface Props { lang: string; enPath: string; post?: LocalPost; page?: LocalPage; schema?: string[] }
+const { lang, enPath, post, page, schema = [] } = Astro.props;
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+const isEn = lang === DEFAULT_LANG;
+const item = (post ?? page)!;
+const cat = post ? categoryBySlug(post.categories[0]) : undefined;
+const catHref = cat && (alternates(cat.path).some((a) => a.lang.code === lang) ? lpath(lang, cat.path) : cat.path);
+const catLabel = cat && (isEn ? cat.name : categoryName(lang, cat.slug));
+const isCustom = post?.layout === 'custom';
+const showToc = !isCustom && item.toc.filter((x) => x.level === 2).length >= 3;
+const relatedPosts = post ? (related(post).map((p) => postIn(lang, p.slug)).filter(Boolean) as LocalPost[]) : [];
+const authorHref = alternates(`/author/${site.author.slug}/`).some((a) => a.lang.code === lang) ? lpath(lang, `/author/${site.author.slug}/`) : `/author/${site.author.slug}/`;
+const title = item.seoTitle || `${item.title.replace(/<[^>]+>/g, '')} - ${T('meta.siteName')}`;
+const description = item.seoDescription || post?.excerpt;
+// Translated pages get their own structured data (English keeps the imported graph).
+const pageSchema = isEn
+  ? schema
+  : [
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          post
+            ? { '@type': 'Article', headline: item.title.replace(/<[^>]+>/g, ''), description, inLanguage: langOf(lang).tag, datePublished: item.date, dateModified: item.modified, author: { '@type': 'Organization', name: authorName(lang) }, publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.origin}${site.logo.src}` } }, image: post.featured ? `${site.origin}${post.featured.src}` : undefined, mainEntityOfPage: `${site.origin}${item.path}` }
+            : { '@type': 'WebPage', name: item.title, inLanguage: langOf(lang).tag, url: `${site.origin}${item.path}` },
+          { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: T('nav.home'), item: `${site.origin}${lpath(lang, '/')}` }, { '@type': 'ListItem', position: 2, name: item.title.replace(/<[^>]+>/g, ''), item: `${site.origin}${item.path}` }] },
+        ],
+      }),
+    ];
+---
+<Base path={item.path} enPath={enPath} lang={lang} title={title} description={description} image={post?.featured?.src} ogType={post ? 'article' : 'website'} schema={pageSchema} bodyClass={post ? 'single-post' : 'single-page'}>
+  {isCustom ? (
+    <article class="article-layout article-layout--single" style="margin-top:clamp(40px, 7vw, 88px)">
+      <div class="prose prose--custom" set:html={item.html} />
+    </article>
+  ) : (
+    <article>
+      <header class="article-hero">
+        <div class="article-hero__inner" data-reveal>
+          <ol class="breadcrumbs" aria-label={T('post.breadcrumb')}>
+            <li><a href={lpath(lang, '/')}>{T('nav.home')}</a></li>
+            {cat && <li><a href={catHref}>{catLabel}</a></li>}
+            {!post && <li aria-current="page">{item.title}</li>}
+          </ol>
+          {cat && <a class="chip" href={catHref} style="margin-bottom:22px"><span class="chip-dot"></span>{catLabel}</a>}
+          <h1 set:html={item.title} />
+          <div class="article-meta">
+            {post && <span>{T('post.by')} <a href={authorHref}>{authorName(lang)}</a></span>}
+            {post && <span class="dot" aria-hidden="true"></span>}
+            <time datetime={item.date}>{post ? T('post.postedOn', { date: formatDateIn(lang, item.date) }) : T('post.updated', { date: formatDateIn(lang, item.modified) })}</time>
+            {post && <span class="dot" aria-hidden="true"></span>}
+            {post && <span>{T('post.readTime', { n: readingTimeIn(lang, post.html) })}</span>}
+          </div>
+        </div>
+        {post?.featured && (
+          <div class="article-figure">
+            <div class="article-figure__frame">
+              <img src={post.featured.src} srcset={post.featured.srcset} sizes="(max-width: 1200px) 100vw, 1160px" width={post.featured.width} height={post.featured.height} alt={post.featured.alt} fetchpriority="high" decoding="async" />
+            </div>
+          </div>
+        )}
+      </header>
+      <div class:list={['article-layout', { 'article-layout--single': !showToc }]}>
+        {showToc && <Toc items={item.toc} title={T('post.toc')} />}
+        <div>
+          {showToc && (
+            <details class="toc-mobile glass">
+              <summary>{T('post.toc')}</summary>
+              <Toc items={item.toc} title={T('post.toc')} />
+            </details>
+          )}
+          {!isEn && !post && <p class="legal-notice">{T('post.legalNotice')}</p>}
+          <div class="prose" set:html={item.html} />
+          {post && (
+            <aside class="author-box glass">
+              <div class="author-box__avatar" aria-hidden="true">L</div>
+              <div>
+                <a href={authorHref}>{authorName(lang)}</a>
+                <p>{T('post.authorBio')}</p>
+              </div>
+            </aside>
+          )}
+        </div>
+      </div>
+    </article>
+  )}
+  {relatedPosts.length > 0 && (
+    <section class="container section" style="padding-bottom:0">
+      <span class="eyebrow">{T('post.keepReading')}</span>
+      <h2 class="h2" style="margin-bottom:36px" set:html={T('post.related')} />
+      <div class="post-grid">{relatedPosts.map((p) => <PostCard post={p} lang={lang} />)}</div>
+    </section>
+  )}
+  <CtaBand lang={lang} />
+</Base>

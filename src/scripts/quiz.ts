@@ -3,6 +3,9 @@
 import { scrollToEl } from './motion';
 
 export type Question = { text: string; options: string[]; hook: string; category: string };
+// Everything the quiz shows, in one language (built by quizBundle() in src/lib/i18n.ts
+// and served as /i18n/quiz-<lang>.json).
+export type QuizBundle = { lang: string; questions: Question[]; strings: Record<string, string>; learnMore: Record<string, string> };
 export type QuizHooks = {
   onStart?(): void;
   onAnswer?(categoryIndex: number, scores: number[], progress: number): void;
@@ -14,28 +17,19 @@ export const CATEGORIES = ['First Impressions', 'Communication', 'Positivity', '
 const COLORS = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
 // '/' in production; '/likeable/' on the GitHub Pages preview.
 const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const LEARN_MORE: Record<string, string> = {
-  'First Impressions': '/how-to-make-a-great-first-impression/',
-  Communication: '/how-to-be-more-likable/',
-  'Social Skills': '/likeability-in-friendships/',
-  Empathy: '/the-science-of-likeability-what-psychology-actually-says/',
-  Positivity: '/am-i-likable-signs/',
-};
 const STORE = 'lpt-quiz-v1';
 
-const overallBand = (overall: number) => {
-  if (overall >= 90) return { label: '🌟 Exceptional!', feedback: 'You are extremely likeable! People naturally gravitate towards you. You possess outstanding social skills, genuine empathy, and a warm personality that makes others feel valued and appreciated.' };
-  if (overall >= 80) return { label: '😊 Excellent!', feedback: 'You are very likeable! You have great interpersonal skills and people enjoy your company. You show genuine care for others and maintain positive relationships with ease.' };
-  if (overall >= 70) return { label: '👍 Good!', feedback: "You are quite likeable! You have solid social skills and generally make a positive impression. People feel comfortable around you, though there's always room to grow your likability score." };
-  if (overall >= 60) return { label: '🙂 Above Average!', feedback: 'You have a decent level of likability. You get along well with most people, but enhancing your listening skills and empathy could make you even more approachable.' };
-  if (overall >= 50) return { label: '😐 Average', feedback: 'You have moderate likability. Working on your social skills, positivity, and showing more genuine interest in others would significantly improve how people perceive you.' };
-  return { label: '💪 Needs Work', feedback: 'You have significant room to grow in terms of likability. Focus on empathy, positivity, reliability, and communication. Everyone can improve their likeability score with intentional practice!' };
+type Strings = Record<string, string>;
+const fill = (str: string, vars: Record<string, string | number>) => str.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
+const overallBand = (S: Strings, overall: number) => {
+  const key = overall >= 90 ? 'exceptional' : overall >= 80 ? 'excellent' : overall >= 70 ? 'good' : overall >= 60 ? 'above' : overall >= 50 ? 'average' : 'low';
+  return { label: S[`band.${key}.label`], feedback: S[`band.${key}.text`] };
 };
-const categoryBand = (score: number) => {
-  if (score >= 85) return { cls: 'excellent', feedback: 'Outstanding! You excel in this area.' };
-  if (score >= 70) return { cls: 'good', feedback: "Great work! You're doing well here." };
-  if (score >= 55) return { cls: 'average', feedback: 'Solid foundation. Room for improvement.' };
-  return { cls: 'needs-improvement', feedback: 'Focus area. Work on developing this skill.' };
+const categoryBand = (S: Strings, score: number) => {
+  if (score >= 85) return { cls: 'excellent', feedback: S['cat.excellent'] };
+  if (score >= 70) return { cls: 'good', feedback: S['cat.good'] };
+  if (score >= 55) return { cls: 'average', feedback: S['cat.average'] };
+  return { cls: 'needs-improvement', feedback: S['cat.low'] };
 };
 
 export function score(questions: Question[], answers: (number | null)[]) {
@@ -70,7 +64,9 @@ const save = (v: unknown) => {
   } catch {}
 };
 
-export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHooks = {}) {
+export function initQuiz(root: HTMLElement, bundle: QuizBundle, hooks: QuizHooks = {}) {
+  const { questions, strings: S, learnMore, lang } = bundle;
+  const catName = (c: string) => S[`dim.${CATEGORIES.indexOf(c)}.name`] || c;
   const N = questions.length;
   const $ = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
   const steps = { start: $('[data-step="start"]'), run: $('[data-step="run"]'), result: $('[data-step="result"]') };
@@ -88,13 +84,13 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
   let current = 0;
   let advanceTimer = 0;
 
-  el.dims.innerHTML = CATEGORIES.map((c, i) => `<li style="--c:${COLORS[i]}" title="${c}"><span></span><em>${c}</em></li>`).join('');
+  el.dims.innerHTML = CATEGORIES.map((c, i) => `<li style="--c:${COLORS[i]}" title="${esc(catName(c))}"><span></span><em>${esc(catName(c))}</em></li>`).join('');
 
   const saved = load();
   if (saved?.answers?.length === N && saved.answers.some((a: number | null) => a !== null) && !saved.done) {
     const n = saved.answers.filter((a: number | null) => a !== null).length;
     el.resume.hidden = false;
-    el.resume.textContent = `Resume where you left off (${n}/${N})`;
+    el.resume.textContent = fill(S['test.resume'], { n, total: N });
   }
 
   function show(step: keyof typeof steps) {
@@ -110,7 +106,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     const q = questions[current];
     const ci = CATEGORIES.indexOf(q.category);
     el.current.textContent = String(current + 1);
-    el.cat.textContent = q.category;
+    el.cat.textContent = catName(q.category);
     el.cat.style.setProperty('--c', COLORS[ci]);
     el.hook.textContent = q.hook;
     el.q.textContent = q.text;
@@ -124,7 +120,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     el.ring.style.setProperty('--p', String(answered / N));
     el.prev.disabled = current === 0;
     el.next.disabled = answers[current] === null;
-    el.next.textContent = current === N - 1 ? 'Get Results' : 'Next';
+    el.next.textContent = current === N - 1 ? S['test.getResults'] : S['test.next'];
     root.querySelectorAll<HTMLElement>('[data-dims] li').forEach((li, i) => {
       const qs = questions.map((x, j) => ({ x, j })).filter(({ x }) => x.category === CATEGORIES[i]);
       const done = qs.filter(({ j }) => answers[j] !== null).length;
@@ -213,26 +209,26 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
       .map((c, i) => {
         const [x, y] = pt(i, R + 22);
         const anchor = Math.abs(x - cx) < 8 ? 'middle' : x > cx ? 'start' : 'end';
-        return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle">${c.name.replace('Emotional Intelligence', 'Emotional IQ')}</text>`;
+        return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle">${esc(c.name === 'Emotional Intelligence' ? S['dim.shortEI'] : catName(c.name))}</text>`;
       })
       .join('');
-    el.radar.innerHTML = `<svg viewBox="-70 -10 460 340" role="img" aria-label="Radar chart of your nine category scores">
+    el.radar.innerHTML = `<svg viewBox="-70 -10 460 340" role="img" aria-label="${esc(S['test.radarLabel'])}">
       <defs><linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b84ff" stop-opacity=".55"/><stop offset="1" stop-color="#e879f9" stop-opacity=".35"/></linearGradient></defs>
       ${rings}${spokes}<polygon points="${shape}" class="radar__shape" fill="url(#radarFill)"/>${dots}${labels}</svg>`;
   }
 
   function showResult(fromShare = false) {
     const { overall, categories } = score(questions, answers);
-    const band = overallBand(overall);
+    const band = overallBand(S, overall);
     show('result');
     root.dataset.shared = String(fromShare);
     el.label.textContent = band.label;
-    el.feedback.innerHTML = `<h3>Your Likability Test Overall Assessment</h3><p>${band.feedback}</p>`;
+    el.feedback.innerHTML = `<h3>${esc(S['test.assessment'])}</h3><p>${esc(band.feedback)}</p>`;
     el.grid.innerHTML = categories
       .map((c, i) => {
-        const b = categoryBand(c.score);
+        const b = categoryBand(S, c.score);
         return `<div class="lpt-category-card" style="--c:${COLORS[i]}">
-          <div class="lpt-category-header"><div class="lpt-category-name">${c.name}</div><div class="lpt-category-score">${c.score}%</div></div>
+          <div class="lpt-category-header"><div class="lpt-category-name">${esc(catName(c.name))}</div><div class="lpt-category-score">${c.score}%</div></div>
           <div class="lpt-category-bar"><div class="lpt-category-bar-fill ${b.cls}" style="--w:${c.score / 100}"></div></div>
           <div class="lpt-category-feedback">${b.feedback}</div></div>`;
       })
@@ -241,8 +237,8 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     const sorted = [...categories].sort((a, b) => b.score - a.score);
     const top = sorted[0];
     const low = sorted[sorted.length - 1];
-    el.strength.innerHTML = `<b>${top.name}</b> <span>${top.score}%</span>`;
-    el.focus.innerHTML = `<b>${low.name}</b> <span>${low.score}%</span>${LEARN_MORE[low.name] ? ` <a href="${BASE}${LEARN_MORE[low.name].slice(1)}">How to improve →</a>` : ''}`;
+    el.strength.innerHTML = `<b>${esc(catName(top.name))}</b> <span>${top.score}%</span>`;
+    el.focus.innerHTML = `<b>${esc(catName(low.name))}</b> <span>${low.score}%</span>${learnMore[low.name] ? ` <a href="${BASE}${learnMore[low.name].slice(1)}">${esc(S['test.howToImprove'])}</a>` : ''}`;
     countUp(overall);
     requestAnimationFrame(() => root.classList.add('has-result'));
     hooks.onResult?.(categories.map((c) => c.score / 100));
@@ -282,11 +278,11 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
     start(false);
   }
 
-  const shareUrl = () => `${location.origin}${BASE}?r=${answers.map((a) => a ?? 0).join('')}#take-test`;
+  const shareUrl = () => `${location.origin}${BASE}${lang === 'en' ? '' : `${lang}/`}?r=${answers.map((a) => a ?? 0).join('')}#take-test`;
 
   async function share() {
     const { overall } = score(questions, answers);
-    const data = { title: 'My Likeable Person Test result', text: `I scored ${overall}% on the free Likeable Person Test. How likeable are you?`, url: shareUrl() };
+    const data = { title: S['test.shareTitle'], text: fill(S['test.shareText'], { score: overall }), url: shareUrl() };
     track('share_click', { method: 'navigator' in window && 'share' in navigator ? 'native' : 'copy' });
     try {
       if (navigator.share) {
@@ -301,7 +297,7 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
   async function copy() {
     try {
       await navigator.clipboard.writeText(shareUrl());
-      el.shareMsg.textContent = 'Link copied — send it to a friend!';
+      el.shareMsg.textContent = S['test.copied'];
     } catch {
       el.shareMsg.textContent = shareUrl();
     }
@@ -310,26 +306,26 @@ export function initQuiz(root: HTMLElement, questions: Question[], hooks: QuizHo
 
   function downloadReport() {
     const { overall, categories } = score(questions, answers);
-    const band = overallBand(overall);
-    const date = new Date().toLocaleDateString();
+    const band = overallBand(S, overall);
+    const date = new Date().toLocaleDateString(lang);
     const line = '═══════════════════════════════════════════════════════';
     const thin = '─────────────────────────────────────────────────────';
-    let report = `\n${line}\n        ✨ LIKEABLE PERSON TEST RESULTS ✨\n${line}\n\nDate: ${date}\nOverall Likability Score: ${overall}%\nRating: ${band.label}\n\nOVERALL ASSESSMENT\n${thin}\n${band.feedback}\n\n${line}\n        📊 DETAILED CATEGORY BREAKDOWN\n${line}\n\n`;
+    let report = `\n${line}\n        ✨ ${S['report.heading']} ✨\n${line}\n\n${S['report.date']}: ${date}\n${S['report.overall']}: ${overall}%\n${S['report.rating']}: ${band.label}\n\n${S['report.assessment']}\n${thin}\n${band.feedback}\n\n${line}\n        📊 ${S['report.breakdown']}\n${line}\n\n`;
     categories.forEach((c) => {
-      report += `\n${c.name.toUpperCase()}\nScore: ${c.score}%\n${categoryBand(c.score).feedback}\n${thin}\n`;
+      report += `\n${catName(c.name).toLocaleUpperCase(lang)}\n${S['report.score']}: ${c.score}%\n${categoryBand(S, c.score).feedback}\n${thin}\n`;
     });
-    report += `\n${line}\n        💡 RECOMMENDATIONS\n${line}\n\n`;
+    report += `\n${line}\n        💡 ${S['report.recommendations']}\n${line}\n\n`;
     [...categories]
       .sort((a, b) => a.score - b.score)
       .slice(0, 3)
       .forEach((c, i) => {
-        report += `${i + 1}. ${c.name}: Work on improving this area to boost your overall likability score.\n`;
+        report += `${i + 1}. ${catName(c.name)}: ${S['report.recommendation']}\n`;
       });
-    report += `\n${line}\nThank you for taking the free Likeable Person Test!\nVisit us again to track your progress!\n${line}\n`;
-    const url = URL.createObjectURL(new Blob([report], { type: 'text/plain' }));
+    report += `\n${line}\n${S['report.thanks']}\n${S['report.again']}\n${line}\n`;
+    const url = URL.createObjectURL(new Blob([report], { type: 'text/plain;charset=utf-8' }));
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Likeable_Person_Test_Report_${date.replace(/\//g, '-')}.txt`;
+    a.download = `${S['report.filename']}_${date.replace(/[\/.\s]+/g, '-')}.txt`;
     document.body.appendChild(a);
     a.click();
     a.remove();

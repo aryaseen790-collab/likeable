@@ -1,9 +1,11 @@
 ---
 import type { Post } from '../lib/data';
-import { categoryBySlug, formatDate, site } from '../lib/data';
-interface Props { post: Post; feature?: boolean; eager?: boolean }
-const { post, feature = false, eager = false } = Astro.props;
+import { categoryBySlug } from '../lib/data';
+import { t, lpath, categoryName, formatDateIn, authorName, alternates, DEFAULT_LANG } from '../lib/i18n';
+interface Props { post: Post; lang?: string; feature?: boolean; eager?: boolean }
+const { post, lang = DEFAULT_LANG, feature = false, eager = false } = Astro.props;
 const cat = categoryBySlug(post.categories[0]);
+const catHref = cat && (alternates(cat.path).some((a) => a.lang.code === lang) ? lpath(lang, cat.path) : cat.path);
 const img = post.featured;
 ---
 <article class:list={['post-card', { 'post-card--feature': feature }]}>
@@ -23,12 +25,12 @@ const img = post.featured;
   </a>
   <div class="post-card__body">
     <div class="post-card__meta">
-      {cat && <a href={cat.path}>{cat.name}</a>}
-      <time datetime={post.date}>{formatDate(post.date)}</time>
+      {cat && <a href={catHref}>{lang === DEFAULT_LANG ? cat.name : categoryName(lang, cat.slug)}</a>}
+      <time datetime={post.date}>{formatDateIn(lang, post.date)}</time>
     </div>
     <h2 class="post-card__title"><a href={post.path}>{post.title}</a></h2>
     <p class="post-card__excerpt">{post.excerpt.replace(/\s*(&#8230;|…|\[…\])\s*$/, '…')}</p>
-    <span class="post-card__more">Read article <span aria-hidden="true">→</span></span>
-    <span class="sr-only">By {site.author.name}</span>
+    <span class="post-card__more">{t(lang, 'post.readArticle')} <span aria-hidden="true">→</span></span>
+    <span class="sr-only">{t(lang, 'post.by')} {authorName(lang)}</span>
   </div>
 </article>

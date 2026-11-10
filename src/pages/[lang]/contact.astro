@@ -1,0 +1,7 @@
+---
+import ContactView from '../../components/views/ContactView.astro';
+import { liveLangs, DEFAULT_LANG } from '../../lib/i18n';
+export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG).map((l) => ({ params: { lang: l.code } }));
+const { lang } = Astro.params as { lang: string };
+---
+<ContactView lang={lang} />

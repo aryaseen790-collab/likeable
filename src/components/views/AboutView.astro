@@ -1,0 +1,37 @@
+---
+// Linked from the Complete Guide and Results Guide author boxes ("About us →").
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../CtaBand.astro';
+import { site } from '../../lib/data';
+import { t, lpath, alternates, DEFAULT_LANG } from '../../lib/i18n';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+const L = (p: string) => (alternates(p).some((a) => a.lang.code === lang) ? lpath(lang, p) : p);
+const email = `<a href="mailto:${site.email}">${site.email}</a>`;
+---
+<Base path={lpath(lang, '/about/')} enPath="/about/" lang={lang} title={T('meta.aboutTitle')} description={T('meta.aboutDescription')}>
+  <header class="article-hero">
+    <div class="article-hero__inner" data-reveal>
+      <ol class="breadcrumbs" aria-label={T('post.breadcrumb')}><li><a href={lpath(lang, '/')}>{T('nav.home')}</a></li><li aria-current="page">{T('about.crumb')}</li></ol>
+      <h1 set:html={T('about.title')} />
+      <p class="lead">{lang === DEFAULT_LANG ? site.footerBlurb : T('footer.blurb')}</p>
+    </div>
+  </header>
+  <div class="article-layout article-layout--single">
+    <div class="prose">
+      <h2 id="editorial-team">{T('about.team')}</h2>
+      <p><strong>{T('about.role')}</strong></p>
+      <p>{T('about.p1')}</p>
+      <p>{T('about.p2')}</p>
+      <h2 id="read-more">{T('about.start')}</h2>
+      <ul>
+        <li><a href={L('/complete-guide/')}>{T('about.guide')}</a></li>
+        <li><a href={L('/likeable-person-test-results/')}>{T('about.results')}</a></li>
+        <li><a href={L('/blog/')}>{T('nav.blog')}</a></li>
+      </ul>
+      <h2 id="contact">{T('about.contact')}</h2>
+      <p set:html={T('about.contactText', { email })} />
+    </div>
+  </div>
+  <CtaBand lang={lang} />
+</Base>

@@ -1,0 +1,12 @@
+---
+import Archive from '../../../components/Archive.astro';
+import { site } from '../../../lib/data';
+import { liveLangs, postsIn, t, lpath, authorName, DEFAULT_LANG } from '../../../lib/i18n';
+export const getStaticPaths = () =>
+  liveLangs()
+    .filter((l) => l.code !== DEFAULT_LANG && postsIn(l.code).length > 0)
+    .map((l) => ({ params: { lang: l.code, slug: site.author.slug } }));
+const { lang } = Astro.params as { lang: string };
+const enPath = `/author/${site.author.slug}/`;
+---
+<Archive path={lpath(lang, enPath)} enPath={enPath} lang={lang} eyebrow={t(lang, 'archive.author')} title={authorName(lang)} metaTitle={t(lang, 'meta.authorTitle', { name: authorName(lang) })} intro={t(lang, 'archive.authorIntro')} items={postsIn(lang)} featureFirst />

@@ -9,30 +9,49 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Consent from '../components/Consent.astro';
 import { seo as seoMap, site } from '../lib/data';
+import { alternates, langOf, t, DEFAULT_LANG } from '../lib/i18n';
 
 interface Props {
   path: string;
+  /** English equivalent of this page's path (for hreflang + the language switcher). */
+  enPath?: string;
+  lang?: string;
+  image?: string;
+  ogType?: string;
   title?: string;
   description?: string;
   schema?: string[];
   bodyClass?: string;
   noindex?: boolean;
 }
-const { path, title, description, schema = [], bodyClass = '', noindex = false } = Astro.props;
-const seo = seoMap[path];
+const { path, enPath = path, lang = DEFAULT_LANG, image, ogType = 'website', title, description, schema = [], bodyClass = '', noindex = false } = Astro.props;
+const L = langOf(lang);
+const isEn = lang === DEFAULT_LANG;
+// English pages keep the head imported from WordPress (AIOSEO); translations get their own.
+const seo = isEn ? seoMap[path] : undefined;
 const pageTitle = seo?.title ?? title ?? site.name;
+const url = new URL(path, site.origin).href;
+const ogImage = image ? new URL(image, site.origin).href : `${site.origin}${site.logo.src}`;
 const meta = seo?.meta ?? [
   ...(description ? [{ name: 'description', content: description }] : []),
+  { property: 'og:locale', content: L.og },
+  { property: 'og:site_name', content: isEn ? site.name : t(lang, 'meta.siteName') },
+  { property: 'og:type', content: ogType },
   { property: 'og:title', content: pageTitle },
-  { property: 'og:site_name', content: site.name },
-  { property: 'og:image', content: `${site.origin}${site.logo.src}` },
+  ...(description ? [{ property: 'og:description', content: description }] : []),
+  { property: 'og:url', content: url },
+  { property: 'og:image', content: ogImage },
   { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: pageTitle },
+  ...(description ? [{ name: 'twitter:description', content: description }] : []),
+  { name: 'twitter:image', content: ogImage },
 ];
-const canonical = seo?.canonical ?? new URL(path, site.origin).href;
+const alts = noindex ? [] : alternates(enPath);
+const canonical = seo?.canonical ?? url;
 const jsonld = [...(seo?.jsonld ?? []), ...schema];
 ---
 <!doctype html>
-<html lang="en-US" dir="ltr" data-theme="light">
+<html lang={isEn ? 'en-US' : L.tag} dir={L.dir} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
@@ -50,6 +69,8 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
     {meta.map((m) => ('name' in m ? <meta name={m.name} content={m.content} /> : <meta property={m.property} content={m.content} />))}
     {noindex && <meta name="robots" content="noindex, follow" />}
     {!noindex && <link rel="canonical" href={canonical} />}
+    {alts.length > 1 && alts.map((a) => <link rel="alternate" hreflang={a.lang.tag} href={new URL(a.href, site.origin).href} />)}
+    {alts.length > 1 && <link rel="alternate" hreflang="x-default" href={new URL(enPath, site.origin).href} />}
     {seo?.prev && <link rel="prev" href={seo.prev} />}
     {seo?.next && <link rel="next" href={seo.next} />}
     <meta name="theme-color" content="#f6f7fb" data-theme-color />
@@ -60,15 +81,15 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
     <slot name="head" />
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{t(lang, 'nav.skip')}</a>
     <div class="page-glow" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
-    <Header path={path} />
+    <Header path={path} enPath={enPath} lang={lang} alternates={alts} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
-    <Consent />
+    <Footer lang={lang} />
+    <Consent lang={lang} />
     <script>
       import { initMotion } from '../scripts/motion';
       initMotion();

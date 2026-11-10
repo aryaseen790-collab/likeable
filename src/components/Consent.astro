@@ -1,11 +1,15 @@
 ---
 // GA4 with Consent Mode v2: nothing is stored until the visitor accepts.
+import { t, lpath, alternates, DEFAULT_LANG } from '../lib/i18n';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const privacy = alternates('/privacy-policy/').some((a) => a.lang.code === lang) ? lpath(lang, '/privacy-policy/') : '/privacy-policy/';
+const text = t(lang, 'consent.text').replace('<a>', `<a href="${privacy}">`);
 ---
 <div class="consent" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden data-consent>
-  <p>We use analytics cookies to understand how the test is used. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+  <p set:html={text} />
   <div class="consent__actions">
-    <button type="button" class="btn btn--ghost btn--sm" data-consent-choice="denied">Reject All</button>
-    <button type="button" class="btn btn--primary btn--sm" data-consent-choice="granted">Accept All</button>
+    <button type="button" class="btn btn--ghost btn--sm" data-consent-choice="denied">{t(lang, 'consent.reject')}</button>
+    <button type="button" class="btn btn--primary btn--sm" data-consent-choice="granted">{t(lang, 'consent.accept')}</button>
   </div>
 </div>
 <script>

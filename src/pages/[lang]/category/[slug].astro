@@ -1,0 +1,14 @@
+---
+import Archive from '../../../components/Archive.astro';
+import { categories } from '../../../lib/data';
+import { liveLangs, postsIn, t, lpath, categoryName, DEFAULT_LANG } from '../../../lib/i18n';
+export function getStaticPaths() {
+  return liveLangs()
+    .filter((l) => l.code !== DEFAULT_LANG)
+    .flatMap((l) => categories.filter((c) => postsIn(l.code).some((p) => p.categories.includes(c.slug))).map((c) => ({ params: { lang: l.code, slug: c.slug }, props: { c } })));
+}
+const { lang } = Astro.params as { lang: string };
+const { c } = Astro.props;
+const name = categoryName(lang, c.slug);
+---
+<Archive path={lpath(lang, c.path)} enPath={c.path} lang={lang} eyebrow={t(lang, 'archive.category')} title={name} metaTitle={t(lang, 'meta.categoryTitle', { name })} intro={t(lang, 'archive.articlesIn', { name })} items={postsIn(lang).filter((p) => p.categories.includes(c.slug))} />

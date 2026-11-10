@@ -1,40 +1,44 @@
 ---
-import { site, posts } from '../lib/data';
-const latest = posts.slice(0, 5);
+import { site } from '../lib/data';
+import { t, lpath, postsIn, isLive, alternates, DEFAULT_LANG } from '../lib/i18n';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+// Link a page in this language when it exists there, else the English page.
+const L = (p: string) => (alternates(p).some((a) => a.lang.code === lang) ? lpath(lang, p) : p);
+const latest = postsIn(isLive(lang) ? lang : DEFAULT_LANG).slice(0, 5);
 const year = new Date().getUTCFullYear();
 ---
 <footer class="site-footer">
-  <div class="footer-orb" aria-hidden="true"></div>
   <div class="site-footer__inner">
     <div class="footer-brand">
-      <a href="/" class="footer-logo" aria-label={site.name}>
+      <a href={lpath(lang, '/')} class="footer-logo" aria-label={site.name}>
         <img src="/wp-content/uploads/2025/12/Header-Logo-Bg-300x98.png" srcset="/wp-content/uploads/2025/12/Header-Logo-Bg-300x98.png 300w, /wp-content/uploads/2025/12/Header-Logo-Bg-768x250.png 768w" sizes="240px" width="240" height="78" alt={site.logo.alt} loading="lazy" />
       </a>
-      <p>{site.footerBlurb}</p>
+      <p>{lang === DEFAULT_LANG ? site.footerBlurb : T('footer.blurb')}</p>
       <a class="footer-mail" href={`mailto:${site.email}`}>{site.email}</a>
     </div>
     <div>
-      <h2 class="footer-title">Quick Links</h2>
+      <h2 class="footer-title">{T('footer.quickLinks')}</h2>
       <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/contact/">Contact Us</a></li>
+        <li><a href={lpath(lang, '/')}>{T('footer.home')}</a></li>
+        <li><a href={L('/blog/')}>{T('footer.blog')}</a></li>
+        <li><a href={L('/about/')}>{T('footer.about')}</a></li>
+        <li><a href={L('/contact/')}>{T('footer.contact')}</a></li>
       </ul>
     </div>
     <div>
-      <h2 class="footer-title">Resources</h2>
+      <h2 class="footer-title">{T('footer.resources')}</h2>
       <ul class="footer-links">
         {latest.map((p) => <li><a href={p.path}>{p.title}</a></li>)}
       </ul>
     </div>
   </div>
   <div class="site-footer__bottom">
-    <p>Copyright © {year} Likeable Person Test. All rights reserved.</p>
+    <p>{T('footer.copyright', { year })}</p>
     <ul>
-      <li><a href="/privacy-policy/">Privacy Policy</a></li>
-      <li><a href="/terms-conditions/">Terms &amp; Conditions</a></li>
-      <li><button type="button" class="linklike" data-consent-open>Cookie settings</button></li>
+      <li><a href={L('/privacy-policy/')}>{T('nav.privacy')}</a></li>
+      <li><a href={L('/terms-conditions/')}>{T('nav.terms')}</a></li>
+      <li><button type="button" class="linklike" data-consent-open>{T('footer.cookies')}</button></li>
     </ul>
   </div>
 </footer>

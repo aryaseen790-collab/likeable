@@ -1,6 +1,5 @@
-import { initQuiz, type Question } from './quiz';
+import { initQuiz, type QuizBundle } from './quiz';
 import { prefersReducedMotion } from './motion';
-import questions from '../data/questions.json';
 import type { Orbit, Theme } from './orbit';
 
 type Slot = 'hero' | 'quiz' | 'result';
@@ -64,27 +63,46 @@ export function initHome() {
     orbit?.setMode(m);
   };
 
-  initQuiz(quizRoot, questions as Question[], {
-    onStart() {
-      moveTo('quiz');
-      setMode('quiz');
-    },
-    onAnswer(ci, scores) {
-      pendingScores = scores;
-      orbit?.setScores(scores);
-      if (ci >= 0) orbit?.pulse(ci);
-    },
-    onResult(scores) {
-      pendingScores = scores;
-      moveTo('result');
-      orbit?.setScores(scores);
-      setMode('result');
-    },
-    onReset() {
-      pendingScores = Array(9).fill(-1);
-      orbit?.setScores(pendingScores);
-    },
-  });
+  // The quiz's questions and strings come from /i18n/quiz-<lang>.json. A click
+  // on Start before it arrives is held and replayed once the quiz is ready.
+  const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+  const lang = quizRoot.dataset.lang || 'en';
+  let pendingClick: HTMLElement | null = null;
+  const hold = (e: Event) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-action]');
+    if (btn) {
+      e.stopImmediatePropagation();
+      pendingClick = btn;
+    }
+  };
+  quizRoot.addEventListener('click', hold, true);
+  fetch(`${BASE}i18n/quiz-${lang}.json`)
+    .then((r) => r.json() as Promise<QuizBundle>)
+    .then((bundle) => {
+      initQuiz(quizRoot, bundle, {
+        onStart() {
+          moveTo('quiz');
+          setMode('quiz');
+        },
+        onAnswer(ci, scores) {
+          pendingScores = scores;
+          orbit?.setScores(scores);
+          if (ci >= 0) orbit?.pulse(ci);
+        },
+        onResult(scores) {
+          pendingScores = scores;
+          moveTo('result');
+          orbit?.setScores(scores);
+          setMode('result');
+        },
+        onReset() {
+          pendingScores = Array(9).fill(-1);
+          orbit?.setScores(pendingScores);
+        },
+      });
+      quizRoot.removeEventListener('click', hold, true);
+      pendingClick?.click();
+    });
 
   // ---- "Take the test" links land on the quiz card; put focus on its Start
   // button too, so keyboard and screen-reader users are on the real control.

@@ -1,0 +1,18 @@
+---
+import PostView from '../../components/views/PostView.astro';
+import { posts } from '../../lib/data';
+import { liveLangs, postIn, pageIn, DEFAULT_LANG } from '../../lib/i18n';
+
+export function getStaticPaths() {
+  const out = [];
+  for (const l of liveLangs().filter((x) => x.code !== DEFAULT_LANG)) {
+    for (const p of posts) if (postIn(l.code, p.slug)) out.push({ params: { lang: l.code, slug: p.slug } });
+    for (const slug of ['privacy-policy', 'terms-conditions']) if (pageIn(l.code, slug)) out.push({ params: { lang: l.code, slug } });
+  }
+  return out;
+}
+const { lang, slug } = Astro.params as { lang: string; slug: string };
+const post = postIn(lang, slug) ?? undefined;
+const page = post ? undefined : pageIn(lang, slug)!;
+---
+<PostView lang={lang} enPath={`/${slug}/`} post={post} page={page} />

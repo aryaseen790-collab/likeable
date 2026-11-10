@@ -1,0 +1,7 @@
+---
+import AboutView from '../../components/views/AboutView.astro';
+import { liveLangs, DEFAULT_LANG } from '../../lib/i18n';
+export const getStaticPaths = () => liveLangs().filter((l) => l.code !== DEFAULT_LANG).map((l) => ({ params: { lang: l.code } }));
+const { lang } = Astro.params as { lang: string };
+---
+<AboutView lang={lang} />

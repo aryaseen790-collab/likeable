@@ -1,0 +1,20 @@
+---
+// Linked from the Privacy Policy ("By visiting this page on our website").
+import Base from '../../layouts/Base.astro';
+import { site } from '../../lib/data';
+import { t, lpath, alternates, DEFAULT_LANG } from '../../lib/i18n';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string) => t(lang, k);
+const L = (p: string) => (alternates(p).some((a) => a.lang.code === lang) ? lpath(lang, p) : p);
+---
+<Base path={lpath(lang, '/contact/')} enPath="/contact/" lang={lang} title={T('meta.contactTitle')} description={T('meta.contactDescription')}>
+  <section class="archive-hero container">
+    <div data-reveal>
+      <span class="eyebrow">{T('contact.eyebrow')}</span>
+      <h1 class="display" set:html={T('contact.title')} />
+      <p class="lead">{T('contact.lead')}</p>
+      <p><a class="btn btn--primary btn--lg" href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p style="margin-top:28px"><a href={L('/privacy-policy/')}>{T('nav.privacy')}</a> · <a href={L('/terms-conditions/')}>{T('nav.terms')}</a></p>
+    </div>
+  </section>
+</Base>
