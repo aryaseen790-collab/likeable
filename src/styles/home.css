@@ -4,26 +4,22 @@
 
 /* ---------- Hero (with the test in the first screen) ---------- */
 .hero { padding: clamp(16px, 3vw, 40px) 0 clamp(36px, 5vw, 64px); }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: 'intro test' 'more test'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-items: start; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: 'intro test' 'more test'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-content: center; }
 .hero__intro { grid-area: intro; align-self: end; }
 .hero__more { grid-area: more; }
-.hero__test { grid-area: test; min-width: 0; }
+.hero__test { grid-area: test; align-self: center; min-width: 0; }
 .hero__intro .chip { margin-bottom: 18px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.72rem; }
 .hero__title { font-size: clamp(2.1rem, 4.2vw, 3.7rem); margin-bottom: 18px; }
 .hero__sub { max-width: 52ch; margin-bottom: 24px; }
-.hero__stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 22px; }
-.hero__stats div { display: flex; flex-direction: column; padding: 12px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm); min-width: 110px; }
-.hero__stats dd { margin: 0; font-family: var(--font-serif); font-size: 1.9rem; line-height: 1.1; color: var(--heading); }
-.hero__stats dt { font-size: 0.8rem; color: var(--muted); }
 .hero__learn { font-weight: 600; color: var(--accent); text-decoration: none; }
 .hero__learn:hover { text-decoration: underline; }
-/* Start screen is compact so the Start button sits above the fold. */
-.hero .quiz__bar { padding: 16px clamp(18px, 3vw, 28px); }
+/* Start screen is compact so the Start button sits above the fold. The card's own title bar and
+   description repeat the headline and subtitle beside it, so the hero hides them, plus the keyboard tip. */
+.hero .quiz__bar, .hero .quiz__start-desc, .hero .quiz__perks li:nth-child(2) { display: none; }
 .hero .quiz__start { padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 32px); }
 .hero .quiz__start-emojis { gap: 6px; margin-bottom: 14px; font-size: 1.35rem; }
 .hero .quiz__start-emojis span { width: 40px; height: 40px; border-radius: 12px; }
-.hero .quiz__start-hook { font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin-bottom: 8px; }
-.hero .quiz__start-desc { margin-bottom: 20px; font-size: 0.95rem; }
+.hero .quiz__start-hook { font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin-bottom: 22px; }
 .hero .quiz__perks { margin-top: 18px; }
 /* Once the test runs (or shows results) it takes the full width and the intro steps aside. */
 .hero:not([data-quiz-state='start']) .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'test'; }
@@ -33,11 +29,8 @@
   .hero__intro .chip { margin-bottom: 12px; }
   .hero__title { font-size: clamp(1.75rem, 7vw, 2.4rem); margin-bottom: 16px; }
   .hero__more { margin-top: 28px; }
-  .hero__stats div { flex: 1; min-width: 0; padding: 10px 14px; }
 }
 @media (max-width: 600px) {
-  .hero .quiz__bar { display: none; }
-  .hero .quiz__start-desc { display: none; }
   .hero .quiz__start-emojis { gap: 4px; }
   .hero .quiz__start-emojis span { width: 30px; height: 30px; border-radius: 9px; font-size: 1rem; }
   .hero .quiz__start-actions .btn { flex: 1 1 100%; }

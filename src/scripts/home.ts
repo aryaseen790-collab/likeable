@@ -116,17 +116,4 @@ export function initHome() {
   });
   if (location.hash === '#take-test') focusStart();
 
-  // ---- Hero stat counters (markup already shows final values without JS)
-  if (!reduced) {
-    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-      const to = Number(el.dataset.count);
-      const t0 = performance.now() + 300;
-      const tick = (now: number) => {
-        const p = Math.max(0, Math.min(1, (now - t0) / 1200));
-        el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3))));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-  }
 }
