@@ -8,7 +8,9 @@ import questionsJson from '../data/questions.json';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type Featured = { src: string; width: number; height: number; alt: string; srcset: string; sizes: Record<string, string> };
+// `fit: 'natural'` shows the article's top image at its own shape instead of the usual 16:9 crop
+// (for images with text or a title banner baked in).
+export type Featured = { src: string; width: number; height: number; alt: string; srcset: string; sizes: Record<string, string>; fit?: 'natural' };
 export type TocItem = { id: string; text: string; level: number };
 export type Post = {
   id: number; slug: string; path: string; title: string; date: string; modified: string; excerpt: string;

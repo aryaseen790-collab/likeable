@@ -1229,5 +1229,96 @@
       "{\"@context\":\"https:\\/\\/schema.org\\/\",\"@graph\":[{\"@context\":\"https:\\/\\/schema.org\\/\",\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/likeable-person-test.com\",\"name\":\"Likeable Person Test\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/\",\"name\":\"Science\"}}]},{\"@context\":\"https:\\/\\/schema.org\\/\",\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/#webpage\",\"name\":\"Science\",\"url\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/\",\"lastReviewed\":\"2026-06-05T07:21:43+00:00\",\"dateCreated\":\"2026-06-05T07:21:42+00:00\",\"inLanguage\":\"en-US\",\"description\":\"\",\"mainEntity\":{\"@type\":\"Article\",\"mainEntityOfPage\":\"https:\\/\\/likeable-person-test.com\\/the-science-of-likeability-what-psychology-actually-says\\/\",\"headline\":\"The Science of Likeability: What Psychology Actually Says\",\"description\":\"Discover what psychology actually says about likeability, from warmth research to the liking gap. Take the free Likable Person Test to see your own score.\",\"datePublished\":\"2026-06-05T07:21:42+00:00\",\"dateModified\":\"2026-06-05T07:21:43+00:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Likable Person Test Team\",\"url\":\"https:\\/\\/likeable-person-test.com\\/author\\/admin\\/\",\"sameAs\":[\"http:\\/\\/likeable-person-test.com\"],\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34674958f9bbf07acfb93992ab9826f7390d3b924f99b050f8e4b8ade18d648?s=96&d=mm&r=g\",\"height\":96,\"width\":96}},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Likeable Person Test\",\"url\":\"https:\\/\\/likeable-person-test.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"http:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2025\\/12\\/Header-Logo-Bg.png\",\"width\":1536,\"height\":500}},\"image\":[{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/likeable-person-test.com\\/the-science-of-likeability-what-psychology-actually-says\\/#primaryimage\",\"url\":\"https:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2026\\/06\\/Studying-likeability-in-the-lab.webp\",\"width\":\"1536\",\"height\":\"1024\",\"caption\":\"Researcher observing two people in friendly conversation\"},{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2026\\/06\\/Studying-likeability-in-the-lab-1200x900.webp\",\"width\":\"1200\",\"height\":\"900\",\"caption\":\"Researcher observing two people in friendly conversation\"},{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2026\\/06\\/Studying-likeability-in-the-lab-1200x675.webp\",\"width\":\"1200\",\"height\":\"675\",\"caption\":\"Researcher observing two people in friendly conversation\"},{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2026\\/06\\/Studying-likeability-in-the-lab-1024x1024.webp\",\"width\":\"1024\",\"height\":\"1024\",\"caption\":\"Researcher observing two people in friendly conversation\"}]},\"reviewedBy\":{\"@type\":\"Organization\",\"name\":\"Likeable Person Test\",\"url\":\"https:\\/\\/likeable-person-test.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"http:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2025\\/12\\/Header-Logo-Bg.png\",\"width\":1536,\"height\":500}},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Likeable Person Test\",\"url\":\"https:\\/\\/likeable-person-test.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"http:\\/\\/likeable-person-test.com\\/wp-content\\/uploads\\/2025\\/12\\/Header-Logo-Bg.png\",\"width\":1536,\"height\":500}}},{\"@context\":\"https:\\/\\/schema.org\\/\",\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/likeable-person-test.com\",\"name\":\"Likeable Person Test\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/likeable-person-test.com\\/category\\/science\\/\",\"name\":\"Science\"}}]}]}",
       "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;Is likeability genetic?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>Only in part. Your temperament carries some inherited weight, but the behaviours that actually make people like you, things like listening well and following through, are habits you can build at any age.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;What does research say about why people are liked?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>Decades of studies keep pointing at the same handful of things: warmth, real interest in other people, and consistency. We warm to those who make us feel safe, heard and valued.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;What brain processes are involved in liking someone?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>Your brain throws out a fast, automatic read on trustworthiness within a fraction of a second of seeing a face, then keeps adjusting that read as it picks up more from the interaction.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;Can an introvert be likable?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>Absolutely, and often more so than extroverts. Likability tracks with curiosity and consistency, not volume. Quiet, attentive people frequently turn out to be the best liked in any group.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;What is the Reysen scale?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>It’s a validated measure of likability that Stephen Reysen created in 2005, rating how likable, warm, friendly and approachable a person comes across to others.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;Does attractiveness affect likeability?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>It gives a small head start through first impressions, then fades fast. Once people interact with you, your warmth and behaviour matter far more than your looks.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;Is warmth more important than competence?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>For being liked, yes. People judge warmth first and weigh it more. Competence still counts, but a warm and reasonably capable person tends to beat a brilliant but cold one.</p>\"}},{\"@type\":\"Question\",\"name\": \"&lt;strong&gt;How fast do people form impressions?&lt;/strong&gt;\",\"acceptedAnswer\":{\"@type\": \"Answer\",\"text\": \"<p>Very fast. A basic judgement can take shape in around a tenth of a second, though it keeps updating as the conversation plays out.</p>\"}}]}"
     ]
+  },
+  "/warmth-vs-competence-likeability/": {
+    "title": "Warmth vs Competence: The Two Things People Judge You On",
+    "canonical": "https://likeable-person-test.com/warmth-vs-competence-likeability/",
+    "prev": null,
+    "next": null,
+    "meta": [
+      {
+        "name": "description",
+        "content": "People judge you on warmth vs competence, and warmth comes first. See how the two work, which box you fall into, and how to show more warmth today."
+      },
+      {
+        "name": "robots",
+        "content": "max-image-preview:large"
+      },
+      {
+        "name": "author",
+        "content": "Likable Person Test Team"
+      },
+      {
+        "name": "google-site-verification",
+        "content": "ao4J5VGpO3F5m_Vo5y5pIVo0jDYRTDSJ_61hGSugaxE"
+      },
+      {
+        "property": "og:locale",
+        "content": "en_US"
+      },
+      {
+        "property": "og:site_name",
+        "content": "Likeable Person Test - Unlock your social charm. Take the free 5-minute Likeable Person Test and see your score."
+      },
+      {
+        "property": "og:type",
+        "content": "article"
+      },
+      {
+        "property": "og:title",
+        "content": "Warmth vs Competence: The Two Things People Judge You On"
+      },
+      {
+        "property": "og:description",
+        "content": "People judge you on warmth vs competence, and warmth comes first. See how the two work, which box you fall into, and how to show more warmth today."
+      },
+      {
+        "property": "og:url",
+        "content": "https://likeable-person-test.com/warmth-vs-competence-likeability/"
+      },
+      {
+        "property": "og:image",
+        "content": "https://likeable-person-test.com/wp-content/uploads/2026/11/image1-two-questions.webp"
+      },
+      {
+        "property": "og:image:secure_url",
+        "content": "https://likeable-person-test.com/wp-content/uploads/2026/11/image1-two-questions.webp"
+      },
+      {
+        "property": "og:image:width",
+        "content": "764"
+      },
+      {
+        "property": "og:image:height",
+        "content": "521"
+      },
+      {
+        "property": "article:published_time",
+        "content": "2026-11-17T09:00:00+00:00"
+      },
+      {
+        "property": "article:modified_time",
+        "content": "2026-11-17T09:00:00+00:00"
+      },
+      {
+        "name": "twitter:card",
+        "content": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "content": "Warmth vs Competence: The Two Things People Judge You On"
+      },
+      {
+        "name": "twitter:description",
+        "content": "People judge you on warmth vs competence, and warmth comes first. See how the two work, which box you fall into, and how to show more warmth today."
+      },
+      {
+        "name": "twitter:image",
+        "content": "https://likeable-person-test.com/wp-content/uploads/2026/11/image1-two-questions.webp"
+      }
+    ],
+    "jsonld": [
+      "{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"BlogPosting\", \"@id\": \"https://likeable-person-test.com/warmth-vs-competence-likeability/#blogposting\", \"headline\": \"Warmth vs Competence: The Two Things People Judge You On\", \"description\": \"People judge you on warmth vs competence, and warmth comes first. See how the two work, which box you fall into, and how to show more warmth today.\", \"inLanguage\": \"en-US\", \"datePublished\": \"2026-11-17T09:00:00+00:00\", \"dateModified\": \"2026-11-17T09:00:00+00:00\", \"image\": \"https://likeable-person-test.com/wp-content/uploads/2026/11/image1-two-questions.webp\", \"mainEntityOfPage\": \"https://likeable-person-test.com/warmth-vs-competence-likeability/\", \"author\": {\"@type\": \"Organization\", \"name\": \"Likable Person Test Team\", \"url\": \"https://likeable-person-test.com/author/admin/\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"Likeable Person Test\", \"logo\": {\"@type\": \"ImageObject\", \"url\": \"https://likeable-person-test.com/wp-content/uploads/2025/12/Likabke-Person-Test-Online-Logo.png\"}}, \"articleSection\": \"Science\", \"keywords\": \"warmth vs competence\"}, {\"@type\": \"BreadcrumbList\", \"@id\": \"https://likeable-person-test.com/warmth-vs-competence-likeability/#breadcrumb\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://likeable-person-test.com/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Science\", \"item\": \"https://likeable-person-test.com/category/science/\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Warmth vs Competence: The Two Things People Judge You On\", \"item\": \"https://likeable-person-test.com/warmth-vs-competence-likeability/\"}]}, {\"@type\": \"FAQPage\", \"@id\": \"https://likeable-person-test.com/warmth-vs-competence-likeability/#faq\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"What is the warmth and competence framework?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"It's a social psychology model saying we judge people on two core things, warmth and competence. The warmth vs competence idea just means those two reads don't weigh the same. Warmth, basically your perceived intent, tends to get judged first.\"}}, {\"@type\": \"Question\", \"name\": \"Who created the warmth competence model?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Susan Fiske, Amy Cuddy, and Peter Glick built it, originally as the stereotype content model. Cuddy later brought it into everyday life and leadership through her Harvard work and her writing. That's where most people first bump into it.\"}}, {\"@type\": \"Question\", \"name\": \"Why does warmth come before competence?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Survival, mostly. For most of human history, working out whether a stranger meant you harm beat knowing how skilled they were. So we still read intent first, ability second. Old wiring dies hard.\"}}, {\"@type\": \"Question\", \"name\": \"Can you be high on both?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Yep, and that's exactly where you want to be. High warmth plus high competence gets you trust and respect at once. It takes attention more than talent, and most of it you can learn.\"}}, {\"@type\": \"Question\", \"name\": \"What happens if you're competent but cold?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"People respect you from a distance and rarely open up. Your skills get used while the relationships stay thin. Leading with a bit of warmth usually sorts it, and no, it costs you no credibility.\"}}, {\"@type\": \"Question\", \"name\": \"How does warmth affect likeability?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Massively. Warmth is the single biggest driver of whether people like you and feel safe near you. Often it matters more for being liked than how impressive or capable you look on paper.\"}}, {\"@type\": \"Question\", \"name\": \"How can I signal more warmth?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Slow your greetings, hold eye contact a beat longer, ask real questions, remember small details, and let yourself be a little human. Tiny habits. Big shift in how you come across.\"}}, {\"@type\": \"Question\", \"name\": \"Is warmth teachable?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Completely. Warmth is a set of habits, not some locked personality trait. A bit of practice and almost anyone comes across warmer, and the change usually shows up faster than you'd expect.\"}}]}]}"
+    ]
   }
 }

@@ -300,6 +300,8 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 .article-figure { width: min(100% - 2 * var(--gutter), 1120px); margin: clamp(32px, 5vw, 56px) auto 0; }
 .article-figure__frame { border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); }
 .article-figure img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.article-figure--natural { width: min(100% - 2 * var(--gutter), 860px); }
+.article-figure--natural img { aspect-ratio: auto; }
 .article-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); width: min(100% - 2 * var(--gutter), 1120px); margin: clamp(40px, 6vw, 80px) auto 0; align-items: start; }
 .article-layout--single { grid-template-columns: minmax(0, 1fr); width: min(100% - 2 * var(--gutter), 800px); }
 .toc { position: sticky; top: calc(var(--header-h) + 24px); max-height: calc(100vh - var(--header-h) - 48px); overflow: auto; padding: 18px; font-size: 0.88rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }

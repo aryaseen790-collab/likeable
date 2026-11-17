@@ -61,7 +61,7 @@ const pageSchema = isEn
           </div>
         </div>
         {post?.featured && (
-          <div class="article-figure">
+          <div class:list={['article-figure', { 'article-figure--natural': post.featured.fit === 'natural' }]}>
             <div class="article-figure__frame">
               <img src={post.featured.src} srcset={post.featured.srcset} sizes="(max-width: 1200px) 100vw, 1160px" width={post.featured.width} height={post.featured.height} alt={post.featured.alt} fetchpriority="high" decoding="async" />
             </div>
