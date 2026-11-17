@@ -7,6 +7,8 @@ import { LANGS, DEFAULT_LANG, langOf, type Lang } from '../i18n/languages';
 import { extract, apply, hashSegments, validSegment } from './segment.mjs';
 import { posts as enPosts, pages as enPages, home as enHome, questions as enQuestions, categories, site, seo as seoMap, readingTime as enReadingTime, type Post, type TocItem } from './data';
 import enUi from '../i18n/ui/en.json';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 export { LANGS, DEFAULT_LANG, langOf, type Lang };
 type Dict = Record<string, string>;
@@ -141,6 +143,23 @@ function tocFrom(html: string): TocItem[] {
 export type LocalPost = Post & { lang: string; seoTitle?: string; seoDescription?: string };
 /** A post in `lang`, or null if it is not translated. English returns the original. */
 const postCache = new Map<string, LocalPost | null>();
+// Images with text baked in can have per-language copies at
+// public/wp-content/uploads/<yyyy>/<mm>/<lang>/<file>. Translated pages use the
+// copy when it exists and keep the English file otherwise.
+const UPLOAD_RE = /\/wp-content\/uploads\/([^"'\s,?#]+\/)?([^/"'\s,?#]+\.(?:webp|png|jpe?g|gif))/g;
+const localizedCache = new Map<string, string>();
+export function localizeUploads(str: string, lang: string): string {
+  if (lang === DEFAULT_LANG || !str) return str;
+  return str.replace(UPLOAD_RE, (url, dir = '', file) => {
+    const key = `${lang}:${url}`;
+    if (!localizedCache.has(key)) {
+      const local = `/wp-content/uploads/${dir}${lang}/${file}`;
+      localizedCache.set(key, existsSync(join(process.cwd(), 'public', local)) ? local : url);
+    }
+    return localizedCache.get(key)!;
+  });
+}
+
 export function postIn(lang: string, slug: string): LocalPost | null {
   const key = `${lang}/${slug}`;
   if (!postCache.has(key)) postCache.set(key, buildPost(lang, slug));
@@ -152,7 +171,7 @@ function buildPost(lang: string, slug: string): LocalPost | null {
   if (lang === DEFAULT_LANG) return { ...p, lang };
   const tr = translated(lang, `post-${slug}`);
   if (!tr) return null;
-  const html = apply(p.html, tr.segments).html;
+  const html = localizeUploads(apply(p.html, tr.segments).html, lang);
   const m = tr.meta ?? {};
   return {
     ...p,
@@ -160,7 +179,15 @@ function buildPost(lang: string, slug: string): LocalPost | null {
     path: lpath(lang, p.path),
     title: m.title || p.title,
     excerpt: m.excerpt || p.excerpt,
-    featured: p.featured ? { ...p.featured, alt: m.featuredAlt || p.featured.alt } : null,
+    featured: p.featured
+      ? {
+          ...p.featured,
+          alt: m.featuredAlt || p.featured.alt,
+          src: localizeUploads(p.featured.src, lang),
+          srcset: localizeUploads(p.featured.srcset, lang),
+          sizes: Object.fromEntries(Object.entries(p.featured.sizes).map(([k, v]) => [k, localizeUploads(v, lang)])),
+        }
+      : null,
     html,
     toc: p.layout === 'custom' ? p.toc : tocFrom(html),
     seoTitle: m.seoTitle,
