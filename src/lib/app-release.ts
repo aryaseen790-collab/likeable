@@ -26,7 +26,11 @@ export const megabytes = (bytes: number) => (bytes / 1048576).toFixed(1);
 /** An app screenshot (1 home, 2 question, 3 result, 4 scores) in `lang` when that
  *  translation exists in public/app/<lang>/, else the English one. */
 export function appScreen(lang: string, n: number, small = false) {
-  const file = `screen-${n}${small ? '-390' : ''}.webp`;
+  return appImage(lang, `screen-${n}${small ? '-390' : ''}.webp`);
+}
+/** The tablet-size screen (820×1180) n in `lang`, for the desktop hero's tablet. */
+export const appTablet = (lang: string, n: number) => appImage(lang, `tablet-${n}.webp`);
+function appImage(lang: string, file: string) {
   if (lang !== DEFAULT_LANG && fs.existsSync(path.resolve('public/app', lang, file))) return `/app/${lang}/${file}`;
   return `/app/${file}`;
 }

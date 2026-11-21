@@ -67,8 +67,11 @@ export type PhoneOptions = {
   hold?: number;
   /** Radius of the emoji ring (smaller = the camera can frame the phone larger). */
   ringRadius?: number;
+  /** 'phone': a modern phone (slim bezels, camera pill, side buttons), screens 390×844.
+   *  'tablet': a tablet held upright (even bezels, front camera), screens 820×1180. */
+  device?: 'phone' | 'tablet';
 };
-export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = false, onReady, onScreen, hold = 3.2, ringRadius = 1.5 }: PhoneOptions): Phone {
+export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = false, onReady, onScreen, hold = 3.2, ringRadius = 1.5, device = 'phone' }: PhoneOptions): Phone {
   const lowPower = (navigator.hardwareConcurrency || 4) <= 4 && matchMedia('(pointer: coarse)').matches;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, lowPower ? 1.5 : 2));
@@ -87,16 +90,19 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
   rim.position.set(-3, -1, -2);
   scene.add(rim);
 
-  // The handset.
-  const W = 1.12;
-  const H = W * (844 / 390) + 0.12;
+  // The device: screen size, bezel and corner radii. No brand marks.
+  const tablet = device === 'tablet';
+  const SW = tablet ? 1.9 : 1.12; // screen width
+  const SH = tablet ? SW * (1180 / 820) : SW * (844 / 390); // screen height
+  const bezel = tablet ? 0.1 : 0.045;
+  const depth = tablet ? 0.075 : 0.1;
+  const W = SW + bezel * 2; // body
+  const H = SH + bezel * 2;
   const phone = new THREE.Group();
-  const body = new THREE.Mesh(
-    new RoundedBoxGeometry(W + 0.1, H + 0.1, 0.12, 6, 0.14),
-    new THREE.MeshPhysicalMaterial({ color: 0x16143a, metalness: 0.55, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.15 }),
-  );
+  const frameMat = new THREE.MeshPhysicalMaterial({ color: tablet ? 0x1c1b33 : 0x24223f, metalness: 0.7, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.12 });
+  const body = new THREE.Mesh(new RoundedBoxGeometry(W, H, depth, 8, tablet ? 0.17 : 0.2), frameMat);
   phone.add(body);
-  const glassGeo = screenGeometry(W, H - 0.12, 0.1);
+  const glassGeo = screenGeometry(SW, SH, tablet ? 0.08 : 0.17);
   const loader = new THREE.TextureLoader();
   const tex = screens.map((src) => {
     const t = loader.load(src, () => draw());
@@ -106,14 +112,31 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
   });
   const front = new THREE.Mesh(glassGeo, new THREE.MeshBasicMaterial({ map: tex[0], transparent: true }));
   const back = new THREE.Mesh(glassGeo, new THREE.MeshBasicMaterial({ map: tex[1 % tex.length], transparent: true, opacity: 0 }));
-  front.position.z = 0.0615;
-  back.position.z = 0.062;
+  const face = depth / 2 + 0.0015;
+  front.position.z = face;
+  back.position.z = face + 0.0005;
   phone.add(front, back);
-  // A speaker slot, so it reads as a phone from any angle.
-  const slot = new THREE.Mesh(new THREE.CapsuleGeometry(0.018, 0.16, 4, 8), new THREE.MeshBasicMaterial({ color: 0x0b0a20 }));
-  slot.rotation.z = Math.PI / 2;
-  slot.position.set(0, H / 2 - 0.04, 0.063);
-  phone.add(slot);
+  const dark = new THREE.MeshBasicMaterial({ color: 0x07061a });
+  if (tablet) {
+    // Front camera in the top bezel.
+    const cam = new THREE.Mesh(new THREE.CircleGeometry(0.022, 20), dark);
+    cam.position.set(0, H / 2 - bezel / 2, face + 0.001);
+    phone.add(cam);
+  } else {
+    // A pill-shaped camera cut-out at the top of the screen, and side buttons.
+    const pill = new THREE.Mesh(new THREE.CapsuleGeometry(0.052, 0.17, 6, 16), dark);
+    pill.rotation.z = Math.PI / 2;
+    pill.position.set(0, SH / 2 - 0.1, face + 0.002);
+    phone.add(pill);
+    const button = (x: number, y: number, h: number) => {
+      const m = new THREE.Mesh(new RoundedBoxGeometry(0.03, h, depth * 0.45, 2, 0.012), frameMat);
+      m.position.set(x, y, 0);
+      phone.add(m);
+    };
+    button(W / 2 + 0.008, 0.45, 0.3); // power
+    button(-W / 2 - 0.008, 0.62, 0.2); // volume up
+    button(-W / 2 - 0.008, 0.36, 0.2); // volume down
+  }
   scene.add(phone);
 
   // Nine dimension emojis on a tilted ring around the phone (some pass behind it).

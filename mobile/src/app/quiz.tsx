@@ -2,7 +2,7 @@ import * as Haptics from 'expo-haptics';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import type React from 'react';
-import { AccessibilityInfo, Animated, findNodeHandle, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Animated, findNodeHandle, Platform, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, encodeAnswers, score } from '@shared/scoring';
 import { CheckIcon, CloseIcon } from '../components/icons';
@@ -22,6 +22,8 @@ export default function Quiz() {
   const { progress, saveProgress, addResult } = useStore();
   const { resume } = useLocalSearchParams<{ resume?: string }>();
   const insets = useSafeAreaInsets();
+  // Tablets: centre the question vertically instead of leaving the lower half empty.
+  const tablet = useWindowDimensions().width >= 600;
   const reduced = useReducedMotion();
   const screenReader = useScreenReader();
   const questions = bundle.questions;
@@ -115,7 +117,7 @@ export default function Quiz() {
           headerTitle: t('quiz.progress', { n: current + 1, total: N }),
         }}
       />
-      <ScrollView contentContainerStyle={[styles.page, { paddingBottom: insets.bottom + space.lg }]} contentInsetAdjustmentBehavior="automatic">
+      <ScrollView contentContainerStyle={[styles.page, tablet && styles.centered, { paddingBottom: insets.bottom + space.lg }]} contentInsetAdjustmentBehavior="automatic">
         <View style={{ gap: space.sm }}>
           <ProgressBar value={answeredCount / N} label={t('quiz.progress', { n: current + 1, total: N })} />
           <View style={[styles.chip, { backgroundColor: c.surface, borderColor: COLORS[ci] }]}>
@@ -180,6 +182,7 @@ export default function Quiz() {
 
 const styles = StyleSheet.create({
   page: { padding: space.xl, gap: space.xl, maxWidth: 720, width: '100%', alignSelf: 'center' },
+  centered: { flexGrow: 1, justifyContent: 'center' },
   close: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center', marginStart: -space.md },
   chip: { alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingHorizontal: space.md, paddingVertical: 6, borderRadius: radius.pill, borderWidth: 1.5 },
   dot: { width: 10, height: 10, borderRadius: 5 },

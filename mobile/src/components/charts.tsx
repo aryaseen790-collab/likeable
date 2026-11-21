@@ -1,7 +1,7 @@
 // Result visuals. Each one is a single accessible element with a text equivalent,
 // so screen-reader users get the same information as the picture.
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Defs, G, Line, LinearGradient, Polygon, Stop, Text as SvgText } from 'react-native-svg';
 import { COLORS } from '@shared/scoring';
 import { useReducedMotion } from '../lib/a11y';
@@ -91,7 +91,7 @@ export function Radar({ scores, labels, a11yLabel, size = 320 }: { scores: numbe
           const [x, y] = pt(i, R + 22);
           const anchor = Math.abs(x - cx) < 8 ? 'middle' : x > cx ? 'start' : 'end';
           return (
-            <SvgText key={i} x={x} y={y + 5} textAnchor={anchor} fontSize={15} fontWeight="600" fill={c.text}>
+            <SvgText key={i} x={x} y={y + 5} textAnchor={anchor} fontSize={15} fontWeight="600" fill={c.text} fontFamily={Platform.OS === 'web' ? 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif' : undefined}>
               {l.length > 18 ? `${l.slice(0, 17)}…` : l}
             </SvgText>
           );

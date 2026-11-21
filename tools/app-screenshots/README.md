@@ -28,3 +28,16 @@ To regenerate after the app changes:
 
 4. Convert each PNG to WebP at full size (780×1688) and at 390×844, into
    `public/app/<lang>/screen-N.webp` and `screen-N-390.webp`.
+
+## Tablet screens (desktop hero)
+
+The homepage hero shows a tablet on desktop, with `tablet-{2,3,4}.webp` (820×1180: a
+question, the result, the dimension scores) from `public/app/` and `public/app/<lang>/`
+(`appTablet()` in `src/lib/app-release.ts`). Phones get the phone screens above.
+
+```bash
+node tools/app-screenshots/capture-tablet.cjs /tmp/tablet-shots mobile/src/content/bundles en es zh hi ar bn pt ru ur id de ja fr mr te tr ta vi ko it
+```
+
+Convert each PNG to WebP at its own size (`public/app/tablet-N.webp` for English,
+`public/app/<lang>/tablet-N.webp` for the others).

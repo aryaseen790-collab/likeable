@@ -5,12 +5,10 @@
 // becomes 3D (src/scripts/app-phone.ts) on the visitor's first interaction, like the
 // homepage orbit, so it never competes with loading the page.
 import { t, langOf, DEFAULT_LANG } from '../lib/i18n';
-import { appRelease, megabytes, appScreen } from '../lib/app-release';
+import { appScreen, appTablet } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 const strip = (s: string) => s.replace(/<[^>]+>/g, '');
-const rel = appRelease();
-const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, { maximumFractionDigits: 0 }) : '';
 // Screens shown by the phone, and the caption for each.
 const steps = [
   { screen: 2, title: T('how.s1title') },
@@ -25,7 +23,10 @@ const steps = [
     <div class="hero-demo__css">
       <div class="demo-phone">
         {steps.map((s, i) => (
-          <img src={appScreen(lang, s.screen, true)} width="390" height="844" alt="" decoding="async" fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} class:list={[{ 'is-on': i === 0 }]} data-demo-img />
+          <picture>
+            <source media="(min-width: 901px)" srcset={appTablet(lang, s.screen)} width="820" height="1180" />
+            <img src={appScreen(lang, s.screen, true)} width="390" height="844" alt="" decoding="async" fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} class:list={[{ 'is-on': i === 0 }]} data-demo-img />
+          </picture>
         ))}
       </div>
     </div>
@@ -54,6 +55,7 @@ const steps = [
     const imgs = [...demo.querySelectorAll<HTMLImageElement>('[data-demo-img]')];
     const steps = [...demo.querySelectorAll<HTMLElement>('[data-demo-step]')];
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tablet = matchMedia('(min-width: 901px)').matches;
     const show = (i: number) => {
       steps.forEach((s, j) => s.classList.toggle('is-active', j === i));
       imgs.forEach((img, j) => img.classList.toggle('is-on', j === i));
@@ -85,9 +87,11 @@ const steps = [
         import('../scripts/app-phone').then(({ createPhone }) =>
           createPhone(canvas, {
             // Full-size versions of the screenshots (img.src is already the resolved URL).
-            screens: imgs.map((img) => img.src.replace('-390.webp', '.webp')),
+            // The images the browser picked: tablet screens on desktop, phone screens below 901px.
+            screens: imgs.map((img) => (img.currentSrc || img.src).replace('-390.webp', '.webp')),
+            device: tablet ? 'tablet' : 'phone',
             hold: 3.2,
-            ringRadius: 1.15,
+            ringRadius: tablet ? 1.6 : 1.15,
             onReady: () => {
               demo.style.setProperty('--hold', '3.9s'); // hold + cross-fade in the 3D phone
               clearInterval(timer);
@@ -143,15 +147,20 @@ const steps = [
   }
   /* Desktop: a tall phone on the left; steps (as a vertical progress list) and the two
      ways to take the test beside it, so the phone fills its space instead of floating. */
-  /* Desktop: a tall phone with the steps (a vertical progress list) beside it. */
+  /* Desktop: a tablet held upright, as large as the screen allows, with the steps in a
+     row under it. */
   @media (min-width: 901px) {
-    .hero-demo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: 'label label' 'stage steps'; column-gap: clamp(16px, 2.2vw, 28px); row-gap: 10px; }
-    .hero-demo__label { grid-area: label; }
-    .hero-demo__stage { grid-area: stage; height: clamp(420px, calc(100vh - 210px), 580px); }
-    .hero-demo__steps { grid-area: steps; align-self: center; grid-template-columns: minmax(0, 1fr); gap: 8px; }
-    .hero-demo__step { padding: 10px 14px 12px; border-radius: 14px; border: 1px solid transparent; transition: background-color 0.3s, border-color 0.3s; }
-    .hero-demo__step.is-active { background: var(--surface); border-color: var(--border); box-shadow: var(--shadow-sm); }
-    .hero-demo__caption { margin-top: 8px; font-size: 0.98rem; }
+    .hero-demo { gap: 12px; }
+    .hero-demo__stage { height: clamp(400px, calc(100vh - 290px), 660px); }
+    .demo-phone { aspect-ratio: 820 / 1180; height: 96%; padding: 11px; border-radius: 28px; }
+    .demo-phone img { inset: 11px; width: calc(100% - 22px); height: calc(100% - 22px); border-radius: 12px; }
+    .demo-phone::after { content: ''; position: absolute; top: 4px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #07061a; }
+  }
+  /* Phones: a modern phone with a pill-shaped camera cut-out. */
+  @media (max-width: 900px) {
+    .demo-phone { padding: 5px; border-radius: 34px; }
+    .demo-phone img { inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); border-radius: 29px; }
+    .demo-phone::after { content: ''; position: absolute; top: 14px; left: 50%; width: 30%; height: 16px; transform: translateX(-50%); border-radius: 999px; background: #07061a; }
   }
   @media (prefers-reduced-motion: reduce) {
     .demo-phone { animation: none; }
