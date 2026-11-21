@@ -22,23 +22,38 @@ async function main() {
   const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`, { headers, signal: AbortSignal.timeout(15000) });
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
   const releases = await res.json();
-  const rel = releases.find((r) => !r.draft && !r.prerelease && /^app-v\d+\.\d+\.\d+$/.test(r.tag_name) && r.assets.some((a) => a.name === 'release.json'));
+  const isApk = (r) => !r.draft && !r.prerelease && /^app-v\d+\.\d+\.\d+$/.test(r.tag_name) && r.assets.some((a) => a.name.endsWith('.apk'));
+  const rel = releases.find(isApk);
   if (!rel) return write({}), console.log('app-release: no APK release yet; download button hidden');
+  const version = rel.tag_name.slice('app-v'.length);
+  const apk = rel.assets.find((a) => a.name === `likeable-person-test-${version}.apk`) ?? rel.assets.find((a) => a.name.endsWith('.apk'));
+  // GitHub records each file's SHA-256 itself, so the checksum shown on the site
+  // comes from GitHub, not from a file we wrote.
+  const sha256 = /^sha256:([a-f0-9]{64})$/.exec(apk.digest ?? '')?.[1];
+  if (!sha256) throw new Error(`no SHA-256 digest for ${apk.name}`);
+  // release.json (written by the APK workflow) only adds the minimum Android version.
+  let minSdk = 24; // React Native 0.88's minimum, the fallback if release.json is missing or unreadable
   const meta = rel.assets.find((a) => a.name === 'release.json');
-  const info = await (await fetch(meta.browser_download_url, { signal: AbortSignal.timeout(15000) })).json();
-  const apk = rel.assets.find((a) => a.name === info.file);
-  // Only trust values of the expected shape (this file ends up in every page).
-  if (!apk || !/^\d+\.\d+\.\d+$/.test(info.version) || !/^[a-f0-9]{64}$/.test(info.sha256) || !Number.isInteger(info.minSdk)) throw new Error('release.json is malformed');
+  if (meta) {
+    try {
+      const info = JSON.parse(await (await fetch(meta.browser_download_url, { signal: AbortSignal.timeout(15000) })).text());
+      if (Number.isInteger(info.minSdk) && info.minSdk >= 21 && info.minSdk < 100) minSdk = info.minSdk;
+      if (info.sha256 && info.sha256 !== sha256) throw new Error('release.json checksum does not match the APK');
+    } catch (e) {
+      if (/does not match/.test(e.message)) throw e;
+      console.warn(`app-release: release.json unreadable (${e.message}); assuming minSdk ${minSdk}`);
+    }
+  }
   write({
-    version: info.version,
+    version,
     url: apk.browser_download_url,
     size: apk.size,
-    sha256: info.sha256,
-    minSdk: info.minSdk,
+    sha256,
+    minSdk,
     published: rel.published_at,
     notes: rel.html_url,
   });
-  console.log(`app-release: v${info.version} (${(apk.size / 1048576).toFixed(1)} MB)`);
+  console.log(`app-release: v${version} (${(apk.size / 1048576).toFixed(1)} MB)`);
 }
 
 main().catch((e) => {

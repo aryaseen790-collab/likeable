@@ -125,8 +125,14 @@ jobs:
           FILE="likeable-person-test-$V.apk"
           cp "$SRC" "out/$FILE"
           SHA=$(sha256sum "out/$FILE" | cut -d' ' -f1)
-          MIN=$("$BT/aapt2" dump badging "out/$FILE" | sed -n "s/^sdkVersion:'\([0-9]*\)'.*/\1/p")
+          # Minimum Android version (API level) from the APK's manifest.
+          MIN=$("$BT/aapt2" dump badging "out/$FILE" 2>/dev/null | grep -oE "(minSdkVersion|sdkVersion):'[0-9]+'" | head -1 | grep -oE '[0-9]+' || true)
+          if [ -z "$MIN" ]; then
+            MIN=$("$ANDROID_HOME"/cmdline-tools/latest/bin/apkanalyzer manifest min-sdk "out/$FILE" 2>/dev/null | grep -oE '^[0-9]+$' || true)
+          fi
+          [ -n "$MIN" ] || { echo "::error::Could not read the minimum Android version from the APK"; exit 1; }
           printf '{"version":"%s","file":"%s","sha256":"%s","minSdk":%s}\n' "$V" "$FILE" "$SHA" "$MIN" > out/release.json
+          node -e "const r=JSON.parse(require('fs').readFileSync('out/release.json','utf8'));if(!Number.isInteger(r.minSdk))process.exit(1)" || { echo "::error::release.json is invalid"; exit 1; }
           cat out/release.json
           CERT=$(grep -m1 "SHA-256 digest" certs.txt | sed 's/.*: //')
           echo "cert=$CERT" >> "$GITHUB_OUTPUT"
