@@ -65,8 +65,10 @@ export type PhoneOptions = {
   onScreen?: (index: number) => void;
   /** Seconds each screen stays before cross-fading to the next. */
   hold?: number;
+  /** Radius of the emoji ring (smaller = the camera can frame the phone larger). */
+  ringRadius?: number;
 };
-export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = false, onReady, onScreen, hold = 3.2 }: PhoneOptions): Phone {
+export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = false, onReady, onScreen, hold = 3.2, ringRadius = 1.5 }: PhoneOptions): Phone {
   const lowPower = (navigator.hardwareConcurrency || 4) <= 4 && matchMedia('(pointer: coarse)').matches;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, lowPower ? 1.5 : 2));
@@ -119,17 +121,27 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
   ring.rotation.x = 1.15;
   const bubbles = DIMENSION_EMOJI.map((e, i) => {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: emojiTexture(e, DIMENSION_COLORS[i]), transparent: true }));
-    s.scale.setScalar(0.38);
+    s.scale.setScalar(ringRadius < 1.4 ? 0.32 : 0.38);
     ring.add(s);
     return s;
   });
   scene.add(ring);
-  const R = 1.5;
-  const placeBubbles = (t: number) =>
+  const R = ringRadius;
+  // Bubbles fade while they pass in front of the phone, so the screen stays readable.
+  const world = new THREE.Vector3();
+  const placeBubbles = (t: number) => {
     bubbles.forEach((s, i) => {
       const a = (i / bubbles.length) * Math.PI * 2 + t * 0.25;
       s.position.set(Math.cos(a) * R, Math.sin(a) * R, Math.sin(i * 1.7 + t) * 0.08);
     });
+    ring.updateMatrixWorld();
+    bubbles.forEach((s) => {
+      s.getWorldPosition(world);
+      const overScreen = world.z > 0 && Math.abs(world.x - phone.position.x) < W / 2 + 0.22 && Math.abs(world.y - phone.position.y) < H / 2 + 0.1;
+      const m = s.material as THREE.SpriteMaterial;
+      m.opacity += ((overScreen ? 0.1 : 1) - m.opacity) * 0.15;
+    });
+  };
 
   // Size: fit the scene to the canvas.
   const resize = () => {
@@ -140,7 +152,7 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
     // Fit the whole scene: the emoji ring sideways (radius + bubble) and the phone
     // top to bottom (with its float), whatever the canvas shape.
     const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    camera.position.z = Math.max((R + 0.32) / (tan * camera.aspect), 1.62 / tan);
+    camera.position.z = Math.max((R + 0.3) / (tan * camera.aspect), (H / 2 + 0.16) / tan);
     camera.updateProjectionMatrix();
   };
   const ro = new ResizeObserver(() => (resize(), draw()));
