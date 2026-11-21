@@ -6,6 +6,7 @@ name: Android APK
 # Release a version:
 #   1. Set `version` in mobile/app.config.ts (e.g. 1.0.1) and commit it.
 #   2. Push a matching tag:  git tag app-v1.0.1 && git push origin app-v1.0.1
+#      (or on GitHub: Releases → Draft a new release → new tag app-v1.0.1 → Publish)
 #
 # Needs these repository secrets (Settings → Secrets and variables → Actions):
 #   ANDROID_KEYSTORE_BASE64   the upload keystore (.jks), base64-encoded
@@ -129,7 +130,14 @@ jobs:
           - APK SHA-256: \`${{ steps.apk.outputs.sha }}\`
           - Signing certificate SHA-256: \`${{ steps.apk.outputs.cert }}\`
           NOTES
-          gh release create "$GITHUB_REF_NAME" out/*.apk out/release.json --title "Android app $V" --notes-file notes.md
+          # The release may already exist if it was created on GitHub's website
+          # (Releases → Draft a new release); then attach the files to it.
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" out/*.apk out/release.json --clobber
+            gh release edit "$GITHUB_REF_NAME" --title "Android app $V" --notes-file notes.md
+          else
+            gh release create "$GITHUB_REF_NAME" out/*.apk out/release.json --title "Android app $V" --notes-file notes.md
+          fi
 
       - name: Redeploy the website with the new download
         env:
