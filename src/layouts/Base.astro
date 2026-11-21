@@ -32,7 +32,11 @@ const seo = isEn ? seoMap[path] : undefined;
 const pageTitle = seo?.title ?? title ?? site.name;
 const url = new URL(path, site.origin).href;
 const ogImage = image ? new URL(image, site.origin).href : `${site.origin}${site.logo.src}`;
-const alts = noindex ? [] : alternates(enPath);
+// The language switcher always offers this page's translations; search engines only see
+// hreflang links on indexable pages.
+const allAlts = alternates(enPath);
+const langAlts = allAlts.length > 1 ? allAlts : []; // e.g. the 404 page exists in English only
+const alts = noindex ? [] : allAlts;
 // Other language versions of this page, for Open Graph consumers (Facebook, LinkedIn…).
 const ogAlternates = alts.filter((a) => a.lang.code !== lang).map((a) => ({ property: 'og:locale:alternate', content: a.lang.og }));
 const baseMeta = seo?.meta ?? [
@@ -89,7 +93,7 @@ const jsonld = [...(seo?.jsonld ?? []), ...schema];
     <a class="skip-link" href="#main">{t(lang, 'nav.skip')}</a>
     <div class="page-glow" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
-    <Header path={path} enPath={enPath} lang={lang} alternates={alts} />
+    <Header path={path} enPath={enPath} lang={lang} alternates={langAlts} />
     <main id="main">
       <slot />
     </main>

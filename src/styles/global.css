@@ -129,7 +129,7 @@ button { font: inherit; color: inherit; }
 .brand:hover { color: var(--heading); }
 .site-nav { margin-left: auto; }
 .site-nav ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
-.site-nav a { display: block; padding: 8px 13px; border-radius: 999px; color: var(--text-2); text-decoration: none; font-size: 0.93rem; font-weight: 500; transition: background-color 0.2s, color 0.2s; }
+.site-nav a { display: block; white-space: nowrap; padding: 8px 13px; border-radius: 999px; color: var(--text-2); text-decoration: none; font-size: 0.93rem; font-weight: 500; transition: background-color 0.2s, color 0.2s; }
 .site-nav a:hover, .site-nav a[aria-current='page'] { color: var(--heading); background: var(--accent-soft); }
 .theme-toggle { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--heading); cursor: pointer; transition: transform 0.25s var(--ease), border-color 0.2s; }
 .theme-toggle:hover { transform: rotate(-12deg); border-color: var(--accent); }
@@ -150,7 +150,7 @@ button { font: inherit; color: inherit; }
 .mobile-menu ul { list-style: none; margin: 0 0 24px; padding: 0; }
 .mobile-menu li a { display: block; padding: 14px 0; font-family: var(--font-serif); font-size: 1.8rem; color: var(--heading); text-decoration: none; border-bottom: 1px solid var(--border); }
 .mobile-menu .btn { width: 100%; }
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   .site-nav, .site-header__cta { display: none; }
   .theme-toggle { margin-left: auto; }
   .menu-toggle { display: block; }
@@ -168,7 +168,13 @@ button { font: inherit; color: inherit; }
 .lang-switch a:hover { background: var(--accent-soft); color: var(--heading); }
 .lang-switch a[aria-current] { background: var(--accent); color: #fff; }
 @media (max-width: 560px) { .lang-switch { position: static; } .lang-switch ul { inset-inline: 16px; top: calc(100% - 4px); width: auto; max-width: none; } .lang-switch a { padding: 8px; font-size: 0.86rem; white-space: normal; } }
-@media (max-width: 1080px) { .lang-switch { margin-inline-start: auto; } .lang-switch + .theme-toggle { margin-left: 0; } }
+@media (max-width: 1200px) { .lang-switch { margin-inline-start: auto; } .lang-switch + .theme-toggle { margin-left: 0; } }
+/* Wider screens whose menu still doesn't fit on one line (long words, e.g. Tamil): the
+   header script adds .is-compact and the hamburger menu is used instead. */
+.site-header.is-compact .site-nav, .site-header.is-compact .site-header__cta { display: none; }
+.site-header.is-compact .menu-toggle { display: block; }
+.site-header.is-compact .lang-switch { margin-inline-start: auto; }
+.site-header.is-compact .lang-switch + .theme-toggle { margin-left: 0; }
 
 /* ---------- Scripts without DM Serif / Work Sans glyphs ---------- */
 :lang(zh), :lang(ja), :lang(ko), :lang(hi), :lang(mr), :lang(bn), :lang(ta), :lang(te), :lang(ar), :lang(ur) { --font-serif: var(--font-sans); }

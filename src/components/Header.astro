@@ -10,6 +10,8 @@ const nav = site.nav.map((item) => {
   const translated = lang === 'en' || altsOf(item.href).some((a) => a.lang.code === lang);
   return { label: T(navKey[item.href] ?? item.label), href: translated ? lpath(lang, item.href) : item.href, enHref: item.href };
 });
+// The Android app page, after the blog.
+nav.splice(nav.findIndex((n) => n.enHref === '/blog/') + 1, 0, { label: T('app.footerLink'), href: lpath(lang, '/app/'), enHref: '/app/' });
 const isActive = (enHref: string) => enPath === enHref || (enHref === '/blog/' && enPath.startsWith('/blog/'));
 const current = langOf(lang);
 const home = lpath(lang, '/');
@@ -93,6 +95,18 @@ const switcher = liveLangs().map((l) => alternates.find((a) => a.lang.code === l
     try { localStorage.setItem('lpt-theme', next); } catch {}
     applyTheme(next);
   });
+
+  // Use the hamburger menu whenever the full menu doesn't fit on one line.
+  const inner = header.querySelector<HTMLElement>('.site-header__inner')!;
+  const fit = () => {
+    header.classList.remove('is-compact');
+    if (inner.scrollWidth > inner.clientWidth + 1) header.classList.add('is-compact');
+    else if (toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
+  };
+  let fitFrame = 0;
+  addEventListener('resize', () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(fit); });
+  document.fonts?.ready.then(fit);
+  fit();
 
   let ticking = false;
   addEventListener('scroll', () => {
