@@ -94,6 +94,8 @@ const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, 
   .hero-ways__resume { font-size: 0.92rem; font-weight: 600; }
   .hero-ways__guide { font-size: 0.92rem; font-weight: 600; text-decoration: none; }
   .hero-ways__guide:hover { text-decoration: underline; }
+  .hero-ways__guide span { display: inline-block; }
+  :global([dir='rtl']) .hero-ways__guide span { transform: scaleX(-1); }
 
   @media (prefers-reduced-motion: reduce) { .hero-way, .hero-way:hover { transform: none; } }
 </style>

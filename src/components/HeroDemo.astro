@@ -5,7 +5,7 @@
 // becomes 3D (src/scripts/app-phone.ts) on the visitor's first interaction, like the
 // homepage orbit, so it never competes with loading the page.
 import { t, langOf, DEFAULT_LANG } from '../lib/i18n';
-import { appRelease, megabytes } from '../lib/app-release';
+import { appRelease, megabytes, appScreen } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 const strip = (s: string) => s.replace(/<[^>]+>/g, '');
@@ -25,7 +25,7 @@ const steps = [
     <div class="hero-demo__css">
       <div class="demo-phone">
         {steps.map((s, i) => (
-          <img src={`/app/screen-${s.screen}-390.webp`} width="390" height="844" alt="" decoding="async" fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} class:list={[{ 'is-on': i === 0 }]} data-demo-img />
+          <img src={appScreen(lang, s.screen, true)} width="390" height="844" alt="" decoding="async" fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} class:list={[{ 'is-on': i === 0 }]} data-demo-img />
         ))}
       </div>
     </div>

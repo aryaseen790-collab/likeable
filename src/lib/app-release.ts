@@ -2,6 +2,7 @@
 // null when there is no release yet: the site then shows no download button.
 import fs from 'node:fs';
 import path from 'node:path';
+import { DEFAULT_LANG } from '../i18n/languages';
 
 export type AppRelease = { version: string; url: string; size: number; sha256: string; minSdk: number; published: string; notes: string };
 
@@ -21,3 +22,11 @@ export function appRelease(): AppRelease | null {
 }
 export const androidVersion = (sdk: number) => ANDROID[sdk] ?? ANDROID[Object.keys(ANDROID).map(Number).filter((k) => k <= sdk).pop() ?? 24];
 export const megabytes = (bytes: number) => (bytes / 1048576).toFixed(1);
+
+/** An app screenshot (1 home, 2 question, 3 result, 4 scores) in `lang` when that
+ *  translation exists in public/app/<lang>/, else the English one. */
+export function appScreen(lang: string, n: number, small = false) {
+  const file = `screen-${n}${small ? '-390' : ''}.webp`;
+  if (lang !== DEFAULT_LANG && fs.existsSync(path.resolve('public/app', lang, file))) return `/app/${lang}/${file}`;
+  return `/app/${file}`;
+}

@@ -3,7 +3,7 @@
 // the download, screenshots and the install guide. Only rendered when an APK release
 // exists (scripts/app-release.mjs); hidden on iPhone/iPad by the script in Footer.astro.
 import { t, lpath, langOf, DEFAULT_LANG } from '../lib/i18n';
-import { appRelease, androidVersion, megabytes } from '../lib/app-release';
+import { appRelease, androidVersion, megabytes, appScreen } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 const rel = appRelease();
@@ -20,7 +20,9 @@ const chips = [
   { icon: '⊘', text: T('app.chip.noAds') },
   { icon: '✈', text: T('app.chip.offline') },
 ];
-const shots = [1, 2, 3, 4].map((i) => ({ small: `/app/screen-${i}-390.webp`, big: `/app/screen-${i}.webp`, alt: T(`apppage.shot${i}`) }));
+const shots = [1, 2, 3, 4].map((i) => ({ small: appScreen(lang, i, true), big: appScreen(lang, i), alt: T(`apppage.shot${i}`) }));
+// Screens the 3D phone cycles through, in this language.
+const phoneScreens = JSON.stringify([1, 2, 3].map((i) => appScreen(lang, i)));
 const name = lang === DEFAULT_LANG ? 'Likeable Person Test' : T('meta.siteName');
 ---
 {rel && (
@@ -28,10 +30,10 @@ const name = lang === DEFAULT_LANG ? 'Likeable Person Test' : T('meta.siteName')
     <div class="container">
       <div class="app-listing">
         <!-- 3D phone; the CSS phone below is shown until (or instead of) WebGL -->
-        <div class="app-stage" data-phone-stage aria-hidden="true">
+        <div class="app-stage" data-phone-stage data-screens={phoneScreens} aria-hidden="true">
           <div class="app-stage__glow"></div>
           <div class="app-stage__css">
-            <div class="css-phone"><img src="/app/screen-1-390.webp" width="390" height="844" alt="" loading="lazy" decoding="async" /></div>
+            <div class="css-phone"><img src={appScreen(lang, 1, true)} width="390" height="844" alt="" loading="lazy" decoding="async" /></div>
           </div>
           <canvas class="app-stage__canvas" data-phone-canvas></canvas>
         </div>
@@ -115,7 +117,7 @@ const name = lang === DEFAULT_LANG ? 'Likeable Person Test' : T('meta.siteName')
         io.disconnect();
         import('../scripts/app-phone').then(({ createPhone }) =>
           createPhone(canvas, {
-            screens: [1, 2, 3].map((i) => `${base}app/screen-${i}.webp`),
+            screens: (JSON.parse(stage.dataset.screens || '[]') as string[]).map((src) => `${base}${src.slice(1)}`),
             reduced,
             onReady: () => stage.classList.add('is-3d'),
           }),

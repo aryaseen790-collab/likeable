@@ -6,7 +6,7 @@ import Base from '../../layouts/Base.astro';
 import CtaBand from '../CtaBand.astro';
 import { site } from '../../lib/data';
 import { t, lpath, alternates, liveLangs, langOf, DEFAULT_LANG } from '../../lib/i18n';
-import { appRelease, androidVersion, megabytes } from '../../lib/app-release';
+import { appRelease, androidVersion, megabytes, appScreen } from '../../lib/app-release';
 
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
@@ -16,7 +16,7 @@ const rel = appRelease();
 const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, { maximumFractionDigits: 1 }) : '';
 const path = lpath(lang, '/app/');
 const features = [1, 2, 3, 4, 5, 6].map((i) => ({ icon: ['📈', '📴', '🔒', '♿', '📤', '🌍'][i - 1], title: T(`apppage.f${i}title`), text: T(`apppage.f${i}text`) }));
-const shots = [1, 2, 3, 4].map((i) => ({ src: `/app/screen-${i}.webp`, small: `/app/screen-${i}-390.webp`, alt: T(`apppage.shot${i}`) }));
+const shots = [1, 2, 3, 4].map((i) => ({ src: appScreen(lang, i), small: appScreen(lang, i, true), alt: T(`apppage.shot${i}`) }));
 const faq = [1, 2, 3, 4, 5].map((i) => ({ q: T(`apppage.q${i}`), a: T(`apppage.a${i}`) }));
 
 // Structured data: the app itself, and the FAQ. No ratings: there are no real reviews yet.
@@ -54,7 +54,7 @@ const schema = [
   }),
 ];
 ---
-<Base path={path} enPath="/app/" lang={lang} noindex title={T('meta.appTitle')} description={T('meta.appDescription')} image="/app/screen-3.webp" schema={schema} bodyClass="app-page">
+<Base path={path} enPath="/app/" lang={lang} noindex title={T('meta.appTitle')} description={T('meta.appDescription')} image={appScreen(lang, 3)} schema={schema} bodyClass="app-page">
   <header class="article-hero">
     <div class="article-hero__inner app-hero" data-reveal>
       <ol class="breadcrumbs" aria-label={T('post.breadcrumb')}><li><a href={lpath(lang, '/')}>{T('nav.home')}</a></li><li aria-current="page">{T('apppage.crumb')}</li></ol>
