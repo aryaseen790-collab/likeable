@@ -52,5 +52,10 @@
  "consent.deny": "Jangan izinkan",
  "common.cancel": "Batal",
  "common.delete": "Hapus",
- "common.opensBrowser": "Terbuka di browser"
+ "common.opensBrowser": "Terbuka di browser",
+ "settings.checkUpdates": "Periksa pembaruan",
+ "settings.upToDate": "Kamu sudah memakai versi terbaru ({v}).",
+ "settings.updateAvailable": "Versi {v} tersedia.",
+ "settings.getUpdate": "Dapatkan pembaruan",
+ "settings.updateFailed": "Tidak dapat memeriksa pembaruan. Periksa koneksimu dan coba lagi."
 }

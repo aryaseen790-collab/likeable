@@ -52,5 +52,10 @@
  "consent.deny": "عدم السماح",
  "common.cancel": "إلغاء",
  "common.delete": "حذف",
- "common.opensBrowser": "يفتح في متصفحك"
+ "common.opensBrowser": "يفتح في متصفحك",
+ "settings.checkUpdates": "البحث عن تحديثات",
+ "settings.upToDate": "لديك أحدث إصدار ({v}).",
+ "settings.updateAvailable": "الإصدار {v} متاح.",
+ "settings.getUpdate": "الحصول على التحديث",
+ "settings.updateFailed": "تعذّر البحث عن تحديثات. تحقّق من اتصالك وحاول مرة أخرى."
 }

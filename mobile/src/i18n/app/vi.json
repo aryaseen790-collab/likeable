@@ -52,5 +52,10 @@
  "consent.deny": "Không cho phép",
  "common.cancel": "Hủy",
  "common.delete": "Xóa",
- "common.opensBrowser": "Mở trong trình duyệt"
+ "common.opensBrowser": "Mở trong trình duyệt",
+ "settings.checkUpdates": "Kiểm tra cập nhật",
+ "settings.upToDate": "Bạn đang dùng phiên bản mới nhất ({v}).",
+ "settings.updateAvailable": "Đã có phiên bản {v}.",
+ "settings.getUpdate": "Tải bản cập nhật",
+ "settings.updateFailed": "Không kiểm tra được cập nhật. Hãy kiểm tra kết nối và thử lại."
 }

@@ -62,6 +62,78 @@ Before the first store submission:
 4. **Store privacy forms.** Fill them in using the answers below.
 5. **Device check.** Test on real devices with VoiceOver, TalkBack and the largest text size (checklist below).
 
+## Direct APK download from the website
+
+Besides the stores, Android users can download the app from the website's homepage
+("Get the Android app" section, plus a footer link). Both are hidden on iPhone and iPad,
+and appear only once a release exists.
+
+How it works:
+
+1. `.github/workflows/android-apk.yml` runs when you push a tag like `app-v1.0.0`:
+   - checks the tag matches `version` in `app.config.ts`
+   - runs every check
+   - builds the APK for 32- and 64-bit ARM phones
+   - signs it with your upload key (`plugins/withReleaseSigning.js`)
+   - fails if it was signed with the debug key
+   - publishes it on GitHub Releases with a `release.json` (version, SHA-256, minimum Android version)
+   - redeploys the site
+2. At build time, `scripts/app-release.mjs` (repo root) reads the newest release, and the
+   section links straight to the file, showing its version, size and checksum. Visitors'
+   browsers never contact GitHub's API.
+3. APK builds (`EXPO_PUBLIC_DISTRIBUTION=apk`) add "Check for updates" in Settings, since
+   sideloaded apps don't update themselves.
+
+### One-time setup: the signing key
+
+Every future update must be signed with the same key. **If the key is lost, people have to
+uninstall the app (losing their saved results) to install a new one.** Keep two backups
+outside the repository, for example in a password manager.
+
+Create the key on your own computer. It needs Java's `keytool`, which comes with any JDK.
+
+```bash
+keytool -genkeypair -v -keystore likeable-upload.jks -alias likeable -keyalg RSA -keysize 4096 -validity 10000
+```
+
+Then add four repository secrets on GitHub (Settings → Secrets and variables → Actions):
+
+| Secret | Value |
+|---|---|
+| `ANDROID_KEYSTORE_BASE64` | the output of `base64 -w0 likeable-upload.jks` (macOS: `base64 -i likeable-upload.jks`) |
+| `ANDROID_KEYSTORE_PASSWORD` | the keystore password you chose |
+| `ANDROID_KEY_ALIAS` | `likeable` |
+| `ANDROID_KEY_PASSWORD` | the key password (the same as the keystore password if you pressed Enter) |
+
+Optionally add `FIREBASE_GOOGLE_SERVICES_JSON` (the contents of `google-services.json`)
+to include opt-in analytics in the APK.
+
+### Publishing a version
+
+1. Set `version` in `mobile/app.config.ts` (for example `1.0.1`).
+2. Commit it.
+3. Push a matching tag:
+
+```bash
+git tag app-v1.0.1
+```
+
+```bash
+git push origin app-v1.0.1
+```
+
+The download button updates itself when the site redeploys. The site deploys from the
+branch in `SITE_BRANCH` at the top of the workflow, so the website changes for this
+section must be merged there first.
+
+### Android developer verification
+
+From September 2026, Google requires apps installed on certified Android phones to come
+from a verified developer, even outside the Play Store. This started in Brazil,
+Indonesia, Singapore and Thailand, with other countries from 2027. Check Google's
+current rules and verify your developer identity (a Play Console account covers it),
+or installs may be blocked in those countries.
+
 ## Analytics (Google Analytics 4)
 
 The app sends GA4 events to the same property as the website, through Firebase
@@ -110,7 +182,7 @@ How the app maps to the [OWASP MASVS](https://mas.owasp.org/MASVS/) controls:
 |---|---|
 | Storage (MASVS-STORAGE) | Results, progress and settings are small JSON files in the app's private documents folder. iOS Data Protection and Android file-based encryption cover them at rest. `android:allowBackup="false"` keeps them out of cloud and adb backups. Nothing goes to logs, the clipboard or shared storage. |
 | Untrusted input | Stored files and deep-link parameters are validated before use (`store.tsx`, `decodeAnswers`); anything malformed is dropped. Tests cover tampered data. |
-| Network (MASVS-NETWORK) | The app makes no network requests of its own. Analytics, when allowed, goes over HTTPS through Firebase. Cleartext traffic is disabled on Android, and ATS is on with no exceptions on iOS. |
+| Network (MASVS-NETWORK) | Store builds make no network requests of their own. The website APK build makes one, only when the person taps "Check for updates": a read of GitHub's public releases list, with nothing about the person in it. Analytics, when allowed, goes over HTTPS through Firebase. Cleartext traffic is disabled on Android, and ATS is on with no exceptions on iOS. |
 | Platform (MASVS-PLATFORM) | No WebViews. Website links open in the system browser (`expo-web-browser`). The `likeable://` scheme only opens screens and changes no data. Unused permissions are explicitly removed (`blockedPermissions`). |
 | Code (MASVS-CODE) | No secrets in the app. Release Android builds are minified and resource-shrunk. CI audits runtime dependencies (`npm audit --omit=dev --audit-level=high`). Transitive packages with advisories are pinned to fixed versions (`overrides`). |
 | Privacy (MASVS-PRIVACY) | No account, no sign-in, no ads, no tracking, so no App Tracking Transparency prompt. Analytics is opt-in with equal "Allow" and "Don't allow" buttons and can be changed any time. "Delete all my data" wipes everything on the device. The iOS privacy manifest (`PrivacyInfo.xcprivacy`) declares the required-reason APIs and the data collected. |

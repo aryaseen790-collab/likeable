@@ -52,5 +52,10 @@
  "consent.deny": "不允许",
  "common.cancel": "取消",
  "common.delete": "删除",
- "common.opensBrowser": "在浏览器中打开"
+ "common.opensBrowser": "在浏览器中打开",
+ "settings.checkUpdates": "检查更新",
+ "settings.upToDate": "你使用的是最新版本（{v}）。",
+ "settings.updateAvailable": "版本 {v} 已发布。",
+ "settings.getUpdate": "获取更新",
+ "settings.updateFailed": "无法检查更新。请检查网络连接后重试。"
 }

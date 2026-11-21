@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import '../../styles/home.css';
 import PostCard from '../PostCard.astro';
+import AppDownload from '../AppDownload.astro';
 import { home, site, dimensions, paginate } from '../../lib/data';
 import { sectionToTopics, parseFaq, parseCta } from '../../lib/topics';
 import { t, lpath, homeIn, postIn, blogPostsIn, langOf, DEFAULT_LANG } from '../../lib/i18n';
@@ -165,6 +166,9 @@ const schema =
       </div>
     </div>
   </section>
+
+  <!-- ANDROID APP (only when an APK release exists) -->
+  <AppDownload lang={lang} />
 
   <!-- NINE DIMENSIONS -->
   <section class="section dims">

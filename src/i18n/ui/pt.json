@@ -188,5 +188,16 @@
   "contact.lead": "Dúvidas sobre o teste, seus resultados ou nossa Política de privacidade? Lemos todas as mensagens.",
   "notfound.eyebrow": "Erro 404",
   "notfound.title": "Perdido em <em>órbita</em>",
-  "notfound.lead": "Esta página saiu do alcance. Experimente o teste ou um dos nossos guias mais recentes."
+  "notfound.lead": "Esta página saiu do alcance. Experimente o teste ou um dos nossos guias mais recentes.",
+  "app.eyebrow": "App para Android",
+  "app.title": "Faça o teste no seu celular",
+  "app.text": "As mesmas 25 perguntas em um app gratuito. Seus resultados ficam no seu celular, então você pode refazer o teste e ver como muda ao longo do tempo. Sem conta e sem anúncios.",
+  "app.download": "Baixar para Android",
+  "app.meta": "Versão {version} · {size} MB · Android {android} ou mais recente",
+  "app.howTitle": "Como instalar",
+  "app.how1": "Toque em “Baixar para Android” e abra o arquivo quando o download terminar.",
+  "app.how2": "Se o celular pedir, permita que o navegador instale apps desconhecidos. Depois você pode desativar essa permissão de novo.",
+  "app.how3": "Toque em Instalar e abra o app.",
+  "app.safety": "Baixe o app somente por esta página. Para conferir se o arquivo é autêntico, compare a impressão digital SHA-256 dele com a que está abaixo.",
+  "app.footerLink": "App para Android"
 }

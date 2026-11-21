@@ -52,5 +52,10 @@
  "consent.deny": "Non consentire",
  "common.cancel": "Annulla",
  "common.delete": "Elimina",
- "common.opensBrowser": "Si apre nel browser"
+ "common.opensBrowser": "Si apre nel browser",
+ "settings.checkUpdates": "Cerca aggiornamenti",
+ "settings.upToDate": "Hai l'ultima versione ({v}).",
+ "settings.updateAvailable": "È disponibile la versione {v}.",
+ "settings.getUpdate": "Scarica l'aggiornamento",
+ "settings.updateFailed": "Impossibile cercare aggiornamenti. Controlla la connessione e riprova."
 }

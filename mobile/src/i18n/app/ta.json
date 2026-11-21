@@ -52,5 +52,10 @@
  "consent.deny": "அனுமதிக்காதே",
  "common.cancel": "ரத்துசெய்",
  "common.delete": "நீக்கு",
- "common.opensBrowser": "உங்கள் உலாவியில் திறக்கும்"
+ "common.opensBrowser": "உங்கள் உலாவியில் திறக்கும்",
+ "settings.checkUpdates": "புதுப்பிப்புகளைச் சரிபார்",
+ "settings.upToDate": "நீங்கள் சமீபத்திய பதிப்பை ({v}) பயன்படுத்துகிறீர்கள்.",
+ "settings.updateAvailable": "பதிப்பு {v} கிடைக்கிறது.",
+ "settings.getUpdate": "புதுப்பிப்பைப் பெறு",
+ "settings.updateFailed": "புதுப்பிப்புகளைச் சரிபார்க்க முடியவில்லை. இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்."
 }

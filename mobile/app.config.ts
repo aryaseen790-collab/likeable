@@ -81,11 +81,13 @@ const config: ExpoConfig = {
     [
       'expo-build-properties',
       {
-        android: { enableMinifyInReleaseBuilds: true, enableShrinkResourcesInReleaseBuilds: true, usesCleartextTraffic: false },
+        // Phones only (32- and 64-bit ARM): keeps the downloadable APK small.
+        android: { enableMinifyInReleaseBuilds: true, enableShrinkResourcesInReleaseBuilds: true, usesCleartextTraffic: false, buildArchs: ['armeabi-v7a', 'arm64-v8a'] },
         ios: firebase ? { useFrameworks: 'static' } : {},
       },
     ],
     ...(firebase ? ['@react-native-firebase/app', '@react-native-firebase/analytics'] : []),
+    './plugins/withReleaseSigning',
   ],
   experiments: { typedRoutes: true },
   extra: { analyticsAvailable: firebase },

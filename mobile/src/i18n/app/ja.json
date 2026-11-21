@@ -52,5 +52,10 @@
  "consent.deny": "許可しない",
  "common.cancel": "キャンセル",
  "common.delete": "削除",
- "common.opensBrowser": "ブラウザで開きます"
+ "common.opensBrowser": "ブラウザで開きます",
+ "settings.checkUpdates": "アップデートを確認",
+ "settings.upToDate": "最新バージョン（{v}）です。",
+ "settings.updateAvailable": "バージョン {v} が利用できます。",
+ "settings.getUpdate": "アップデートを入手",
+ "settings.updateFailed": "アップデートを確認できませんでした。接続を確認してもう一度お試しください。"
 }

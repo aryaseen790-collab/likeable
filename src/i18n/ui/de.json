@@ -188,5 +188,16 @@
   "contact.lead": "Fragen zum Test, zu deinen Ergebnissen oder zu unserer Datenschutzerklärung? Wir lesen jede Nachricht.",
   "notfound.eyebrow": "Fehler 404",
   "notfound.title": "Verloren im <em>Orbit</em>",
-  "notfound.lead": "Diese Seite ist außer Reichweite geraten. Probier den Test oder einen unserer neuesten Leitfäden."
+  "notfound.lead": "Diese Seite ist außer Reichweite geraten. Probier den Test oder einen unserer neuesten Leitfäden.",
+  "app.eyebrow": "Android-App",
+  "app.title": "Mach den Test auf deinem Handy",
+  "app.text": "Dieselben 25 Fragen als kostenlose App. Deine Ergebnisse bleiben auf deinem Handy, sodass du den Test wiederholen und deine Entwicklung sehen kannst. Kein Konto, keine Werbung.",
+  "app.download": "Für Android herunterladen",
+  "app.meta": "Version {version} · {size} MB · Android {android} oder neuer",
+  "app.howTitle": "So installierst du die App",
+  "app.how1": "Tippe auf „Für Android herunterladen“ und öffne die Datei, wenn der Download fertig ist.",
+  "app.how2": "Wenn dein Handy fragt, erlaube deinem Browser, unbekannte Apps zu installieren. Du kannst diese Berechtigung danach wieder ausschalten.",
+  "app.how3": "Tippe auf Installieren und öffne dann die App.",
+  "app.safety": "Lade die App nur von dieser Seite herunter. Um zu prüfen, ob die Datei echt ist, vergleiche ihren SHA-256-Fingerabdruck mit dem unten.",
+  "app.footerLink": "Android-App"
 }

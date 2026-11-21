@@ -52,5 +52,10 @@
  "consent.deny": "অনুমতি দেবেন না",
  "common.cancel": "বাতিল",
  "common.delete": "মুছুন",
- "common.opensBrowser": "আপনার ব্রাউজারে খোলে"
+ "common.opensBrowser": "আপনার ব্রাউজারে খোলে",
+ "settings.checkUpdates": "আপডেট দেখুন",
+ "settings.upToDate": "আপনার কাছে সর্বশেষ সংস্করণ ({v}) আছে।",
+ "settings.updateAvailable": "সংস্করণ {v} পাওয়া যাচ্ছে।",
+ "settings.getUpdate": "আপডেট নিন",
+ "settings.updateFailed": "আপডেট দেখা যায়নি। আপনার সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"
 }

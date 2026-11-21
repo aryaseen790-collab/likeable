@@ -6,7 +6,7 @@
   "scripts": {
     "import": "NODE_USE_ENV_PROXY=1 node scripts/import-wp.mjs",
     "dev": "astro dev",
-    "build": "astro build && node scripts/minify-html.mjs",
+    "build": "node scripts/app-release.mjs && astro build && node scripts/minify-html.mjs",
     "preview": "astro preview",
     "check:links": "node scripts/check-links.mjs",
     "check": "astro check",

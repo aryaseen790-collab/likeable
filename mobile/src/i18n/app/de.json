@@ -52,5 +52,10 @@
  "consent.deny": "Nicht erlauben",
  "common.cancel": "Abbrechen",
  "common.delete": "Löschen",
- "common.opensBrowser": "Öffnet sich in deinem Browser"
+ "common.opensBrowser": "Öffnet sich in deinem Browser",
+ "settings.checkUpdates": "Nach Updates suchen",
+ "settings.upToDate": "Du hast die neueste Version ({v}).",
+ "settings.updateAvailable": "Version {v} ist verfügbar.",
+ "settings.getUpdate": "Update holen",
+ "settings.updateFailed": "Suche nach Updates fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut."
 }

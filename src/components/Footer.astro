@@ -1,6 +1,7 @@
 ---
 import { site } from '../lib/data';
 import { t, lpath, blogPostsIn, isLive, alternates, langOf, DEFAULT_LANG } from '../lib/i18n';
+import { appRelease } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 // Link a page in this language when it exists there, else the English page.
@@ -24,6 +25,7 @@ const year = new Date().getUTCFullYear();
         <li><a href={L('/blog/')}>{T('footer.blog')}</a></li>
         <li><a href={L('/about/')}>{T('footer.about')}</a></li>
         <li><a href={L('/contact/')}>{T('footer.contact')}</a></li>
+        {appRelease() && <li data-app-download><a href={`${lpath(lang, '/')}#get-app`}>{T('app.footerLink')}</a></li>}
       </ul>
     </div>
     <div>
@@ -42,3 +44,10 @@ const year = new Date().getUTCFullYear();
     </ul>
   </div>
 </footer>
+<script>
+  // The Android app section and link: APKs can't be installed on iPhone or iPad.
+  const ua = navigator.userAgent;
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {
+    document.querySelectorAll<HTMLElement>('[data-app-download]').forEach((el) => (el.hidden = true));
+  }
+</script>

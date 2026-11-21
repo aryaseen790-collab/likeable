@@ -206,5 +206,17 @@
 
   "notfound.eyebrow": "Error 404",
   "notfound.title": "Lost in <em>orbit</em>",
-  "notfound.lead": "This page drifted out of range. Try the test or one of our latest guides."
+  "notfound.lead": "This page drifted out of range. Try the test or one of our latest guides.",
+
+  "app.eyebrow": "Android app",
+  "app.title": "Take the test on your phone",
+  "app.text": "The same 25 questions in a free app. Your results stay on your phone, so you can retake the test and see how you change over time. No account, no ads.",
+  "app.download": "Download for Android",
+  "app.meta": "Version {version} · {size} MB · Android {android} or newer",
+  "app.howTitle": "How to install",
+  "app.how1": "Tap “Download for Android” and open the file when the download finishes.",
+  "app.how2": "If your phone asks, allow your browser to install unknown apps. You can turn this permission off again afterwards.",
+  "app.how3": "Tap Install, then open Likeable Person Test.",
+  "app.safety": "Only download the app from this page. To check that the file is genuine, compare its SHA-256 fingerprint with the one below.",
+  "app.footerLink": "Android app"
 }

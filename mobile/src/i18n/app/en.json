@@ -52,5 +52,10 @@
  "consent.deny": "Don't allow",
  "common.cancel": "Cancel",
  "common.delete": "Delete",
- "common.opensBrowser": "Opens in your browser"
+ "common.opensBrowser": "Opens in your browser",
+ "settings.checkUpdates": "Check for updates",
+ "settings.upToDate": "You have the latest version ({v}).",
+ "settings.updateAvailable": "Version {v} is available.",
+ "settings.getUpdate": "Get the update",
+ "settings.updateFailed": "Couldn't check for updates. Check your connection and try again."
 }

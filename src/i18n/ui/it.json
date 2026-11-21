@@ -188,5 +188,16 @@
   "contact.lead": "Domande sul test, sui tuoi risultati o sulla nostra Informativa sulla privacy? Leggiamo ogni messaggio.",
   "notfound.eyebrow": "Errore 404",
   "notfound.title": "Perso in <em>orbita</em>",
-  "notfound.lead": "Questa pagina è finita fuori portata. Prova il test o una delle nostre guide più recenti."
+  "notfound.lead": "Questa pagina è finita fuori portata. Prova il test o una delle nostre guide più recenti.",
+  "app.eyebrow": "App per Android",
+  "app.title": "Fai il test sul telefono",
+  "app.text": "Le stesse 25 domande in un'app gratuita. I tuoi risultati restano sul telefono, così puoi rifare il test e vedere come cambi nel tempo. Nessun account, nessuna pubblicità.",
+  "app.download": "Scarica per Android",
+  "app.meta": "Versione {version} · {size} MB · Android {android} o successivo",
+  "app.howTitle": "Come installarla",
+  "app.how1": "Tocca «Scarica per Android» e apri il file al termine del download.",
+  "app.how2": "Se il telefono lo chiede, consenti al browser di installare app sconosciute. Dopo puoi disattivare di nuovo questa autorizzazione.",
+  "app.how3": "Tocca Installa, poi apri l'app.",
+  "app.safety": "Scarica l'app solo da questa pagina. Per verificare che il file sia autentico, confronta la sua impronta SHA-256 con quella qui sotto.",
+  "app.footerLink": "App per Android"
 }

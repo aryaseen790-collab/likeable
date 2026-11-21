@@ -188,5 +188,16 @@
   "contact.lead": "Punya pertanyaan tentang tes, hasil Anda, atau Kebijakan Privasi kami? Kami membaca setiap pesan.",
   "notfound.eyebrow": "Kesalahan 404",
   "notfound.title": "Tersesat di <em>orbit</em>",
-  "notfound.lead": "Halaman ini sudah keluar jangkauan. Coba ikuti tesnya atau baca salah satu panduan terbaru kami."
+  "notfound.lead": "Halaman ini sudah keluar jangkauan. Coba ikuti tesnya atau baca salah satu panduan terbaru kami.",
+  "app.eyebrow": "Aplikasi Android",
+  "app.title": "Ikuti tes di ponselmu",
+  "app.text": "25 pertanyaan yang sama dalam aplikasi gratis. Hasilmu tetap di ponselmu, jadi kamu bisa mengulang tes dan melihat perubahanmu dari waktu ke waktu. Tanpa akun, tanpa iklan.",
+  "app.download": "Unduh untuk Android",
+  "app.meta": "Versi {version} · {size} MB · Android {android} atau lebih baru",
+  "app.howTitle": "Cara memasang",
+  "app.how1": "Ketuk “Unduh untuk Android” lalu buka file setelah unduhan selesai.",
+  "app.how2": "Jika ponsel meminta, izinkan browser memasang aplikasi tidak dikenal. Kamu bisa menonaktifkan izin ini lagi setelahnya.",
+  "app.how3": "Ketuk Pasang, lalu buka aplikasinya.",
+  "app.safety": "Unduh aplikasi hanya dari halaman ini. Untuk memastikan file asli, bandingkan sidik jari SHA-256-nya dengan yang di bawah.",
+  "app.footerLink": "Aplikasi Android"
 }

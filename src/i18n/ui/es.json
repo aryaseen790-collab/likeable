@@ -206,5 +206,17 @@
 
   "notfound.eyebrow": "Error 404",
   "notfound.title": "Perdido en <em>órbita</em>",
-  "notfound.lead": "Esta página se ha salido del radar. Prueba el test o una de nuestras últimas guías."
+  "notfound.lead": "Esta página se ha salido del radar. Prueba el test o una de nuestras últimas guías.",
+
+  "app.eyebrow": "App para Android",
+  "app.title": "Haz el test en tu teléfono",
+  "app.text": "Las mismas 25 preguntas en una app gratuita. Tus resultados se quedan en tu teléfono, así que puedes repetir el test y ver cómo cambias con el tiempo. Sin cuenta y sin anuncios.",
+  "app.download": "Descargar para Android",
+  "app.meta": "Versión {version} · {size} MB · Android {android} o posterior",
+  "app.howTitle": "Cómo instalarla",
+  "app.how1": "Toca «Descargar para Android» y abre el archivo cuando termine la descarga.",
+  "app.how2": "Si tu teléfono lo pide, permite que tu navegador instale apps desconocidas. Después puedes volver a desactivar este permiso.",
+  "app.how3": "Toca Instalar y abre la app.",
+  "app.safety": "Descarga la app solo desde esta página. Para comprobar que el archivo es auténtico, compara su huella SHA-256 con la de abajo.",
+  "app.footerLink": "App para Android"
 }

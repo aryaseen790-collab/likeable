@@ -1,13 +1,15 @@
 import Constants from 'expo-constants';
 import * as WebBrowser from 'expo-web-browser';
 import { router } from 'expo-router';
-import { Alert, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import { useState } from 'react';
+import { ActivityIndicator, Alert, Linking, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Choice } from '../components/Choice';
 import { ChevronIcon, ExternalIcon } from '../components/icons';
 import { Button, Card, Row, Txt } from '../components/ui';
 import { announce } from '../lib/a11y';
 import { analyticsAvailable } from '../lib/analytics';
+import { checkForUpdate, isApkBuild, type UpdateCheck } from '../lib/updates';
 import { useI18n } from '../lib/i18n';
 import { SITE } from '../lib/result';
 import { useStore, type ThemePref } from '../lib/store';
@@ -20,6 +22,18 @@ export default function Settings() {
   const insets = useSafeAreaInsets();
   const site = (path: string) => `${SITE}${lang.code === 'en' ? '' : `/${lang.code}`}${path}`;
   const open = (url: string) => WebBrowser.openBrowserAsync(url).catch(() => {});
+  const [update, setUpdate] = useState<{ busy?: boolean; result?: UpdateCheck; error?: boolean }>({});
+  const check = async () => {
+    setUpdate({ busy: true });
+    try {
+      const result = await checkForUpdate();
+      setUpdate({ result });
+      announce(result.available ? t('settings.updateAvailable', { v: result.latest }) : t('settings.upToDate', { v: result.current }));
+    } catch {
+      setUpdate({ error: true });
+      announce(t('settings.updateFailed'));
+    }
+  };
 
   const wipe = () =>
     Alert.alert(t('settings.deleteAll'), t('settings.deleteAllConfirm'), [
@@ -80,6 +94,25 @@ export default function Settings() {
 
       <Section title={t('settings.about')}>
         <LinkRow label={t('settings.website')} onPress={() => open(site('/'))} />
+        {isApkBuild && (
+          <View style={{ gap: space.sm, paddingVertical: space.sm }}>
+            <Button variant="secondary" label={t('settings.checkUpdates')} onPress={check} disabled={update.busy} icon={update.busy ? <ActivityIndicator color={c.accent} /> : undefined} />
+            {update.result && (
+              <Txt variant="small" accessibilityLiveRegion="polite">
+                {update.result.available ? t('settings.updateAvailable', { v: update.result.latest }) : t('settings.upToDate', { v: update.result.current })}
+              </Txt>
+            )}
+            {update.result?.available && (
+              // Opens the website's download section, which has the install steps and checksum.
+              <Button label={t('settings.getUpdate')} role="link" hint={t('common.opensBrowser')} onPress={() => Linking.openURL(`${site('/')}#get-app`).catch(() => {})} />
+            )}
+            {update.error && (
+              <Txt variant="small" color="danger" accessibilityLiveRegion="polite">
+                {t('settings.updateFailed')}
+              </Txt>
+            )}
+          </View>
+        )}
         <Txt variant="small">{t('settings.version', { v: Constants.expoConfig?.version ?? '1.0.0' })}</Txt>
       </Section>
 

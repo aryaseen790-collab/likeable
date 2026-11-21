@@ -1,0 +1,137 @@
+name: Android APK
+# Builds the signed Android app and publishes it on GitHub Releases, where the
+# website's "Download for Android" button links to it. Then redeploys the site so
+# the button shows the new version.
+#
+# Release a version:
+#   1. Set `version` in mobile/app.config.ts (e.g. 1.0.1) and commit it.
+#   2. Push a matching tag:  git tag app-v1.0.1 && git push origin app-v1.0.1
+#
+# Needs these repository secrets (Settings → Secrets and variables → Actions):
+#   ANDROID_KEYSTORE_BASE64   the upload keystore (.jks), base64-encoded
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+# Optional, to include Google Analytics (opt-in) in the APK:
+#   FIREBASE_GOOGLE_SERVICES_JSON   contents of google-services.json
+on:
+  push:
+    tags: ['app-v*']
+permissions:
+  contents: write # create the release
+  actions: write # trigger the site deploy
+concurrency:
+  group: android-apk
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SITE_BRANCH: claude/tender-pasteur-a0loor # the branch the live site deploys from
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            mobile/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Check the signing secrets are set
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KSP: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KA: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KP: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          for v in KS KSP KA KP; do [ -n "${!v}" ] || { echo "::error::Missing signing secret ($v). See the top of this workflow."; exit 1; }; done
+
+      - name: Build the site content and check the app
+        run: |
+          npm ci
+          npm run build
+          cd mobile && npm ci && npm run verify
+
+      - name: Check the tag matches the app version
+        id: ver
+        working-directory: mobile
+        run: |
+          V=$(npx expo config --json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).version))")
+          [ "app-v$V" = "$GITHUB_REF_NAME" ] || { echo "::error::Tag $GITHUB_REF_NAME does not match app version $V in mobile/app.config.ts"; exit 1; }
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+
+      - name: Add Firebase config (optional)
+        env:
+          GS: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
+        run: |
+          if [ -n "$GS" ]; then printf '%s' "$GS" > mobile/firebase/google-services.json; echo "Analytics included (opt-in)"; else echo "No Firebase config: analytics not included"; fi
+          # The config only turns Firebase on when both platform files exist; the iOS
+          # one is a placeholder here because this job builds Android only.
+          if [ -n "$GS" ]; then touch mobile/firebase/GoogleService-Info.plist; fi
+
+      - name: Generate the Android project
+        working-directory: mobile
+        env:
+          EXPO_PUBLIC_DISTRIBUTION: apk
+        run: npx expo prebuild --platform android --no-install
+
+      - name: Build and sign the APK
+        working-directory: mobile/android
+        env:
+          EXPO_PUBLIC_DISTRIBUTION: apk
+          LPT_KEYSTORE_FILE: ${{ runner.temp }}/upload.jks
+          LPT_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          LPT_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          LPT_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          printf '%s' "$KS" | base64 -d > "$LPT_KEYSTORE_FILE"
+          ./gradlew assembleRelease --no-daemon
+          rm -f "$LPT_KEYSTORE_FILE"
+
+      - name: Verify the signature and collect release details
+        id: apk
+        env:
+          V: ${{ steps.ver.outputs.version }}
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          SRC=mobile/android/app/build/outputs/apk/release/app-release.apk
+          [ -f "$SRC" ] || { echo "::error::No signed APK was produced"; exit 1; }
+          "$BT/apksigner" verify --print-certs "$SRC" | tee certs.txt
+          grep -q "Android Debug" certs.txt && { echo "::error::APK is signed with the debug key"; exit 1; }
+          mkdir -p out
+          FILE="likeable-person-test-$V.apk"
+          cp "$SRC" "out/$FILE"
+          SHA=$(sha256sum "out/$FILE" | cut -d' ' -f1)
+          MIN=$("$BT/aapt2" dump badging "out/$FILE" | sed -n "s/^sdkVersion:'\([0-9]*\)'.*/\1/p")
+          printf '{"version":"%s","file":"%s","sha256":"%s","minSdk":%s}\n' "$V" "$FILE" "$SHA" "$MIN" > out/release.json
+          cat out/release.json
+          CERT=$(grep -m1 "SHA-256 digest" certs.txt | sed 's/.*: //')
+          echo "cert=$CERT" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          V: ${{ steps.ver.outputs.version }}
+        run: |
+          cat > notes.md <<NOTES
+          Likeable Person Test for Android, version $V.
+
+          Install it from https://likeable-person-test.com/#get-app (the same file as below).
+
+          - APK SHA-256: \`${{ steps.apk.outputs.sha }}\`
+          - Signing certificate SHA-256: \`${{ steps.apk.outputs.cert }}\`
+          NOTES
+          gh release create "$GITHUB_REF_NAME" out/*.apk out/release.json --title "Android app $V" --notes-file notes.md
+
+      - name: Redeploy the website with the new download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "$SITE_BRANCH"

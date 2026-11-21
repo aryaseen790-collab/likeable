@@ -188,5 +188,16 @@
   "contact.lead": "Bạn có câu hỏi về bài kiểm tra, kết quả của mình hoặc Chính sách bảo mật? Chúng tôi đọc mọi tin nhắn.",
   "notfound.eyebrow": "Lỗi 404",
   "notfound.title": "Lạc giữa <em>quỹ đạo</em>",
-  "notfound.lead": "Trang này đã trôi ra ngoài phạm vi. Hãy thử làm bài kiểm tra hoặc đọc một trong những hướng dẫn mới nhất của chúng tôi."
+  "notfound.lead": "Trang này đã trôi ra ngoài phạm vi. Hãy thử làm bài kiểm tra hoặc đọc một trong những hướng dẫn mới nhất của chúng tôi.",
+  "app.eyebrow": "Ứng dụng Android",
+  "app.title": "Làm bài kiểm tra trên điện thoại",
+  "app.text": "Cùng 25 câu hỏi trong một ứng dụng miễn phí. Kết quả được lưu trên điện thoại của bạn, nên bạn có thể làm lại và xem mình thay đổi thế nào theo thời gian. Không cần tài khoản, không quảng cáo.",
+  "app.download": "Tải về cho Android",
+  "app.meta": "Phiên bản {version} · {size} MB · Android {android} trở lên",
+  "app.howTitle": "Cách cài đặt",
+  "app.how1": "Chạm “Tải về cho Android” và mở tệp khi tải xong.",
+  "app.how2": "Nếu điện thoại hỏi, hãy cho phép trình duyệt cài đặt ứng dụng không rõ nguồn gốc. Bạn có thể tắt lại quyền này sau đó.",
+  "app.how3": "Chạm Cài đặt rồi mở ứng dụng.",
+  "app.safety": "Chỉ tải ứng dụng từ trang này. Để kiểm tra tệp là thật, hãy so sánh dấu vân tay SHA-256 của tệp với dấu vân tay bên dưới.",
+  "app.footerLink": "Ứng dụng Android"
 }

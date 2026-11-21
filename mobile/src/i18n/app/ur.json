@@ -52,5 +52,10 @@
  "consent.deny": "اجازت نہ دیں",
  "common.cancel": "منسوخ کریں",
  "common.delete": "حذف کریں",
- "common.opensBrowser": "آپ کے براؤزر میں کھلتا ہے"
+ "common.opensBrowser": "آپ کے براؤزر میں کھلتا ہے",
+ "settings.checkUpdates": "اپ ڈیٹس دیکھیں",
+ "settings.upToDate": "آپ کے پاس تازہ ترین ورژن ({v}) ہے۔",
+ "settings.updateAvailable": "ورژن {v} دستیاب ہے۔",
+ "settings.getUpdate": "اپ ڈیٹ حاصل کریں",
+ "settings.updateFailed": "اپ ڈیٹس نہیں دیکھی جا سکیں۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔"
 }

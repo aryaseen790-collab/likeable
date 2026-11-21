@@ -52,5 +52,10 @@
  "consent.deny": "İzin verme",
  "common.cancel": "İptal",
  "common.delete": "Sil",
- "common.opensBrowser": "Tarayıcında açılır"
+ "common.opensBrowser": "Tarayıcında açılır",
+ "settings.checkUpdates": "Güncellemeleri denetle",
+ "settings.upToDate": "En son sürümü kullanıyorsun ({v}).",
+ "settings.updateAvailable": "{v} sürümü mevcut.",
+ "settings.getUpdate": "Güncellemeyi al",
+ "settings.updateFailed": "Güncellemeler denetlenemedi. Bağlantını kontrol edip tekrar dene."
 }

@@ -52,5 +52,10 @@
  "consent.deny": "అనుమతించవద్దు",
  "common.cancel": "రద్దు చేయండి",
  "common.delete": "తొలగించండి",
- "common.opensBrowser": "మీ బ్రౌజర్‌లో తెరుచుకుంటుంది"
+ "common.opensBrowser": "మీ బ్రౌజర్‌లో తెరుచుకుంటుంది",
+ "settings.checkUpdates": "అప్‌డేట్‌ల కోసం చూడండి",
+ "settings.upToDate": "మీ వద్ద తాజా వెర్షన్ ({v}) ఉంది.",
+ "settings.updateAvailable": "వెర్షన్ {v} అందుబాటులో ఉంది.",
+ "settings.getUpdate": "అప్‌డేట్ పొందండి",
+ "settings.updateFailed": "అప్‌డేట్‌లను తనిఖీ చేయలేకపోయాం. మీ కనెక్షన్‌ను తనిఖీ చేసి మళ్లీ ప్రయత్నించండి."
 }

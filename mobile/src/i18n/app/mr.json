@@ -52,5 +52,10 @@
  "consent.deny": "परवानगी देऊ नका",
  "common.cancel": "रद्द करा",
  "common.delete": "हटवा",
- "common.opensBrowser": "तुमच्या ब्राउझरमध्ये उघडते"
+ "common.opensBrowser": "तुमच्या ब्राउझरमध्ये उघडते",
+ "settings.checkUpdates": "अपडेट तपासा",
+ "settings.upToDate": "तुमच्याकडे नवीनतम आवृत्ती ({v}) आहे.",
+ "settings.updateAvailable": "आवृत्ती {v} उपलब्ध आहे.",
+ "settings.getUpdate": "अपडेट मिळवा",
+ "settings.updateFailed": "अपडेट तपासता आले नाहीत. तुमचे कनेक्शन तपासा आणि पुन्हा प्रयत्न करा."
 }

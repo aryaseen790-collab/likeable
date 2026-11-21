@@ -34,6 +34,8 @@ Requires Node 22.12+ (`.nvmrc`).
 
 `mobile/` is the iOS and Android app (Expo / React Native). It asks the same questions in the same 20 languages and scores them with the same code: `shared/scoring.ts` is imported by both the site's quiz and the app. See [`mobile/README.md`](mobile/README.md) for running, building, analytics setup, and the security, privacy and accessibility checklists.
 
+The homepage's "Get the Android app" section links to the newest APK on GitHub Releases (published by `.github/workflows/android-apk.yml`). `npm run build` looks it up first (`scripts/app-release.mjs`) and leaves the section out when there is no release or GitHub can't be reached.
+
 ## Updating content
 
 Content still lives in WordPress. To pull changes:

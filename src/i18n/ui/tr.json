@@ -188,5 +188,16 @@
   "contact.lead": "Test, sonuçlarınız veya Gizlilik Politikamız hakkında sorularınız mı var? Her mesajı okuyoruz.",
   "notfound.eyebrow": "Hata 404",
   "notfound.title": "<em>Yörüngede</em> kayboldunuz",
-  "notfound.lead": "Bu sayfa menzil dışına çıktı. Testi ya da en yeni rehberlerimizden birini deneyin."
+  "notfound.lead": "Bu sayfa menzil dışına çıktı. Testi ya da en yeni rehberlerimizden birini deneyin.",
+  "app.eyebrow": "Android uygulaması",
+  "app.title": "Testi telefonunda çöz",
+  "app.text": "Aynı 25 soru ücretsiz bir uygulamada. Sonuçların telefonunda kalır; testi tekrar çözüp zamanla nasıl değiştiğini görebilirsin. Hesap yok, reklam yok.",
+  "app.download": "Android için indir",
+  "app.meta": "Sürüm {version} · {size} MB · Android {android} veya üstü",
+  "app.howTitle": "Nasıl yüklenir",
+  "app.how1": "“Android için indir”e dokun ve indirme bitince dosyayı aç.",
+  "app.how2": "Telefonun sorarsa tarayıcının bilinmeyen uygulamaları yüklemesine izin ver. Bu izni sonra tekrar kapatabilirsin.",
+  "app.how3": "Yükle'ye dokun, ardından uygulamayı aç.",
+  "app.safety": "Uygulamayı yalnızca bu sayfadan indir. Dosyanın gerçek olduğunu doğrulamak için SHA-256 parmak izini aşağıdakiyle karşılaştır.",
+  "app.footerLink": "Android uygulaması"
 }

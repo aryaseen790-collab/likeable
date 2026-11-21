@@ -28,6 +28,8 @@ jobs:
       - run: npm run build
         env:
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
+          # Lets scripts/app-release.mjs read the latest Android APK release.
+          GITHUB_TOKEN: ${{ github.token }}
       - run: node scripts/rebase.mjs
         env:
           SITE_BASE: ${{ steps.pages.outputs.base_path }}

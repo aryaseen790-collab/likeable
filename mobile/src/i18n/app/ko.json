@@ -52,5 +52,10 @@
  "consent.deny": "허용 안 함",
  "common.cancel": "취소",
  "common.delete": "삭제",
- "common.opensBrowser": "브라우저에서 열립니다"
+ "common.opensBrowser": "브라우저에서 열립니다",
+ "settings.checkUpdates": "업데이트 확인",
+ "settings.upToDate": "최신 버전({v})을 사용 중입니다.",
+ "settings.updateAvailable": "버전 {v}을(를) 사용할 수 있습니다.",
+ "settings.getUpdate": "업데이트 받기",
+ "settings.updateFailed": "업데이트를 확인하지 못했습니다. 연결을 확인하고 다시 시도하세요."
 }

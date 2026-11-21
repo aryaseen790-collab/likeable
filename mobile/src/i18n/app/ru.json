@@ -52,5 +52,10 @@
  "consent.deny": "Не разрешать",
  "common.cancel": "Отмена",
  "common.delete": "Удалить",
- "common.opensBrowser": "Открывается в браузере"
+ "common.opensBrowser": "Открывается в браузере",
+ "settings.checkUpdates": "Проверить обновления",
+ "settings.upToDate": "У вас последняя версия ({v}).",
+ "settings.updateAvailable": "Доступна версия {v}.",
+ "settings.getUpdate": "Получить обновление",
+ "settings.updateFailed": "Не удалось проверить обновления. Проверьте подключение и попробуйте снова."
 }
