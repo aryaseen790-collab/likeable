@@ -127,7 +127,10 @@ button { font: inherit; color: inherit; }
 .brand__word { font-size: 0.76rem; line-height: 1.15; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .brand__word b { color: var(--heading); font-weight: 700; }
 .brand:hover { color: var(--heading); }
-.site-nav { margin-left: auto; }
+.site-nav { margin-inline-start: auto; flex: none; }
+/* Header items keep their size: when the row doesn't fit, the header script
+   switches to the hamburger menu instead of squashing anything. */
+.site-header__cta { flex: none; white-space: nowrap; }
 .site-nav ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
 .site-nav a { display: block; white-space: nowrap; padding: 8px 13px; border-radius: 999px; color: var(--text-2); text-decoration: none; font-size: 0.93rem; font-weight: 500; transition: background-color 0.2s, color 0.2s; }
 .site-nav a:hover, .site-nav a[aria-current='page'] { color: var(--heading); background: var(--accent-soft); }
@@ -137,7 +140,7 @@ button { font: inherit; color: inherit; }
 .theme-toggle .icon-sun { display: none; }
 :root[data-theme='dark'] .theme-toggle .icon-sun { display: block; }
 :root[data-theme='dark'] .theme-toggle .icon-moon { display: none; }
-.menu-toggle { display: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; }
+.menu-toggle { display: none; flex: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; }
 .menu-toggle__bars, .menu-toggle__bars::before, .menu-toggle__bars::after { display: block; width: 18px; height: 2px; margin: auto; background: var(--heading); border-radius: 2px; transition: transform 0.3s var(--ease); }
 .menu-toggle__bars { position: relative; }
 .menu-toggle__bars::before, .menu-toggle__bars::after { content: ''; position: absolute; left: 0; }
@@ -150,7 +153,7 @@ button { font: inherit; color: inherit; }
 .mobile-menu ul { list-style: none; margin: 0 0 24px; padding: 0; }
 .mobile-menu li a { display: block; padding: 14px 0; font-family: var(--font-serif); font-size: 1.8rem; color: var(--heading); text-decoration: none; border-bottom: 1px solid var(--border); }
 .mobile-menu .btn { width: 100%; }
-@media (max-width: 1200px) {
+@media (max-width: 1080px) {
   .site-nav, .site-header__cta { display: none; }
   .theme-toggle { margin-left: auto; }
   .menu-toggle { display: block; }
@@ -167,8 +170,12 @@ button { font: inherit; color: inherit; }
 .lang-switch a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.92rem; line-height: 1.35; white-space: nowrap; }
 .lang-switch a:hover { background: var(--accent-soft); color: var(--heading); }
 .lang-switch a[aria-current] { background: var(--accent); color: #fff; }
+@media (max-width: 560px) { .site-header__inner { gap: 10px; } }
+/* Small phones (360px and below): logo icon only, so the header fits without sideways scrolling.
+   The link keeps its accessible name (aria-label) for screen readers. */
+@media (max-width: 380px) { .brand__word { display: none; } }
 @media (max-width: 560px) { .lang-switch { position: static; } .lang-switch ul { inset-inline: 16px; top: calc(100% - 4px); width: auto; max-width: none; } .lang-switch a { padding: 8px; font-size: 0.86rem; white-space: normal; } }
-@media (max-width: 1200px) { .lang-switch { margin-inline-start: auto; } .lang-switch + .theme-toggle { margin-left: 0; } }
+@media (max-width: 1080px) { .lang-switch { margin-inline-start: auto; } .lang-switch + .theme-toggle { margin-left: 0; } }
 /* Wider screens whose menu still doesn't fit on one line (long words, e.g. Tamil): the
    header script adds .is-compact and the hamburger menu is used instead. */
 .site-header.is-compact .site-nav, .site-header.is-compact .site-header__cta { display: none; }
@@ -192,7 +199,6 @@ button { font: inherit; color: inherit; }
 :lang(ar) body, :lang(ur) body, :lang(hi) body, :lang(mr) body, :lang(bn) body, :lang(ta) body, :lang(te) body { line-height: 1.85; }
 
 /* ---------- Right-to-left (Arabic, Urdu) ---------- */
-[dir='rtl'] .site-nav { margin-left: 0; margin-right: auto; }
 [dir='rtl'] .chip { direction: rtl; }
 [dir='rtl'] .post-card__more span, [dir='rtl'] .dims__guide > span:last-child, [dir='rtl'] .hero__learn span { display: inline-block; transform: scaleX(-1); }
 [dir='rtl'] details:not(.lang-switch) > summary { padding: 17px 20px 17px 54px; }

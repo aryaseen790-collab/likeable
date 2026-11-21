@@ -6,7 +6,10 @@ const { enPath, lang, alternates } = Astro.props;
 const T = (k: string) => t(lang, k);
 // Nav targets exist in a language only if translated; otherwise link the English page.
 const navKey: Record<string, string> = { '/complete-guide/': 'nav.guide', '/likeable-person-test-results/': 'nav.results', '/blog/': 'nav.blog', '/privacy-policy/': 'nav.privacy', '/terms-conditions/': 'nav.terms' };
-const nav = site.nav.map((item) => {
+// Privacy Policy and Terms live in the footer of every page; the header keeps the
+// links people navigate by.
+const LEGAL = ['/privacy-policy/', '/terms-conditions/'];
+const nav = site.nav.filter((item) => !LEGAL.includes(item.href)).map((item) => {
   const translated = lang === 'en' || altsOf(item.href).some((a) => a.lang.code === lang);
   return { label: T(navKey[item.href] ?? item.label), href: translated ? lpath(lang, item.href) : item.href, enHref: item.href };
 });
