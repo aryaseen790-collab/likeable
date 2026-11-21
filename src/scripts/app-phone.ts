@@ -121,12 +121,13 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
   ring.rotation.x = 1.15;
   const bubbles = DIMENSION_EMOJI.map((e, i) => {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: emojiTexture(e, DIMENSION_COLORS[i]), transparent: true }));
-    s.scale.setScalar(ringRadius < 1.4 ? 0.32 : 0.38);
     ring.add(s);
     return s;
   });
   scene.add(ring);
-  const R = ringRadius;
+  // Tall, narrow stages pull the ring in close, so the phone itself can fill the height.
+  let R = ringRadius;
+  const bubbleSize = () => (R < 1 ? 0.26 : R < 1.4 ? 0.32 : 0.38);
   // Bubbles fade while they pass in front of the phone, so the screen stays readable.
   const world = new THREE.Vector3();
   const placeBubbles = (t: number) => {
@@ -151,8 +152,15 @@ export function createPhone(canvas: HTMLCanvasElement, { screens, reduced = fals
     camera.aspect = w / h;
     // Fit the whole scene: the emoji ring sideways (radius + bubble) and the phone
     // top to bottom (with its float), whatever the canvas shape.
+    // Narrow stages: the ring hugs the phone and sits behind it, so the emojis peek out
+    // around its edges in full colour instead of crossing (and fading over) the screen.
+    const narrow = camera.aspect < 0.8;
+    R = narrow ? Math.min(ringRadius, 0.74) : ringRadius;
+    ring.rotation.x = narrow ? 0.25 : 1.15;
+    ring.position.z = narrow ? -0.4 : 0;
+    bubbles.forEach((b) => b.scale.setScalar(bubbleSize()));
     const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    camera.position.z = Math.max((R + 0.3) / (tan * camera.aspect), (H / 2 + 0.16) / tan);
+    camera.position.z = Math.max((R + bubbleSize() / 2 + 0.1) / (tan * camera.aspect), (H / 2 + 0.16) / tan);
     camera.updateProjectionMatrix();
   };
   const ro = new ResizeObserver(() => (resize(), draw()));

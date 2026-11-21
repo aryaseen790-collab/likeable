@@ -1,7 +1,7 @@
 ---
 // Right side of the homepage hero: a phone demonstrating how the test works (real
-// app screens with captions that light up in step), then the two ways to take it:
-// online right here, or the Android app. The phone is an image at first paint and
+// app screens with captions that light up in step). The two ways to take the test
+// are in HeroWays.astro. The phone is an image at first paint and
 // becomes 3D (src/scripts/app-phone.ts) on the visitor's first interaction, like the
 // homepage orbit, so it never competes with loading the page.
 import { t, langOf, DEFAULT_LANG } from '../lib/i18n';
@@ -44,30 +44,6 @@ const steps = [
     ))}
   </ol>
 
-  <div class="hero-ways">
-    <a class="hero-way hero-way--online" href="#take-test" data-start-quiz>
-      <span class="hero-way__icon" aria-hidden="true">🌐</span>
-      <span class="hero-way__text">
-        <strong>{T('hero.wayOnline')}</strong>
-        <small>{T('hero.wayOnlineText')}</small>
-      </span>
-      <span class="hero-way__arrow" aria-hidden="true">→</span>
-    </a>
-    {rel && (
-      <a class="hero-way hero-way--app" href={rel.url} type="application/vnd.android.package-archive" data-app-download data-app-apk-hero>
-        <img class="hero-way__icon hero-way__icon--app" src="/app/icon-512.png" width="44" height="44" alt="" loading="lazy" />
-        <span class="hero-way__text">
-          <strong>{T('hero.wayApp')}</strong>
-          <small>{T('hero.wayAppText', { size })}</small>
-        </span>
-        <svg class="hero-way__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
-      </a>
-    )}
-  </div>
-  <div class="hero-ways__links">
-    <button type="button" class="linklike hero-ways__resume" data-resume-quiz hidden></button>
-    {rel && <a class="hero-ways__guide" href="#get-app" data-app-download>{T('app.howTitle')} <span aria-hidden="true">→</span></a>}
-  </div>
 </div>
 
 <script>
@@ -125,29 +101,6 @@ const steps = [
       events.forEach((e) => addEventListener(e, go, { passive: true, once: true }));
     }
 
-    // "Take it online" starts the test right away (the test card is hidden until then).
-    const quizAction = (name: string) => document.querySelector<HTMLElement>(`[data-quiz] [data-action="${name}"]`);
-    demo.querySelector('[data-start-quiz]')?.addEventListener('click', (e) => {
-      const start = quizAction('start');
-      if (start) {
-        e.preventDefault();
-        start.click();
-      }
-    });
-    // A test in progress: offer to resume it here too (the quiz shows its own
-    // resume button once it has read the saved answers).
-    const resumeBtn = quizAction('resume');
-    const resumeLink = demo.querySelector<HTMLButtonElement>('[data-resume-quiz]');
-    if (resumeBtn && resumeLink) {
-      const sync = () => {
-        resumeLink.hidden = resumeBtn.hidden;
-        resumeLink.textContent = resumeBtn.textContent;
-      };
-      new MutationObserver(sync).observe(resumeBtn, { attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true });
-      sync();
-      resumeLink.addEventListener('click', () => resumeBtn.click());
-    }
-    demo.querySelector('[data-app-apk-hero]')?.addEventListener('click', () => (window as any).gtag?.('event', 'app_download', { platform: 'android', place: 'hero' }));
   }
 </script>
 
@@ -176,41 +129,29 @@ const steps = [
   .hero-demo__caption { display: flex; align-items: flex-start; gap: 8px; margin-top: 10px; color: var(--muted); font-weight: 600; font-size: 0.92rem; line-height: 1.3; transition: color 0.3s; }
   .hero-demo__n { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 0.75rem; background: var(--surface-3); color: var(--muted); transition: background 0.3s, color 0.3s; }
   .hero-demo__step.is-active .hero-demo__caption { color: var(--heading); }
-  .hero-demo__step.is-active .hero-demo__n { background: var(--grad); color: #fff; }
+  .hero-demo__step.is-active .hero-demo__n { background: var(--grad-on); color: #fff; }
 
-  /* The two ways to take the test. */
-  .hero-ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; margin-top: 6px; }
-  .hero-way { display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 12px 16px; border-radius: 18px; text-decoration: none; color: var(--heading); background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
-  .hero-way:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--heading); box-shadow: var(--shadow); }
-  .hero-way:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .hero-way__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; font-size: 1.4rem; background: var(--accent-soft); }
-  .hero-way__icon--app { padding: 0; }
-  .hero-way__text { display: grid; gap: 2px; min-width: 0; }
-  .hero-way__text strong { font-size: 1.02rem; line-height: 1.25; }
-  .hero-way__text small { font-size: 0.84rem; color: var(--muted); line-height: 1.35; }
-  .hero-way__arrow { margin-inline-start: auto; flex: none; color: var(--accent); font-weight: 700; }
-  :global([dir='rtl']) .hero-way--online .hero-way__arrow { transform: scaleX(-1); }
-  .hero-way--online { background: var(--grad); color: #fff; border-color: transparent; }
-  .hero-way--online:hover { color: #fff; }
-  .hero-way--online .hero-way__icon { background: rgba(255, 255, 255, 0.18); }
-  .hero-way--online small, .hero-way--online .hero-way__arrow { color: rgba(255, 255, 255, 0.92); }
-  .hero-ways__links { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
-  .hero-ways__resume { font-size: 0.92rem; font-weight: 600; }
-  .hero-ways__guide { font-size: 0.92rem; font-weight: 600; text-decoration: none; }
-  .hero-ways__guide:hover { text-decoration: underline; }
-
-  /* Phones and small tablets: the two buttons first, then a big phone with only the
-     current step's caption under the progress bars. */
+  /* Phones and small tablets: a big phone with only the current step's caption under
+     the progress bars. */
   @media (max-width: 900px) {
-    .hero-ways { order: -3; margin-top: 0; }
-    .hero-ways__links { order: -2; }
-    .hero-demo__label { order: -1; margin-top: 22px; margin-bottom: -6px; }
     /* Close to square: the 3D phone (framed to fit its emoji ring) then fills the height. */
     .hero-demo__stage { height: min(100vw - 24px, 480px, 64vh); }
     /* Bars stay in their three columns; the active caption spans the full width below. */
     .hero-demo__steps { position: relative; padding-bottom: 3.4em; }
     .hero-demo__caption { display: none; }
     .hero-demo__step.is-active .hero-demo__caption { display: flex; position: absolute; inset-inline: 0; top: 14px; justify-content: center; text-align: center; font-size: 1.02rem; }
+  }
+  /* Desktop: a tall phone on the left; steps (as a vertical progress list) and the two
+     ways to take the test beside it, so the phone fills its space instead of floating. */
+  /* Desktop: a tall phone with the steps (a vertical progress list) beside it. */
+  @media (min-width: 901px) {
+    .hero-demo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: 'label label' 'stage steps'; column-gap: clamp(16px, 2.2vw, 28px); row-gap: 10px; }
+    .hero-demo__label { grid-area: label; }
+    .hero-demo__stage { grid-area: stage; height: clamp(420px, calc(100vh - 210px), 580px); }
+    .hero-demo__steps { grid-area: steps; align-self: center; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .hero-demo__step { padding: 10px 14px 12px; border-radius: 14px; border: 1px solid transparent; transition: background-color 0.3s, border-color 0.3s; }
+    .hero-demo__step.is-active { background: var(--surface); border-color: var(--border); box-shadow: var(--shadow-sm); }
+    .hero-demo__caption { margin-top: 8px; font-size: 0.98rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     .demo-phone { animation: none; }

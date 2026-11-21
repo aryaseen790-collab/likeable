@@ -4,10 +4,11 @@
 
 /* ---------- Hero (with the test in the first screen) ---------- */
 .hero { padding: clamp(16px, 3vw, 40px) 0 clamp(36px, 5vw, 64px); }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: 'intro demo' 'more demo'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-content: center; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'intro demo' 'ways demo' 'more demo'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-content: center; }
 .hero__intro { grid-area: intro; align-self: end; }
 .hero__more { grid-area: more; margin-top: 28px; }
 .hero__demo { grid-area: demo; min-width: 0; align-self: center; }
+.hero__ways { grid-area: ways; min-width: 0; max-width: 540px; margin-top: 8px; align-self: start; }
 /* Before the test starts, the demo on the right offers it; the test card appears
    (full width) once it runs or shows a result. */
 .hero[data-quiz-state='start'] .hero__test { display: none; }
@@ -27,9 +28,10 @@
 .hero .quiz__perks { margin-top: 18px; }
 /* Once the test runs (or shows results) it takes the full width and the intro steps aside. */
 .hero:not([data-quiz-state='start']) .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'test'; }
-.hero:not([data-quiz-state='start']) :is(.hero__intro, .hero__more, .hero__demo) { display: none; }
+.hero:not([data-quiz-state='start']) :is(.hero__intro, .hero__more, .hero__demo, .hero__ways) { display: none; }
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'demo' 'more'; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'ways' 'demo' 'more'; }
+  .hero__ways { margin-top: 6px; }
   .hero__demo { margin-top: 28px; }
   .hero__intro .chip { margin-bottom: 12px; }
   .hero__title { font-size: clamp(1.75rem, 7vw, 2.4rem); margin-bottom: 16px; }
@@ -111,7 +113,7 @@
 .quiz__options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .quiz__option { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 12px 16px; text-align: left; border-radius: 16px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--heading); font-weight: 500; font-size: 1rem; cursor: pointer; transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s, color 0.2s; }
 .quiz__option kbd { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; font: 600 0.82rem var(--font-sans); color: var(--muted); border: 1px solid var(--border-strong); background: var(--surface-2); }
-.quiz__option i { position: absolute; inset: 0; z-index: -1; background: var(--grad); opacity: 0; transition: opacity 0.25s; }
+.quiz__option i { position: absolute; inset: 0; z-index: -1; background: var(--grad-on); opacity: 0; transition: opacity 0.25s; }
 .quiz__option:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: var(--shadow-sm); }
 .quiz__option[aria-checked='true'] { color: #fff; border-color: transparent; box-shadow: 0 12px 30px -12px rgba(41, 92, 255, 0.7); }
 .quiz__option[aria-checked='true'] i { opacity: 1; }
@@ -195,7 +197,7 @@
 .dim-card p { color: var(--text-2); font-size: 0.95rem; margin: 0; }
 .dim-card::after { content: attr(data-n); position: absolute; right: 20px; top: 18px; font-family: var(--font-serif); font-size: 2rem; line-height: 1; color: color-mix(in srgb, var(--c) 45%, transparent); }
 .dims__grid .dim-card:nth-child(1), .dims__grid .dim-card:nth-child(4), .dims__grid .dim-card:nth-child(8) { grid-column: span 2; }
-.dims__guide { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding: 20px 26px; border-radius: var(--radius); background: var(--grad); color: #fff; text-decoration: none; font-size: 1.02rem; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease); }
+.dims__guide { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding: 20px 26px; border-radius: var(--radius); background: var(--grad-on); color: #fff; text-decoration: none; font-size: 1.02rem; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease); }
 .dims__guide:hover { color: #fff; transform: translateY(-2px); }
 .dims__guide > span:first-child { font-size: 1.8rem; }
 .dims__guide > span:last-child { margin-left: auto; font-size: 1.3rem; }

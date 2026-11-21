@@ -4,6 +4,7 @@ import '../../styles/home.css';
 import PostCard from '../PostCard.astro';
 import AppDownload from '../AppDownload.astro';
 import HeroDemo from '../HeroDemo.astro';
+import HeroWays from '../HeroWays.astro';
 import { home, site, dimensions, paginate } from '../../lib/data';
 import { sectionToTopics, parseFaq, parseCta } from '../../lib/topics';
 import { t, lpath, homeIn, postIn, blogPostsIn, langOf, DEFAULT_LANG } from '../../lib/i18n';
@@ -66,6 +67,9 @@ const schema =
       <div class="hero__more">
         <p class="lead hero__sub">{T('hero.subtitle')}</p>
         <a href={`${L('/')}#what-makes`} class="hero__learn">{T('hero.learnMore')} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero__ways">
+        <HeroWays lang={lang} />
       </div>
       <div class="hero__test">
         <div class="quiz card" id="take-test" data-quiz data-state="start" data-lang={lang}>

@@ -1,0 +1,97 @@
+---
+// The two ways to take the test, in the homepage hero: online right here (starts the
+// test card), or the Android app (direct download; hidden on iPhone). Plus "Resume
+// where you left off" when a test is in progress, and a link to the install guide.
+import { t, langOf, DEFAULT_LANG } from '../lib/i18n';
+import { appRelease, megabytes } from '../lib/app-release';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+const rel = appRelease();
+const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, { maximumFractionDigits: 0 }) : '';
+---
+<div class="hero-ways-wrap" data-hero-ways>
+  <div class="hero-ways">
+  <a class="hero-way hero-way--online" href="#take-test" data-start-quiz>
+    <span class="hero-way__icon" aria-hidden="true">🌐</span>
+    <span class="hero-way__text">
+      <strong>{T('hero.wayOnline')}</strong>
+      <small>{T('hero.wayOnlineText')}</small>
+    </span>
+    <span class="hero-way__arrow" aria-hidden="true">→</span>
+  </a>
+  {rel && (
+    <a class="hero-way hero-way--app" href={rel.url} type="application/vnd.android.package-archive" data-app-download data-app-apk-hero>
+      <img class="hero-way__icon hero-way__icon--app" src="/app/icon-512.png" width="44" height="44" alt="" loading="lazy" />
+      <span class="hero-way__text">
+        <strong>{T('hero.wayApp')}</strong>
+        <small>{T('hero.wayAppText', { size })}</small>
+      </span>
+      <svg class="hero-way__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
+    </a>
+  )}
+</div>
+<div class="hero-ways__links">
+  <button type="button" class="linklike hero-ways__resume" data-resume-quiz hidden></button>
+  {rel && <a class="hero-ways__guide" href="#get-app" data-app-download>{T('app.howTitle')} <span aria-hidden="true">→</span></a>}
+</div>
+</div>
+
+<script>
+  const ways = document.querySelector<HTMLElement>('[data-hero-ways]');
+  if (ways) {
+    // "Take it online" starts the test right away (the test card is hidden until then).
+    const quizAction = (name: string) => document.querySelector<HTMLElement>(`[data-quiz] [data-action="${name}"]`);
+    ways.querySelector('[data-start-quiz]')?.addEventListener('click', (e) => {
+      const start = quizAction('start');
+      if (start) {
+        e.preventDefault();
+        start.click();
+      }
+    });
+    // A test in progress: offer to resume it here too (the quiz shows its own
+    // resume button once it has read the saved answers).
+    const resumeBtn = quizAction('resume');
+    const resumeLink = ways.querySelector<HTMLButtonElement>('[data-resume-quiz]');
+    if (resumeBtn && resumeLink) {
+      const sync = () => {
+        resumeLink.hidden = resumeBtn.hidden;
+        resumeLink.textContent = resumeBtn.textContent;
+      };
+      new MutationObserver(sync).observe(resumeBtn, { attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true });
+      sync();
+      resumeLink.addEventListener('click', () => resumeBtn.click());
+    }
+    ways.querySelector('[data-app-apk-hero]')?.addEventListener('click', () => (window as any).gtag?.('event', 'app_download', { platform: 'android', place: 'hero' }));
+  }
+</script>
+
+<style>
+  .hero-ways-wrap { display: grid; gap: 12px; }
+  /* The two ways to take the test. */
+  /* Stacked, full width: every language's title fits on one line. */
+  .hero-ways { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 0; }
+  .hero-ways { container-type: inline-size; }
+  /* A narrow button column (smaller laptops, long languages): titles only, so each
+     button stays one or two clean lines instead of a cramped block of text. */
+  @container (max-width: 330px) { .hero-way__text small { display: none; } .hero-way { min-height: 60px; } }
+  .hero-way { display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 12px 16px; border-radius: 18px; text-decoration: none; color: var(--heading); background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
+  .hero-way:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--heading); box-shadow: var(--shadow); }
+  .hero-way:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .hero-way__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; font-size: 1.4rem; background: var(--accent-soft); }
+  .hero-way__icon--app { padding: 0; }
+  .hero-way__text { display: grid; gap: 2px; min-width: 0; }
+  .hero-way__text strong { font-size: 1.02rem; line-height: 1.25; }
+  .hero-way__text small { font-size: 0.84rem; color: var(--muted); line-height: 1.35; }
+  .hero-way__arrow { margin-inline-start: auto; flex: none; color: var(--accent); font-weight: 700; }
+  :global([dir='rtl']) .hero-way--online .hero-way__arrow { transform: scaleX(-1); }
+  .hero-way--online { background: var(--grad-on); color: #fff; border-color: transparent; }
+  .hero-way--online:hover { color: #fff; }
+  .hero-way--online .hero-way__icon { background: rgba(255, 255, 255, 0.18); }
+  .hero-way--online small, .hero-way--online .hero-way__arrow { color: #fff; }
+  .hero-ways__links { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .hero-ways__resume { font-size: 0.92rem; font-weight: 600; }
+  .hero-ways__guide { font-size: 0.92rem; font-weight: 600; text-decoration: none; }
+  .hero-ways__guide:hover { text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) { .hero-way, .hero-way:hover { transform: none; } }
+</style>
