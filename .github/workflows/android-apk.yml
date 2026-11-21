@@ -18,6 +18,9 @@ name: Android APK
 on:
   push:
     tags: ['app-v*']
+  # Or: Actions → Android APK → Run workflow (on the site branch). This creates the
+  # app-v<version> tag and release itself, from the version in mobile/app.config.ts.
+  workflow_dispatch:
 permissions:
   contents: write # create the release
   actions: write # trigger the site deploy
@@ -62,10 +65,22 @@ jobs:
       - name: Check the tag matches the app version
         id: ver
         working-directory: mobile
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           V=$(npx expo config --json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).version))")
-          [ "app-v$V" = "$GITHUB_REF_NAME" ] || { echo "::error::Tag $GITHUB_REF_NAME does not match app version $V in mobile/app.config.ts"; exit 1; }
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            TAG="app-v$V"
+            # Never silently replace a version people may already have downloaded.
+            if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' 2>/dev/null | grep -q '\.apk$'; then
+              echo "::error::$TAG is already published. Raise version in mobile/app.config.ts first."; exit 1
+            fi
+          else
+            TAG="$GITHUB_REF_NAME"
+            [ "app-v$V" = "$TAG" ] || { echo "::error::Tag $TAG does not match app version $V in mobile/app.config.ts"; exit 1; }
+          fi
           echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
       - name: Add Firebase config (optional)
         env:
@@ -121,6 +136,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           V: ${{ steps.ver.outputs.version }}
+          TAG: ${{ steps.ver.outputs.tag }}
         run: |
           cat > notes.md <<NOTES
           Likeable Person Test for Android, version $V.
@@ -132,11 +148,12 @@ jobs:
           NOTES
           # The release may already exist if it was created on GitHub's website
           # (Releases → Draft a new release); then attach the files to it.
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" out/*.apk out/release.json --clobber
-            gh release edit "$GITHUB_REF_NAME" --title "Android app $V" --notes-file notes.md
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" out/*.apk out/release.json --clobber
+            gh release edit "$TAG" --title "Android app $V" --notes-file notes.md
           else
-            gh release create "$GITHUB_REF_NAME" out/*.apk out/release.json --title "Android app $V" --notes-file notes.md
+            # Creates the tag on this exact commit when it doesn't exist yet (Run workflow).
+            gh release create "$TAG" out/*.apk out/release.json --target "$GITHUB_SHA" --title "Android app $V" --notes-file notes.md
           fi
 
       - name: Redeploy the website with the new download
