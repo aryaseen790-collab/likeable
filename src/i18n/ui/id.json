@@ -240,5 +240,17 @@
   "apppage.a4": "Buka Pengaturan di aplikasi dan ketuk “Periksa pembaruan”. Jika ada versi baru, unduh di sini dan pasang di atas versi lama. Hasilmu tetap tersimpan.",
   "apppage.q5": "Apakah hasilnya sama dengan di situs web?",
   "apppage.a5": "Ya. Aplikasi memakai pertanyaan dan penilaian yang sama dengan situs web.",
-  "app.learnMore": "Tentang aplikasi"
+  "app.learnMore": "Tentang aplikasi",
+  "app.stat.questions": "Pertanyaan",
+  "app.stat.dimensions": "Dimensi",
+  "app.stat.languages": "Bahasa",
+  "app.stat.size": "Ukuran unduhan",
+  "app.chip.free": "Gratis",
+  "app.chip.noAds": "Tanpa iklan",
+  "app.chip.offline": "Bisa offline",
+  "app.screensTitle": "Isi aplikasi",
+  "hero.wayOnline": "Ikuti secara online",
+  "hero.wayOnlineText": "Langsung di browser ini. Tanpa daftar.",
+  "hero.wayApp": "Unduh aplikasi Android",
+  "hero.wayAppText": "Gratis · {size} MB · hasil tersimpan di ponselmu"
 }

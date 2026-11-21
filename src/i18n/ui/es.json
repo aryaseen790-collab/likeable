@@ -260,5 +260,19 @@
   "apppage.a4": "Abre Ajustes en la app y toca «Buscar actualizaciones». Si hay una versión nueva, descárgala aquí e instálala sobre la anterior. Tus resultados se conservan.",
   "apppage.q5": "¿Obtengo el mismo resultado que en la web?",
   "apppage.a5": "Sí. La app usa las mismas preguntas y la misma puntuación que la web.",
-  "app.learnMore": "Sobre la app"
+  "app.learnMore": "Sobre la app",
+
+  "app.stat.questions": "Preguntas",
+  "app.stat.dimensions": "Dimensiones",
+  "app.stat.languages": "Idiomas",
+  "app.stat.size": "Tamaño",
+  "app.chip.free": "Gratis",
+  "app.chip.noAds": "Sin anuncios",
+  "app.chip.offline": "Funciona sin conexión",
+  "app.screensTitle": "Dentro de la app",
+
+  "hero.wayOnline": "Hazlo en línea",
+  "hero.wayOnlineText": "Aquí mismo, en tu navegador. Sin registro.",
+  "hero.wayApp": "Descarga la app para Android",
+  "hero.wayAppText": "Gratis · {size} MB · resultados guardados en tu teléfono"
 }

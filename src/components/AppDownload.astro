@@ -1,64 +1,226 @@
 ---
-// "Get the Android app": a direct APK download from GitHub Releases. Only rendered
-// when a release exists; hidden on iPhone/iPad, where APKs can't be installed.
-import { t, lpath, DEFAULT_LANG } from '../lib/i18n';
+// "Get the Android app": a product listing with a 3D phone (src/scripts/app-phone.ts),
+// the download, screenshots and the install guide. Only rendered when an APK release
+// exists (scripts/app-release.mjs); hidden on iPhone/iPad by the script in Footer.astro.
+import { t, lpath, langOf, DEFAULT_LANG } from '../lib/i18n';
 import { appRelease, androidVersion, megabytes } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
 const rel = appRelease();
-const size = rel ? Number(megabytes(rel.size)).toLocaleString(lang, { maximumFractionDigits: 1 }) : '';
+const nf = (n: number, digits = 0) => n.toLocaleString(langOf(lang).tag, { maximumFractionDigits: digits });
+const size = rel ? nf(Number(megabytes(rel.size)), 1) : '';
+const stats = [
+  { value: nf(25), label: T('app.stat.questions') },
+  { value: nf(9), label: T('app.stat.dimensions') },
+  { value: nf(20), label: T('app.stat.languages') },
+  { value: `${size} MB`, label: T('app.stat.size') },
+];
+const chips = [
+  { icon: '✓', text: T('app.chip.free') },
+  { icon: '⊘', text: T('app.chip.noAds') },
+  { icon: '✈', text: T('app.chip.offline') },
+];
+const shots = [1, 2, 3, 4].map((i) => ({ small: `/app/screen-${i}-390.webp`, big: `/app/screen-${i}.webp`, alt: T(`apppage.shot${i}`) }));
+const name = lang === DEFAULT_LANG ? 'Likeable Person Test' : T('meta.siteName');
 ---
 {rel && (
-  <section class="section app-dl" id="get-app" data-app-download>
+  <section class="section app-dl" id="get-app" data-app-download aria-labelledby="get-app-title">
     <div class="container">
-      <div class="app-dl__card card" data-reveal>
-        <div class="app-dl__icon" aria-hidden="true">📱</div>
-        <div class="app-dl__body">
-          <span class="eyebrow">{T('app.eyebrow')}</span>
-          <h2 class="h2">{T('app.title')}</h2>
-          <p>{T('app.text')}</p>
-          <div class="app-dl__actions">
-            <a class="btn btn--primary btn--lg" href={rel.url} type="application/vnd.android.package-archive" data-app-apk>
+      <div class="app-listing">
+        <!-- 3D phone; the CSS phone below is shown until (or instead of) WebGL -->
+        <div class="app-stage" data-phone-stage aria-hidden="true">
+          <div class="app-stage__glow"></div>
+          <div class="app-stage__css">
+            <div class="css-phone"><img src="/app/screen-1-390.webp" width="390" height="844" alt="" loading="lazy" decoding="async" /></div>
+          </div>
+          <canvas class="app-stage__canvas" data-phone-canvas></canvas>
+        </div>
+
+        <div class="app-info" data-reveal>
+          <div class="app-info__head">
+            <img class="app-info__icon" src="/app/icon-512.png" width="72" height="72" alt="" loading="lazy" />
+            <div>
+              <p class="app-info__name">{name}</p>
+              <p class="app-info__platform">{T('app.eyebrow')}</p>
+            </div>
+          </div>
+          <ul class="app-chips">
+            {chips.map((c) => <li><span aria-hidden="true">{c.icon}</span>{c.text}</li>)}
+          </ul>
+          <h2 class="h2 app-info__title" id="get-app-title">{T('app.title')}</h2>
+          <p class="app-info__text">{T('app.text')}</p>
+          <dl class="app-stats">
+            {stats.map((s) => <div><dt>{s.label}</dt><dd><bdi dir="ltr">{s.value}</bdi></dd></div>)}
+          </dl>
+          <div class="app-info__actions">
+            <a class="btn btn--primary btn--lg app-info__download" href={rel.url} type="application/vnd.android.package-archive" data-app-apk>
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
               {T('app.download')}
             </a>
-            <p class="app-dl__meta">{T('app.meta', { version: rel.version, size, android: androidVersion(rel.minSdk) })}</p>
-            <a class="app-dl__more" href={lpath(lang, '/app/')}>{T('app.learnMore')} <span aria-hidden="true">→</span></a>
+            <a class="app-info__more" href={lpath(lang, '/app/')}>{T('app.learnMore')} <span aria-hidden="true">→</span></a>
           </div>
-          <div class="app-dl__how">
-            <h3>{T('app.howTitle')}</h3>
-            <ol>
-              <li>{T('app.how1')}</li>
-              <li>{T('app.how2')}</li>
-              <li>{T('app.how3')}</li>
-            </ol>
-            <p class="app-dl__note">{T('app.safety')}</p>
-            <p class="app-dl__sha"><span>SHA-256</span> <code>{rel.sha256}</code></p>
-          </div>
+          <p class="app-info__meta">{T('app.meta', { version: rel.version, size, android: androidVersion(rel.minSdk) })}</p>
+        </div>
+      </div>
+
+      <h3 class="app-subtitle">{T('app.screensTitle')}</h3>
+      <ul class="app-shots" role="list">
+        {shots.map((s, i) => (
+          <li style={`--i:${i}`} data-reveal>
+            <img src={s.small} srcset={`${s.small} 390w, ${s.big} 780w`} sizes="(max-width: 620px) 62vw, 240px" width="390" height="844" alt={s.alt} loading="lazy" decoding="async" />
+          </li>
+        ))}
+      </ul>
+
+      <h3 class="app-subtitle">{T('app.howTitle')}</h3>
+      <ol class="app-steps" role="list">
+        {['app.how1', 'app.how2', 'app.how3'].map((k, i) => (
+          <li class="app-step" data-reveal>
+            <span class="app-step__n" aria-hidden="true">{nf(i + 1)}</span>
+            <span class="sr-only">{T('how.step', { n: i + 1 })}: </span>
+            <p>{T(k)}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="app-verify">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+        <div>
+          <p>{T('app.safety')}</p>
+          <p class="app-verify__sha"><span>SHA-256</span><code>{rel.sha256}</code></p>
         </div>
       </div>
     </div>
   </section>
 )}
+
 <script>
-  // Hidden on iPhone/iPad by the script in Footer.astro.
+  // Load the 3D phone only when the section approaches the screen (Three.js is a
+  // separate, cached chunk shared with the homepage orbit).
+  const stage = document.querySelector<HTMLElement>('[data-phone-stage]');
+  const canvas = stage?.querySelector<HTMLCanvasElement>('[data-phone-canvas]');
+  const webgl = (() => {
+    try {
+      const c = document.createElement('canvas');
+      return !!(c.getContext('webgl2') || c.getContext('webgl'));
+    } catch {
+      return false;
+    }
+  })();
+  if (stage && canvas && webgl) {
+    const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        import('../scripts/app-phone').then(({ createPhone }) =>
+          createPhone(canvas, {
+            screens: [1, 2, 3].map((i) => `${base}app/screen-${i}.webp`),
+            reduced,
+            onReady: () => stage.classList.add('is-3d'),
+          }),
+        );
+      },
+      { rootMargin: '300px 0px' },
+    );
+    io.observe(stage);
+  }
   document.querySelector('[data-app-apk]')?.addEventListener('click', () => (window as any).gtag?.('event', 'app_download', { platform: 'android' }));
 </script>
+
 <style>
-  .app-dl__card { display: flex; gap: clamp(20px, 4vw, 40px); align-items: flex-start; padding: clamp(24px, 5vw, 48px); }
-  .app-dl__icon { font-size: clamp(44px, 8vw, 72px); line-height: 1; flex: none; }
-  .app-dl__body { display: grid; gap: 14px; min-width: 0; }
-  .app-dl__body > p { color: var(--text-2); max-width: 62ch; }
-  .app-dl__actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
-  .app-dl__actions .btn { gap: 10px; }
-  .app-dl__meta { color: var(--muted); font-size: 0.95rem; }
-  .app-dl__more { font-weight: 600; }
-  .app-dl__how { margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--border); }
-  .app-dl__how h3 { font-size: 1.15rem; margin-bottom: 10px; }
-  .app-dl__how ol { padding-inline-start: 1.3em; display: grid; gap: 6px; color: var(--text-2); }
-  .app-dl__note { margin-top: 10px; color: var(--text-2); }
-  .app-dl__sha { margin-top: 8px; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
-  .app-dl__sha span { display: block; font-weight: 600; }
-  .app-dl__sha code { font-size: 0.8rem; }
-  @media (max-width: 620px) { .app-dl__card { flex-direction: column; } }
+  .app-listing {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(24px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(20px, 4vw, 48px);
+    border-radius: calc(var(--radius) + 10px);
+    background:
+      radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--violet) 16%, transparent), transparent 60%),
+      radial-gradient(90% 80% at 100% 100%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+      var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* 3D stage */
+  .app-stage { position: relative; aspect-ratio: 1 / 1.08; min-height: 360px; max-height: 620px; width: 100%; }
+  .app-stage__glow { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--violet) 40%, transparent), transparent 70%); filter: blur(30px); }
+  .app-stage__canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s var(--ease); }
+  .app-stage__css { position: absolute; inset: 0; display: grid; place-items: center; perspective: 1400px; transition: opacity 0.6s var(--ease); }
+  .app-stage.is-3d .app-stage__canvas { opacity: 1; }
+  .app-stage.is-3d .app-stage__css { opacity: 0; }
+  .css-phone {
+    width: min(46%, 250px);
+    aspect-ratio: 390 / 844;
+    padding: 9px;
+    border-radius: 34px;
+    background: linear-gradient(145deg, #2a2760, #12112e);
+    box-shadow: 0 40px 80px -30px rgba(17, 21, 56, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transform: rotateY(-18deg) rotateX(6deg);
+    animation: phone-float 6s ease-in-out infinite;
+  }
+  .css-phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 26px; display: block; }
+  @keyframes phone-float { 50% { transform: rotateY(-10deg) rotateX(4deg) translateY(-10px); } }
+
+  /* Listing */
+  .app-info { display: grid; gap: 16px; align-content: center; }
+  .app-info__head { display: flex; align-items: center; gap: 14px; }
+  .app-info__icon { width: 72px; height: 72px; border-radius: 18px; box-shadow: var(--shadow-sm); flex: none; }
+  .app-info__name { font-weight: 700; color: var(--heading); font-size: 1.1rem; line-height: 1.3; }
+  .app-info__platform { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
+  .app-chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .app-chips li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 0.88rem; font-weight: 600; color: var(--heading); background: var(--accent-soft); border: 1px solid var(--border); }
+  .app-chips li span { color: var(--accent); }
+  .app-info__title { margin: 4px 0 0; }
+  .app-info__text { color: var(--text-2); font-size: 1.06rem; max-width: 56ch; }
+  .app-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 6px 0 4px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+  .app-stats > div { display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; padding: 12px 6px; text-align: center; }
+  .app-stats > div + div { border-inline-start: 1px solid var(--border); }
+  .app-stats dd { margin: 0; font-family: var(--font-serif); font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.1; color: var(--heading); white-space: nowrap; }
+  .app-stats dt { font-size: 0.78rem; color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
+  .app-info__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 6px; }
+  .app-info__download { gap: 10px; }
+  .app-info__more { font-weight: 600; text-decoration: none; }
+  .app-info__more:hover { text-decoration: underline; }
+  .app-info__more span { display: inline-block; }
+  :global([dir='rtl']) .app-info__more span { transform: scaleX(-1); }
+  .app-info__meta { color: var(--muted); font-size: 0.92rem; }
+
+  /* Screenshots */
+  .app-subtitle { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 1.9rem); color: var(--heading); margin: clamp(40px, 6vw, 64px) 0 20px; }
+  .app-shots { list-style: none; margin: 0; padding: 4px 4px 18px; display: grid; grid-auto-flow: column; grid-auto-columns: min(62vw, 240px); gap: clamp(14px, 2.4vw, 26px); overflow-x: auto; scroll-snap-type: x mandatory; justify-content: start; }
+  @media (min-width: 1100px) { .app-shots { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; } }
+  .app-shots li { scroll-snap-align: start; transform: translateY(calc(var(--i) * 10px - 15px)); transition: transform 0.4s var(--ease); }
+  .app-shots li:hover { transform: translateY(calc(var(--i) * 10px - 25px)); }
+  .app-shots img { width: 100%; height: auto; display: block; border-radius: 26px; border: 6px solid #16143a; box-shadow: 0 30px 60px -30px rgba(17, 21, 56, 0.55); }
+
+  /* Install steps */
+  .app-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
+  .app-step { position: relative; padding: 22px 22px 22px 22px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: grid; gap: 12px; align-content: start; }
+  .app-step__n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #fff; font-weight: 700; background: var(--grad); }
+  .app-step p { color: var(--text-2); }
+  .app-verify { display: flex; gap: 14px; align-items: flex-start; margin-top: 16px; padding: 18px 20px; border-radius: var(--radius-sm); background: var(--accent-soft); color: var(--text-2); }
+  .app-verify svg { color: var(--green); flex: none; margin-top: 2px; }
+  .app-verify__sha { margin-top: 8px; display: grid; gap: 2px; font-size: 0.85rem; color: var(--muted); }
+  .app-verify__sha span { font-weight: 600; }
+  .app-verify__sha code { font-size: 0.8rem; overflow-wrap: anywhere; background: none; padding: 0; }
+
+  @media (max-width: 900px) {
+    .app-listing { grid-template-columns: minmax(0, 1fr); }
+    .app-stage { min-height: 320px; max-height: 440px; aspect-ratio: 1 / 1; order: -1; }
+  }
+  @media (max-width: 520px) {
+    .app-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .app-stats > div:nth-child(3) { border-inline-start: 0; }
+    .app-stats > div:nth-child(n + 3) { border-top: 1px solid var(--border); }
+    .app-info__download { width: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .css-phone { animation: none; }
+    .app-shots li, .app-shots li:hover { transform: none; }
+  }
 </style>

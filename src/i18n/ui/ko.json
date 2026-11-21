@@ -240,5 +240,17 @@
   "apppage.a4": "앱에서 설정을 열고 '업데이트 확인'을 누르세요. 새 버전이 있으면 여기서 다운로드해 기존 앱 위에 설치하세요. 결과는 그대로 유지됩니다.",
   "apppage.q5": "웹사이트와 같은 결과가 나오나요?",
   "apppage.a5": "네. 앱은 웹사이트와 같은 질문과 같은 채점 방식을 사용합니다.",
-  "app.learnMore": "앱 소개"
+  "app.learnMore": "앱 소개",
+  "app.stat.questions": "문항",
+  "app.stat.dimensions": "가지 측면",
+  "app.stat.languages": "개 언어",
+  "app.stat.size": "다운로드 크기",
+  "app.chip.free": "무료",
+  "app.chip.noAds": "광고 없음",
+  "app.chip.offline": "오프라인 사용 가능",
+  "app.screensTitle": "앱 미리 보기",
+  "hero.wayOnline": "온라인으로 하기",
+  "hero.wayOnlineText": "지금 이 브라우저에서. 가입 필요 없음.",
+  "hero.wayApp": "안드로이드 앱 받기",
+  "hero.wayAppText": "무료 · {size}MB · 결과는 휴대폰에 저장"
 }

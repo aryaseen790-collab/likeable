@@ -240,5 +240,17 @@
   "apppage.a4": "在应用中打开设置并点按“检查更新”。如果有新版本，请在这里下载并覆盖安装旧版本。你的结果会保留。",
   "apppage.q5": "结果和网站上一样吗？",
   "apppage.a5": "是的。应用使用与网站相同的题目和计分方式。",
-  "app.learnMore": "关于应用"
+  "app.learnMore": "关于应用",
+  "app.stat.questions": "道题",
+  "app.stat.dimensions": "个维度",
+  "app.stat.languages": "种语言",
+  "app.stat.size": "安装包大小",
+  "app.chip.free": "免费",
+  "app.chip.noAds": "无广告",
+  "app.chip.offline": "可离线使用",
+  "app.screensTitle": "应用内一览",
+  "hero.wayOnline": "在线测试",
+  "hero.wayOnlineText": "就在浏览器中进行，无需注册。",
+  "hero.wayApp": "下载安卓应用",
+  "hero.wayAppText": "免费 · {size} MB · 结果保存在你的手机上"
 }

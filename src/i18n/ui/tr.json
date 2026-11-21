@@ -240,5 +240,17 @@
   "apppage.a4": "Uygulamada Ayarlar'ı aç ve “Güncellemeleri denetle”ye dokun. Yeni sürüm varsa buradan indirip eskisinin üzerine yükle. Sonuçların korunur.",
   "apppage.q5": "Web sitesindekiyle aynı sonucu mu alırım?",
   "apppage.a5": "Evet. Uygulama web sitesiyle aynı soruları ve aynı puanlamayı kullanır.",
-  "app.learnMore": "Uygulama hakkında"
+  "app.learnMore": "Uygulama hakkında",
+  "app.stat.questions": "Soru",
+  "app.stat.dimensions": "Boyut",
+  "app.stat.languages": "Dil",
+  "app.stat.size": "İndirme boyutu",
+  "app.chip.free": "Ücretsiz",
+  "app.chip.noAds": "Reklamsız",
+  "app.chip.offline": "Çevrimdışı çalışır",
+  "app.screensTitle": "Uygulamanın içi",
+  "hero.wayOnline": "Çevrimiçi çöz",
+  "hero.wayOnlineText": "Burada, tarayıcında. Kayıt yok.",
+  "hero.wayApp": "Android uygulamasını indir",
+  "hero.wayAppText": "Ücretsiz · {size} MB · sonuçlar telefonunda saklanır"
 }

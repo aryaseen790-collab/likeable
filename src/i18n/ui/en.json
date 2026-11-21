@@ -260,5 +260,19 @@
   "apppage.a4": "Open Settings in the app and tap “Check for updates”. If there's a new version, download it here and install it over the old one. Your results are kept.",
   "apppage.q5": "Do I get the same result as on the website?",
   "apppage.a5": "Yes. The app uses the same questions and the same scoring as the website.",
-  "app.learnMore": "About the app"
+  "app.learnMore": "About the app",
+
+  "app.stat.questions": "Questions",
+  "app.stat.dimensions": "Dimensions",
+  "app.stat.languages": "Languages",
+  "app.stat.size": "Download size",
+  "app.chip.free": "Free",
+  "app.chip.noAds": "No ads",
+  "app.chip.offline": "Works offline",
+  "app.screensTitle": "Inside the app",
+
+  "hero.wayOnline": "Take it online",
+  "hero.wayOnlineText": "Right here in your browser. No sign-up.",
+  "hero.wayApp": "Get the Android app",
+  "hero.wayAppText": "Free · {size} MB · results saved on your phone"
 }

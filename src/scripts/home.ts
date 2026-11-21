@@ -104,11 +104,12 @@ export function initHome() {
       pendingClick?.click();
     });
 
-  // ---- "Take the test" links land on the quiz card; put focus on its Start
-  // button too, so keyboard and screen-reader users are on the real control.
+  // ---- "Take the test" links start the test: before it starts, its card is hidden
+  // and the hero demo offers it, so there is nothing else to land on. Starting moves
+  // focus to the first answer, so keyboard and screen-reader users are in the test.
   const focusStart = () => {
     if (quizRoot.dataset.state !== 'start') return;
-    setTimeout(() => quizRoot.querySelector<HTMLButtonElement>('[data-action="start"]')?.focus({ preventScroll: true }), 450);
+    quizRoot.querySelector<HTMLButtonElement>('[data-action="start"]')?.click();
   };
   document.addEventListener('click', (e) => {
     const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href$="#take-test"]');

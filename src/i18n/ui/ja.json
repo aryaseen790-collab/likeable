@@ -240,5 +240,17 @@
   "apppage.a4": "アプリの設定を開き、「アップデートを確認」をタップします。新しいバージョンがあれば、ここからダウンロードして上書きインストールしてください。結果はそのまま残ります。",
   "apppage.q5": "ウェブサイトと同じ結果になりますか？",
   "apppage.a5": "はい。アプリはウェブサイトと同じ質問・同じ採点方法を使っています。",
-  "app.learnMore": "アプリについて"
+  "app.learnMore": "アプリについて",
+  "app.stat.questions": "問",
+  "app.stat.dimensions": "の側面",
+  "app.stat.languages": "言語",
+  "app.stat.size": "サイズ",
+  "app.chip.free": "無料",
+  "app.chip.noAds": "広告なし",
+  "app.chip.offline": "オフライン対応",
+  "app.screensTitle": "アプリの画面",
+  "hero.wayOnline": "オンラインで受ける",
+  "hero.wayOnlineText": "このブラウザですぐに。登録不要。",
+  "hero.wayApp": "Android アプリを入手",
+  "hero.wayAppText": "無料 · {size} MB · 結果はスマホに保存"
 }

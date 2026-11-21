@@ -240,5 +240,17 @@
   "apppage.a4": "ॲपमध्ये सेटिंग्ज उघडा आणि “अपडेट तपासा” वर टॅप करा. नवीन आवृत्ती असल्यास ती इथून डाउनलोड करून जुन्यावर इंस्टॉल करा. तुमचे निकाल राहतात.",
   "apppage.q5": "वेबसाइटसारखाच निकाल मिळेल का?",
   "apppage.a5": "होय. ॲप वेबसाइटसारखेच प्रश्न आणि तीच गुणपद्धत वापरते.",
-  "app.learnMore": "ॲपबद्दल"
+  "app.learnMore": "ॲपबद्दल",
+  "app.stat.questions": "प्रश्न",
+  "app.stat.dimensions": "पैलू",
+  "app.stat.languages": "भाषा",
+  "app.stat.size": "डाउनलोड आकार",
+  "app.chip.free": "मोफत",
+  "app.chip.noAds": "जाहिराती नाहीत",
+  "app.chip.offline": "ऑफलाइन चालते",
+  "app.screensTitle": "ॲपमध्ये काय आहे",
+  "hero.wayOnline": "ऑनलाइन द्या",
+  "hero.wayOnlineText": "इथेच, तुमच्या ब्राउझरमध्ये. साइन-अप नाही.",
+  "hero.wayApp": "Android ॲप मिळवा",
+  "hero.wayAppText": "मोफत · {size} MB · निकाल तुमच्या फोनवर जतन"
 }

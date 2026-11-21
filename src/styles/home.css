@@ -4,9 +4,13 @@
 
 /* ---------- Hero (with the test in the first screen) ---------- */
 .hero { padding: clamp(16px, 3vw, 40px) 0 clamp(36px, 5vw, 64px); }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: 'intro test' 'more test'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-content: center; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: 'intro demo' 'more demo'; column-gap: clamp(28px, 4.5vw, 60px); row-gap: 0; align-content: center; }
 .hero__intro { grid-area: intro; align-self: end; }
-.hero__more { grid-area: more; }
+.hero__more { grid-area: more; margin-top: 28px; }
+.hero__demo { grid-area: demo; min-width: 0; align-self: center; }
+/* Before the test starts, the demo on the right offers it; the test card appears
+   (full width) once it runs or shows a result. */
+.hero[data-quiz-state='start'] .hero__test { display: none; }
 .hero__test { grid-area: test; align-self: center; min-width: 0; }
 .hero__intro .chip { margin-bottom: 18px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.72rem; }
 .hero__title { font-size: clamp(2.1rem, 4.2vw, 3.7rem); margin-bottom: 18px; }
@@ -23,9 +27,10 @@
 .hero .quiz__perks { margin-top: 18px; }
 /* Once the test runs (or shows results) it takes the full width and the intro steps aside. */
 .hero:not([data-quiz-state='start']) .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'test'; }
-.hero:not([data-quiz-state='start']) :is(.hero__intro, .hero__more) { display: none; }
+.hero:not([data-quiz-state='start']) :is(.hero__intro, .hero__more, .hero__demo) { display: none; }
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'test' 'more'; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'demo' 'more'; }
+  .hero__demo { margin-top: 28px; }
   .hero__intro .chip { margin-bottom: 12px; }
   .hero__title { font-size: clamp(1.75rem, 7vw, 2.4rem); margin-bottom: 16px; }
   .hero__more { margin-top: 28px; }

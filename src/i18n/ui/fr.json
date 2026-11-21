@@ -240,5 +240,17 @@
   "apppage.a4": "Ouvrez les Réglages de l'application et touchez « Rechercher des mises à jour ». S'il existe une nouvelle version, téléchargez-la ici et installez-la par-dessus l'ancienne. Vos résultats sont conservés.",
   "apppage.q5": "Est-ce que j'obtiens le même résultat que sur le site ?",
   "apppage.a5": "Oui. L'application utilise les mêmes questions et le même calcul que le site.",
-  "app.learnMore": "À propos de l'application"
+  "app.learnMore": "À propos de l'application",
+  "app.stat.questions": "Questions",
+  "app.stat.dimensions": "Dimensions",
+  "app.stat.languages": "Langues",
+  "app.stat.size": "Taille",
+  "app.chip.free": "Gratuite",
+  "app.chip.noAds": "Sans publicité",
+  "app.chip.offline": "Fonctionne hors ligne",
+  "app.screensTitle": "Dans l'application",
+  "hero.wayOnline": "Faites-le en ligne",
+  "hero.wayOnlineText": "Ici même, dans votre navigateur. Sans inscription.",
+  "hero.wayApp": "Téléchargez l'application Android",
+  "hero.wayAppText": "Gratuite · {size} Mo · résultats enregistrés sur votre téléphone"
 }

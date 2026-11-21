@@ -1,0 +1,202 @@
+---
+// Right side of the homepage hero: a phone demonstrating how the test works (real
+// app screens with captions that light up in step), then the two ways to take it:
+// online right here, or the Android app. The phone is an image at first paint and
+// becomes 3D (src/scripts/app-phone.ts) on the visitor's first interaction, like the
+// homepage orbit, so it never competes with loading the page.
+import { t, langOf, DEFAULT_LANG } from '../lib/i18n';
+import { appRelease, megabytes } from '../lib/app-release';
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+const strip = (s: string) => s.replace(/<[^>]+>/g, '');
+const rel = appRelease();
+const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, { maximumFractionDigits: 0 }) : '';
+// Screens shown by the phone, and the caption for each.
+const steps = [
+  { screen: 2, title: T('how.s1title') },
+  { screen: 3, title: T('how.s3title') },
+  { screen: 4, title: strip(T('dims.title')) },
+];
+---
+<div class="hero-demo" data-hero-demo>
+  <p class="hero-demo__label">{T('how.eyebrow')}</p>
+  <div class="hero-demo__body">
+    <div class="hero-demo__stage" data-demo-stage aria-hidden="true">
+      <div class="hero-demo__glow"></div>
+      <div class="hero-demo__css">
+        <div class="demo-phone">
+          {steps.map((s, i) => (
+            <img src={`/app/screen-${s.screen}-390.webp`} width="390" height="844" alt="" decoding="async" fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} class:list={[{ 'is-on': i === 0 }]} data-demo-img />
+          ))}
+        </div>
+      </div>
+      <canvas class="hero-demo__canvas" data-demo-canvas></canvas>
+    </div>
+    <ol class="hero-demo__steps" role="list">
+      {steps.map((s, i) => (
+        <li class:list={['hero-demo__step', { 'is-active': i === 0 }]} data-demo-step>
+          <span class="hero-demo__n" aria-hidden="true">{(i + 1).toLocaleString(langOf(lang).tag)}</span>
+          <span>{s.title}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <div class="hero-ways">
+    <a class="hero-way hero-way--online" href="#take-test" data-start-quiz>
+      <span class="hero-way__icon" aria-hidden="true">🌐</span>
+      <span class="hero-way__text">
+        <strong>{T('hero.wayOnline')}</strong>
+        <small>{T('hero.wayOnlineText')}</small>
+      </span>
+      <span class="hero-way__arrow" aria-hidden="true">→</span>
+    </a>
+    {rel && (
+      <a class="hero-way hero-way--app" href={rel.url} type="application/vnd.android.package-archive" data-app-download data-app-apk-hero>
+        <img class="hero-way__icon hero-way__icon--app" src="/app/icon-512.png" width="44" height="44" alt="" loading="lazy" />
+        <span class="hero-way__text">
+          <strong>{T('hero.wayApp')}</strong>
+          <small>{T('hero.wayAppText', { size })}</small>
+        </span>
+        <svg class="hero-way__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
+      </a>
+    )}
+  </div>
+  <div class="hero-ways__links">
+    <button type="button" class="linklike hero-ways__resume" data-resume-quiz hidden></button>
+    {rel && <a class="hero-ways__guide" href="#get-app" data-app-download>{T('app.howTitle')} <span aria-hidden="true">→</span></a>}
+  </div>
+</div>
+
+<script>
+  const demo = document.querySelector<HTMLElement>('[data-hero-demo]');
+  if (demo) {
+    const stage = demo.querySelector<HTMLElement>('[data-demo-stage]')!;
+    const canvas = demo.querySelector<HTMLCanvasElement>('[data-demo-canvas]')!;
+    const imgs = [...demo.querySelectorAll<HTMLImageElement>('[data-demo-img]')];
+    const steps = [...demo.querySelectorAll<HTMLElement>('[data-demo-step]')];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const show = (i: number) => {
+      steps.forEach((s, j) => s.classList.toggle('is-active', j === i));
+      imgs.forEach((img, j) => img.classList.toggle('is-on', j === i));
+    };
+
+    // Before 3D (and without WebGL): cycle the flat screenshots with the captions.
+    let cycle = 0;
+    let timer = 0;
+    const startCycle = () => {
+      if (reduced || timer) return;
+      timer = window.setInterval(() => show((cycle = (cycle + 1) % steps.length)), 3200);
+    };
+    const visible = new IntersectionObserver(([e]) => (e.isIntersecting ? startCycle() : (clearInterval(timer), (timer = 0))));
+    visible.observe(stage);
+
+    // 3D on first interaction (Three.js is the same cached chunk as the orbit).
+    const webgl = (() => {
+      try {
+        const c = document.createElement('canvas');
+        return !!(c.getContext('webgl2') || c.getContext('webgl'));
+      } catch {
+        return false;
+      }
+    })();
+    if (webgl && !reduced) {
+      const events = ['pointerdown', 'pointermove', 'touchstart', 'wheel', 'scroll', 'keydown'];
+      const go = () => {
+        events.forEach((e) => removeEventListener(e, go));
+        import('../scripts/app-phone').then(({ createPhone }) =>
+          createPhone(canvas, {
+            // Full-size versions of the screenshots (img.src is already the resolved URL).
+            screens: imgs.map((img) => img.src.replace('-390.webp', '.webp')),
+            hold: 3.2,
+            onReady: () => {
+              clearInterval(timer);
+              visible.disconnect();
+              stage.classList.add('is-3d');
+            },
+            onScreen: (i) => show(i),
+          }),
+        );
+      };
+      events.forEach((e) => addEventListener(e, go, { passive: true, once: true }));
+    }
+
+    // "Take it online" starts the test right away (the test card is hidden until then).
+    const quizAction = (name: string) => document.querySelector<HTMLElement>(`[data-quiz] [data-action="${name}"]`);
+    demo.querySelector('[data-start-quiz]')?.addEventListener('click', (e) => {
+      const start = quizAction('start');
+      if (start) {
+        e.preventDefault();
+        start.click();
+      }
+    });
+    // A test in progress: offer to resume it here too (the quiz shows its own
+    // resume button once it has read the saved answers).
+    const resumeBtn = quizAction('resume');
+    const resumeLink = demo.querySelector<HTMLButtonElement>('[data-resume-quiz]');
+    if (resumeBtn && resumeLink) {
+      const sync = () => {
+        resumeLink.hidden = resumeBtn.hidden;
+        resumeLink.textContent = resumeBtn.textContent;
+      };
+      new MutationObserver(sync).observe(resumeBtn, { attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true });
+      sync();
+      resumeLink.addEventListener('click', () => resumeBtn.click());
+    }
+    demo.querySelector('[data-app-apk-hero]')?.addEventListener('click', () => (window as any).gtag?.('event', 'app_download', { platform: 'android', place: 'hero' }));
+  }
+</script>
+
+<style>
+  .hero-demo { display: grid; gap: 14px; margin-top: 6px; }
+  .hero-demo__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .hero-demo__body { display: grid; grid-template-columns: minmax(150px, 0.85fr) minmax(0, 1fr); gap: clamp(14px, 2.5vw, 28px); align-items: center; }
+
+  .hero-demo__stage { position: relative; aspect-ratio: 1 / 1.15; width: 100%; max-height: 400px; }
+  .hero-demo__glow { position: absolute; inset: 10% 8%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--violet) 38%, transparent), transparent 70%); filter: blur(26px); }
+  .hero-demo__css { position: absolute; inset: 0; display: grid; place-items: center; perspective: 1100px; transition: opacity 0.6s var(--ease); }
+  .hero-demo__canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s var(--ease); }
+  .hero-demo__stage.is-3d .hero-demo__canvas { opacity: 1; }
+  .hero-demo__stage.is-3d .hero-demo__css { opacity: 0; }
+  .demo-phone { position: relative; height: 92%; aspect-ratio: 390 / 844; padding: 6px; border-radius: 26px; background: linear-gradient(145deg, #2a2760, #12112e); box-shadow: 0 30px 60px -28px rgba(17, 21, 56, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.12); transform: rotateY(-16deg) rotateX(5deg); animation: demo-float 6s ease-in-out infinite; }
+  .demo-phone img { position: absolute; inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); object-fit: cover; border-radius: 20px; opacity: 0; transition: opacity 0.6s var(--ease); }
+  .demo-phone img.is-on { opacity: 1; }
+  @keyframes demo-float { 50% { transform: rotateY(-9deg) rotateX(3deg) translateY(-8px); } }
+
+  .hero-demo__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .hero-demo__step { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; color: var(--muted); border: 1px solid transparent; transition: background-color 0.4s, color 0.4s, border-color 0.4s, transform 0.4s var(--ease); font-weight: 600; line-height: 1.3; }
+  .hero-demo__n { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 0.85rem; background: var(--surface-3); color: var(--muted); transition: background 0.4s, color 0.4s; }
+  .hero-demo__step.is-active { color: var(--heading); background: var(--surface); border-color: var(--border); box-shadow: var(--shadow-sm); transform: translateX(4px); }
+  :global([dir='rtl']) .hero-demo__step.is-active { transform: translateX(-4px); }
+  .hero-demo__step.is-active .hero-demo__n { background: var(--grad); color: #fff; }
+
+  .hero-ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; margin-top: 4px; }
+  .hero-way { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; border-radius: 18px; text-decoration: none; color: var(--heading); background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
+  .hero-way:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--heading); box-shadow: var(--shadow); }
+  .hero-way:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .hero-way__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; font-size: 1.4rem; background: var(--accent-soft); }
+  .hero-way__icon--app { padding: 0; }
+  .hero-way__text { display: grid; gap: 2px; min-width: 0; }
+  .hero-way__text strong { font-size: 1rem; line-height: 1.25; }
+  .hero-way__text small { font-size: 0.82rem; color: var(--muted); line-height: 1.35; }
+  .hero-way__arrow { margin-inline-start: auto; flex: none; color: var(--accent); font-weight: 700; }
+  :global([dir='rtl']) .hero-way--online .hero-way__arrow { transform: scaleX(-1); }
+  .hero-way--online { background: var(--grad); color: #fff; border-color: transparent; }
+  .hero-way--online:hover { color: #fff; }
+  .hero-way--online .hero-way__icon { background: rgba(255, 255, 255, 0.18); }
+  .hero-way--online small, .hero-way--online .hero-way__arrow { color: rgba(255, 255, 255, 0.9); }
+  .hero-ways__links { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .hero-ways__resume { font-size: 0.9rem; font-weight: 600; }
+  .hero-ways__guide { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+  .hero-ways__guide:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .hero-demo__body { grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1fr); }
+    .hero-demo__stage { max-height: 260px; }
+    .hero-demo__step { padding: 8px 10px; font-size: 0.9rem; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .demo-phone { animation: none; }
+    .hero-demo__step, .hero-demo__step.is-active { transform: none; }
+  }
+</style>

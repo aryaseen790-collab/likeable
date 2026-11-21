@@ -240,5 +240,17 @@
   "apppage.a4": "Mở Cài đặt trong ứng dụng và chạm “Kiểm tra cập nhật”. Nếu có phiên bản mới, hãy tải ở đây và cài đè lên bản cũ. Kết quả của bạn vẫn được giữ.",
   "apppage.q5": "Kết quả có giống trên trang web không?",
   "apppage.a5": "Có. Ứng dụng dùng cùng câu hỏi và cùng cách tính điểm như trang web.",
-  "app.learnMore": "Giới thiệu ứng dụng"
+  "app.learnMore": "Giới thiệu ứng dụng",
+  "app.stat.questions": "Câu hỏi",
+  "app.stat.dimensions": "Khía cạnh",
+  "app.stat.languages": "Ngôn ngữ",
+  "app.stat.size": "Dung lượng",
+  "app.chip.free": "Miễn phí",
+  "app.chip.noAds": "Không quảng cáo",
+  "app.chip.offline": "Dùng được ngoại tuyến",
+  "app.screensTitle": "Bên trong ứng dụng",
+  "hero.wayOnline": "Làm trực tuyến",
+  "hero.wayOnlineText": "Ngay trong trình duyệt. Không cần đăng ký.",
+  "hero.wayApp": "Tải ứng dụng Android",
+  "hero.wayAppText": "Miễn phí · {size} MB · kết quả lưu trên điện thoại"
 }

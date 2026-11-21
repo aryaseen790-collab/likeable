@@ -240,5 +240,17 @@
   "apppage.a4": "Öffne die Einstellungen in der App und tippe auf „Nach Updates suchen“. Gibt es eine neue Version, lade sie hier herunter und installiere sie über die alte. Deine Ergebnisse bleiben erhalten.",
   "apppage.q5": "Bekomme ich dasselbe Ergebnis wie auf der Website?",
   "apppage.a5": "Ja. Die App verwendet dieselben Fragen und dieselbe Auswertung wie die Website.",
-  "app.learnMore": "Über die App"
+  "app.learnMore": "Über die App",
+  "app.stat.questions": "Fragen",
+  "app.stat.dimensions": "Dimensionen",
+  "app.stat.languages": "Sprachen",
+  "app.stat.size": "Downloadgröße",
+  "app.chip.free": "Kostenlos",
+  "app.chip.noAds": "Keine Werbung",
+  "app.chip.offline": "Funktioniert offline",
+  "app.screensTitle": "Ein Blick in die App",
+  "hero.wayOnline": "Online machen",
+  "hero.wayOnlineText": "Direkt hier im Browser. Ohne Anmeldung.",
+  "hero.wayApp": "Android-App holen",
+  "hero.wayAppText": "Kostenlos · {size} MB · Ergebnisse auf deinem Handy gespeichert"
 }
