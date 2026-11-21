@@ -1,0 +1,371 @@
+{
+ "lang": "zh",
+ "questions": [
+  {
+   "text": "你和别人打招呼时多久微笑一次？",
+   "options": [
+    "总是",
+    "经常",
+    "有时",
+    "很少"
+   ],
+   "hook": "准备好发现“你有多讨人喜欢”了吗？",
+   "category": "First Impressions"
+  },
+  {
+   "text": "你会记住并称呼别人的名字吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "名字比你想象的更重要……",
+   "category": "First Impressions"
+  },
+  {
+   "text": "你多善于倾听他人？",
+   "options": [
+    "非常善于倾听",
+    "善于倾听",
+    "倾听能力一般",
+    "需要改进"
+   ],
+   "hook": "善于倾听的人人见人爱！",
+   "category": "Communication"
+  },
+  {
+   "text": "你多久称赞别人一次？",
+   "options": [
+    "非常频繁",
+    "经常",
+    "偶尔",
+    "很少"
+   ],
+   "hook": "一句好话能点亮别人的一天……",
+   "category": "Positivity"
+  },
+  {
+   "text": "你会真诚地关注别人的故事吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "每个人都喜欢被倾听的感觉……",
+   "category": "Empathy"
+  },
+  {
+   "text": "你如何处理分歧？",
+   "options": [
+    "冷静且尊重对方",
+    "通常比较冷静",
+    "可能会激动",
+    "经常争吵"
+   ],
+   "hook": "化解冲突的方式最能体现真实品格……",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "交谈时你会保持眼神交流吗？",
+   "options": [
+    "总是",
+    "大多数时候",
+    "有时",
+    "很少"
+   ],
+   "hook": "眼睛是沟通的窗口……",
+   "category": "Communication"
+  },
+  {
+   "text": "你多久会主动帮助别人？",
+   "options": [
+    "非常频繁",
+    "经常",
+    "有时",
+    "很少"
+   ],
+   "hook": "行动胜于言语……",
+   "category": "Kindness"
+  },
+  {
+   "text": "你参加会议和约会守时吗？",
+   "options": [
+    "总是准时",
+    "通常准时",
+    "有时迟到",
+    "经常迟到"
+   ],
+   "hook": "时间是尊重的货币……",
+   "category": "Reliability"
+  },
+  {
+   "text": "你会感谢别人的帮助或善意吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "感恩的力量很大……",
+   "category": "Positivity"
+  },
+  {
+   "text": "你的整体态度有多积极？",
+   "options": [
+    "非常积极",
+    "大多积极",
+    "中立",
+    "经常消极"
+   ],
+   "hook": "你的能量会影响周围的每一个人……",
+   "category": "Positivity"
+  },
+  {
+   "text": "你会在背后议论别人吗？",
+   "options": [
+    "从不",
+    "很少",
+    "有时",
+    "经常"
+   ],
+   "hook": "言语可以建立信任，也可以摧毁信任……",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "你多能接受建设性的批评？",
+   "options": [
+    "非常好",
+    "比较好",
+    "有困难",
+    "很差"
+   ],
+   "hook": "成长需要对反馈保持开放……",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "你会在自己错了的时候承认吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "谦逊是一种强大的品质……",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "你多久能逗别人笑一次？",
+   "options": [
+    "非常频繁",
+    "经常",
+    "有时",
+    "很少"
+   ],
+   "hook": "笑声是世界通用的语言……",
+   "category": "Social Skills"
+  },
+  {
+   "text": "你尊重别人的边界吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "不太"
+   ],
+   "hook": "尊重边界体现了情商……",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "你对别人的感受有多大的同理心？",
+   "options": [
+    "非常有同理心",
+    "比较有同理心",
+    "有一些同理心",
+    "不太有同理心"
+   ],
+   "hook": "同理心建立深厚的联系……",
+   "category": "Empathy"
+  },
+  {
+   "text": "别人说话时你会打断吗？",
+   "options": [
+    "从不",
+    "很少",
+    "有时",
+    "经常"
+   ],
+   "hook": "交谈中保持耐心很重要……",
+   "category": "Communication"
+  },
+  {
+   "text": "你履行承诺有多可靠？",
+   "options": [
+    "非常可靠",
+    "大多可靠",
+    "有时会食言",
+    "经常不可靠"
+   ],
+   "hook": "信任是靠一次次兑现的承诺建立的……",
+   "category": "Reliability"
+  },
+  {
+   "text": "团队取得成功时，你会与他人分享功劳吗？",
+   "options": [
+    "总是",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "慷慨地分享功劳会让成功倍增……",
+   "category": "Kindness"
+  },
+  {
+   "text": "你对不同意见有多开放？",
+   "options": [
+    "非常开放",
+    "比较开放",
+    "有些开放",
+    "不太开放"
+   ],
+   "hook": "开放让视野更丰富……",
+   "category": "Social Skills"
+  },
+  {
+   "text": "你在压力下能保持冷静吗？",
+   "options": [
+    "总是冷静",
+    "通常冷静",
+    "有时紧张",
+    "经常紧张"
+   ],
+   "hook": "压力下的镇定能激励他人……",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "你多久会问别人今天过得怎么样？",
+   "options": [
+    "非常频繁",
+    "经常",
+    "有时",
+    "很少"
+   ],
+   "hook": "小小的问候体现大大的关心……",
+   "category": "Empathy"
+  },
+  {
+   "text": "你会为别人的成就喝彩吗？",
+   "options": [
+    "总是热情地",
+    "通常",
+    "有时",
+    "很少"
+   ],
+   "hook": "为他人喝彩不花一分钱，却意义非凡……",
+   "category": "Kindness"
+  },
+  {
+   "text": "你在与人交往时有多真诚？",
+   "options": [
+    "总是真诚",
+    "通常真诚",
+    "有时会伪装",
+    "经常不真诚"
+   ],
+   "hook": "真诚吸引人……",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 高于平均！",
+  "band.above.text": "你的讨喜度不错。你与大多数人相处融洽，但提升倾听能力和同理心会让你更加平易近人。",
+  "band.average.label": "😐 一般",
+  "band.average.text": "你的讨喜度中等。提升社交技能和积极心态，并对他人表现出更真诚的兴趣，将显著改善别人对你的看法。",
+  "band.excellent.label": "😊 优秀！",
+  "band.excellent.text": "你很讨人喜欢！你拥有出色的人际交往能力，人们喜欢和你相处。你真心关心他人，轻松维系积极的关系。",
+  "band.exceptional.label": "🌟 非凡！",
+  "band.exceptional.text": "你非常讨人喜欢！人们自然而然地被你吸引。你拥有出色的社交技能、真诚的同理心和温暖的个性，让他人感到被重视和被欣赏。",
+  "band.good.label": "👍 良好！",
+  "band.good.text": "你相当讨人喜欢！你的社交技能扎实，通常给人留下积极的印象。人们在你身边感到自在，不过讨喜度得分总有提升空间。",
+  "band.low.label": "💪 有待提升",
+  "band.low.text": "你在讨喜度方面还有很大的成长空间。请专注于同理心、积极心态、可靠性和沟通。只要有意识地练习，任何人都能提高讨喜度得分！",
+  "cat.average": "基础扎实，仍有提升空间。",
+  "cat.excellent": "非凡！你在这方面表现出色。",
+  "cat.good": "很棒！你在这方面做得很好。",
+  "cat.low": "成长领域。请专注培养这项技能。",
+  "dim.0.desc": "你在初次见面的人面前的样子。包括你打招呼的方式、是否称呼对方的名字，以及初次接触时散发的温暖。",
+  "dim.0.name": "第一印象",
+  "dim.1.desc": "你如何倾听、参与对话、保持眼神交流，以及是否让对方感到真正被倾听。",
+  "dim.1.name": "沟通",
+  "dim.2.desc": "你为互动带来的整体情绪基调。包括你的人生态度、称赞他人的频率以及感恩习惯。",
+  "dim.2.name": "积极性",
+  "dim.3.desc": "你对他人经历的真诚兴趣，以及你对他人感受的敏感程度。这是讨喜度最有力的单一预测因素之一。",
+  "dim.3.name": "同理心",
+  "dim.4.desc": "你如何应对分歧、批评和压力。包括解决冲突、尊重边界以及在压力下保持镇定。",
+  "dim.4.name": "情商",
+  "dim.5.desc": "你是否主动帮助他人、分享共同成功的功劳，并真心为他人的成就喝彩。",
+  "dim.5.name": "善良",
+  "dim.6.desc": "别人能否依靠你。包括守时、信守承诺以及行为的长期一致性。",
+  "dim.6.name": "可靠性",
+  "dim.7.desc": "你的诚实、是否在背后议论他人，以及是否在犯错时承认。信任是深层好感的基础。",
+  "dim.7.name": "正直",
+  "dim.8.desc": "你整体的社交灵活性：逗人发笑、适应不同性格，以及对与你不同的观点保持开放。",
+  "dim.8.name": "社交技能",
+  "dim.shortEI": "情商",
+  "hero.badge": "免费 · 5 分钟 · 25 道题",
+  "nav.language": "语言",
+  "nav.privacy": "隐私政策",
+  "nav.terms": "条款与条件",
+  "report.again": "欢迎再次测试，追踪你的进步！",
+  "report.assessment": "总体评估",
+  "report.breakdown": "分类详细分析",
+  "report.date": "日期",
+  "report.filename": "讨喜度测试报告",
+  "report.heading": "讨喜度测试结果",
+  "report.overall": "总体讨喜度得分",
+  "report.rating": "评级",
+  "report.recommendation": "提升这一领域，以提高你的总体讨喜度得分。",
+  "report.recommendations": "建议",
+  "report.score": "得分",
+  "report.thanks": "感谢你参加免费讨喜度测试！",
+  "test.assessment": "你的讨喜度测试总体评估",
+  "test.barText": "参加免费讨喜度测试，发现你实际上有多受欢迎。请如实作答，以获得准确结果。",
+  "test.barTitle": "免费在线讨喜度测试",
+  "test.copied": "链接已复制 — 发给朋友吧！",
+  "test.copy": "🔗 复制链接",
+  "test.desc": "这项讨喜度测试将评估你的社交技能、同理心和人际特质。如实回答 25 道题，了解你的讨喜度得分并获得完整的性格分析！",
+  "test.download": "📥 下载报告",
+  "test.eyebrow": "测试",
+  "test.focusArea": "🎯 重点提升",
+  "test.getResults": "查看结果",
+  "test.hook": "准备好找出“我讨人喜欢吗？”的答案了吗？",
+  "test.howToImprove": "如何提升 →",
+  "test.lead": "请如实回答全部 25 道题，了解你有多讨人喜欢。结果即时呈现且完全私密，无需注册。这项讨喜度测试 100% 免费。",
+  "test.next": "下一题",
+  "test.of": "/",
+  "test.perkKeys": "⌨️ 按 1–4 作答，← → 切换题目",
+  "test.perkPrivate": "🔒 私密 — 答案只保存在你的设备上",
+  "test.perkReport": "📄 可免费下载的报告",
+  "test.previous": "上一题",
+  "test.radarLabel": "你九项类别得分的雷达图",
+  "test.resultsTitle": "你的讨喜度测试结果",
+  "test.resume": "从上次的位置继续（{n}/{total}）",
+  "test.retry": "🔄 重新测试",
+  "test.share": "↗ 分享我的结果",
+  "test.shareText": "我在免费讨喜度测试中得了 {score}%。你有多讨人喜欢？",
+  "test.shareTitle": "我的讨喜度测试结果",
+  "test.shared": "你正在查看他人分享的结果。",
+  "test.start": "开始讨喜度测试",
+  "test.takeYourself": "亲自参加测试 →",
+  "test.title": "免费讨喜度测试 — <em>你的讨喜度评估</em>",
+  "test.topStrength": "🏆 最大优势"
+ },
+ "learnMore": {
+  "First Impressions": "/zh/how-to-make-a-great-first-impression/",
+  "Communication": "/zh/how-to-be-more-likable/",
+  "Social Skills": "/zh/likeability-in-friendships/",
+  "Empathy": "/zh/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/zh/am-i-likable-signs/"
+ }
+}

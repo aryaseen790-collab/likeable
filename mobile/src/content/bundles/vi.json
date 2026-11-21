@@ -1,0 +1,371 @@
+{
+ "lang": "vi",
+ "questions": [
+  {
+   "text": "Bạn có thường mỉm cười khi chào hỏi mọi người không?",
+   "options": [
+    "Luôn luôn",
+    "Thường xuyên",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Sẵn sàng khám phá \"bạn dễ mến đến mức nào\" chưa?",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Bạn có nhớ và gọi tên người khác không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Cái tên quan trọng hơn bạn nghĩ...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Bạn lắng nghe người khác tốt đến mức nào?",
+   "options": [
+    "Lắng nghe rất tốt",
+    "Lắng nghe tốt",
+    "Lắng nghe trung bình",
+    "Cần cải thiện"
+   ],
+   "hook": "Người biết lắng nghe được ai cũng quý!",
+   "category": "Communication"
+  },
+  {
+   "text": "Bạn có thường khen ngợi người khác không?",
+   "options": [
+    "Rất thường xuyên",
+    "Thường xuyên",
+    "Đôi khi",
+    "Hiếm khi"
+   ],
+   "hook": "Lời nói tử tế có thể làm bừng sáng một ngày của ai đó...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Bạn có thật lòng quan tâm đến câu chuyện của người khác không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Ai cũng thích cảm giác được lắng nghe...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Bạn xử lý bất đồng như thế nào?",
+   "options": [
+    "Bình tĩnh và tôn trọng",
+    "Thường bình tĩnh",
+    "Có thể nóng lên",
+    "Hay tranh cãi"
+   ],
+   "hook": "Cách giải quyết xung đột cho thấy tính cách thật...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Bạn có giữ giao tiếp bằng mắt khi trò chuyện không?",
+   "options": [
+    "Luôn luôn",
+    "Hầu như luôn",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Đôi mắt là cánh cửa của sự kết nối...",
+   "category": "Communication"
+  },
+  {
+   "text": "Bạn có thường giúp người khác mà không cần được nhờ không?",
+   "options": [
+    "Rất thường xuyên",
+    "Thường xuyên",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Hành động có sức nặng hơn lời nói...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Bạn có đúng giờ trong các cuộc họp và cuộc hẹn không?",
+   "options": [
+    "Luôn đúng giờ",
+    "Thường đúng giờ",
+    "Đôi khi trễ",
+    "Hay trễ"
+   ],
+   "hook": "Thời gian là thước đo của sự tôn trọng...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Bạn có cảm ơn người khác vì sự giúp đỡ hay lòng tốt không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Lòng biết ơn mang lại rất nhiều điều...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Thái độ chung của bạn tích cực đến mức nào?",
+   "options": [
+    "Rất tích cực",
+    "Phần lớn tích cực",
+    "Trung lập",
+    "Hay tiêu cực"
+   ],
+   "hook": "Năng lượng của bạn ảnh hưởng đến mọi người xung quanh...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Bạn có hay nói chuyện phiếm về người khác không?",
+   "options": [
+    "Không bao giờ",
+    "Hiếm khi",
+    "Thỉnh thoảng",
+    "Thường xuyên"
+   ],
+   "hook": "Lời nói có thể xây dựng hoặc phá hủy niềm tin...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Bạn tiếp nhận lời phê bình mang tính xây dựng tốt đến đâu?",
+   "options": [
+    "Rất tốt",
+    "Khá tốt",
+    "Khó khăn",
+    "Kém"
+   ],
+   "hook": "Phát triển đòi hỏi sự cởi mở với góp ý...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Bạn có thừa nhận khi mình sai không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Khiêm tốn là một phẩm chất mạnh mẽ...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Bạn có thường khiến người khác cười không?",
+   "options": [
+    "Rất thường xuyên",
+    "Thường xuyên",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Tiếng cười là ngôn ngữ chung...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Bạn có tôn trọng ranh giới của người khác không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Không hẳn"
+   ],
+   "hook": "Tôn trọng ranh giới thể hiện trí tuệ cảm xúc...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Bạn đồng cảm với cảm xúc của người khác đến mức nào?",
+   "options": [
+    "Rất đồng cảm",
+    "Khá đồng cảm",
+    "Hơi đồng cảm",
+    "Ít đồng cảm"
+   ],
+   "hook": "Sự đồng cảm tạo nên kết nối sâu sắc...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Bạn có ngắt lời khi người khác đang nói không?",
+   "options": [
+    "Không bao giờ",
+    "Hiếm khi",
+    "Thỉnh thoảng",
+    "Thường xuyên"
+   ],
+   "hook": "Kiên nhẫn trong trò chuyện rất quan trọng...",
+   "category": "Communication"
+  },
+  {
+   "text": "Bạn đáng tin cậy đến mức nào với những cam kết của mình?",
+   "options": [
+    "Rất đáng tin cậy",
+    "Phần lớn đáng tin cậy",
+    "Đôi khi thất hứa",
+    "Hay thất hứa"
+   ],
+   "hook": "Niềm tin được xây dựng qua từng lời hứa được giữ...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Bạn có chia sẻ công lao cho thành công của nhóm không?",
+   "options": [
+    "Luôn luôn",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Hào phóng ghi nhận người khác nhân lên thành công...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Bạn cởi mở với những quan điểm khác biệt đến mức nào?",
+   "options": [
+    "Rất cởi mở",
+    "Khá cởi mở",
+    "Hơi cởi mở",
+    "Ít cởi mở"
+   ],
+   "hook": "Sự cởi mở làm phong phú góc nhìn...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Bạn có giữ được bình tĩnh khi chịu áp lực không?",
+   "options": [
+    "Luôn bình tĩnh",
+    "Thường bình tĩnh",
+    "Đôi khi căng thẳng",
+    "Hay căng thẳng"
+   ],
+   "hook": "Sự điềm tĩnh trước áp lực truyền cảm hứng cho người khác...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Bạn có thường hỏi người khác một ngày của họ thế nào không?",
+   "options": [
+    "Rất thường xuyên",
+    "Thường xuyên",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Những câu hỏi nhỏ thể hiện sự quan tâm lớn...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Bạn có chúc mừng thành tựu của người khác không?",
+   "options": [
+    "Luôn nhiệt tình",
+    "Thường",
+    "Thỉnh thoảng",
+    "Hiếm khi"
+   ],
+   "hook": "Chúc mừng người khác không tốn gì nhưng mang nhiều ý nghĩa...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Bạn chân thành đến mức nào trong các mối giao tiếp?",
+   "options": [
+    "Luôn chân thành",
+    "Thường chân thành",
+    "Đôi khi giả vờ",
+    "Hay thiếu chân thành"
+   ],
+   "hook": "Sự chân thành thu hút mọi người...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Trên trung bình!",
+  "band.above.text": "Bạn có mức độ dễ mến tốt. Bạn hòa hợp với hầu hết mọi người, nhưng cải thiện kỹ năng lắng nghe và sự đồng cảm có thể giúp bạn dễ gần hơn nữa.",
+  "band.average.label": "😐 Trung bình",
+  "band.average.text": "Bạn có mức độ dễ mến trung bình. Rèn luyện kỹ năng xã hội, thái độ tích cực và thể hiện sự quan tâm chân thành hơn đến người khác sẽ cải thiện đáng kể cách mọi người nhìn nhận bạn.",
+  "band.excellent.label": "😊 Rất tốt!",
+  "band.excellent.text": "Bạn rất dễ mến! Bạn có kỹ năng giao tiếp tuyệt vời và mọi người thích dành thời gian bên bạn. Bạn thật lòng quan tâm đến người khác và dễ dàng duy trì những mối quan hệ tích cực.",
+  "band.exceptional.label": "🌟 Xuất sắc!",
+  "band.exceptional.text": "Bạn cực kỳ dễ mến! Mọi người tự nhiên bị thu hút về phía bạn. Bạn có kỹ năng xã hội vượt trội, sự đồng cảm chân thành và tính cách ấm áp khiến người khác cảm thấy được trân trọng.",
+  "band.good.label": "👍 Tốt!",
+  "band.good.text": "Bạn khá dễ mến! Bạn có kỹ năng xã hội vững vàng và thường để lại ấn tượng tích cực. Mọi người cảm thấy thoải mái bên bạn, dù vẫn luôn có chỗ để nâng cao điểm dễ mến.",
+  "band.low.label": "💪 Cần cải thiện",
+  "band.low.text": "Bạn còn nhiều dư địa để trở nên dễ mến hơn. Hãy tập trung vào sự đồng cảm, thái độ tích cực, sự đáng tin cậy và giao tiếp. Ai cũng có thể nâng điểm dễ mến bằng sự luyện tập có chủ đích!",
+  "cat.average": "Nền tảng vững chắc. Vẫn có thể cải thiện.",
+  "cat.excellent": "Xuất sắc! Bạn rất giỏi ở lĩnh vực này.",
+  "cat.good": "Tuyệt! Bạn đang làm tốt ở đây.",
+  "cat.low": "Lĩnh vực cần phát triển. Hãy tập trung rèn luyện kỹ năng này.",
+  "dim.0.desc": "Cách bạn xuất hiện trước người mới gặp. Bao gồm cách chào hỏi, việc gọi tên và sự ấm áp bạn toát ra trong những lần gặp đầu tiên.",
+  "dim.0.name": "Ấn tượng đầu tiên",
+  "dim.1.desc": "Cách bạn lắng nghe, tham gia trò chuyện, giữ giao tiếp bằng mắt và liệu bạn có khiến người khác cảm thấy thực sự được lắng nghe hay không.",
+  "dim.1.name": "Giao tiếp",
+  "dim.2.desc": "Sắc thái cảm xúc chung bạn mang vào các cuộc tương tác. Bao gồm cách nhìn cuộc sống, tần suất khen ngợi người khác và thói quen biết ơn.",
+  "dim.2.name": "Tích cực",
+  "dim.3.desc": "Sự quan tâm chân thành của bạn đến trải nghiệm của người khác và mức độ bạn thấu hiểu cảm xúc của họ. Một trong những yếu tố dự báo mạnh nhất về mức độ dễ mến.",
+  "dim.3.name": "Đồng cảm",
+  "dim.4.desc": "Cách bạn xử lý bất đồng, lời phê bình và áp lực. Bao gồm giải quyết xung đột, tôn trọng ranh giới và sự điềm tĩnh khi căng thẳng.",
+  "dim.4.name": "Trí tuệ cảm xúc",
+  "dim.5.desc": "Liệu bạn có giúp người khác mà không cần được nhờ, chia sẻ công lao cho thành công chung và thật lòng chúc mừng thành tựu của người khác hay không.",
+  "dim.5.name": "Tử tế",
+  "dim.6.desc": "Liệu mọi người có thể trông cậy vào bạn. Bao gồm sự đúng giờ, giữ lời hứa và sự nhất quán trong hành vi theo thời gian.",
+  "dim.6.name": "Đáng tin cậy",
+  "dim.7.desc": "Sự trung thực của bạn, việc bạn có nói xấu sau lưng hay không và có thừa nhận khi mình sai không. Niềm tin là nền tảng của sự yêu mến sâu sắc.",
+  "dim.7.name": "Chính trực",
+  "dim.8.desc": "Sự linh hoạt xã hội nói chung: khiến người khác cười, thích nghi với nhiều kiểu tính cách và cởi mở với những quan điểm khác mình.",
+  "dim.8.name": "Kỹ năng xã hội",
+  "dim.shortEI": "TTCX",
+  "hero.badge": "Miễn phí · 5 phút · 25 câu hỏi",
+  "nav.language": "Ngôn ngữ",
+  "nav.privacy": "Chính sách bảo mật",
+  "nav.terms": "Điều khoản và điều kiện",
+  "report.again": "Hãy quay lại để theo dõi sự tiến bộ của bạn!",
+  "report.assessment": "ĐÁNH GIÁ TỔNG THỂ",
+  "report.breakdown": "PHÂN TÍCH THEO HẠNG MỤC",
+  "report.date": "Ngày",
+  "report.filename": "Bao_cao_Bai_Kiem_Tra_Nguoi_De_Men",
+  "report.heading": "KẾT QUẢ BÀI KIỂM TRA NGƯỜI DỄ MẾN",
+  "report.overall": "Điểm dễ mến tổng thể",
+  "report.rating": "Xếp loại",
+  "report.recommendation": "Hãy cải thiện lĩnh vực này để nâng điểm dễ mến tổng thể của bạn.",
+  "report.recommendations": "KHUYẾN NGHỊ",
+  "report.score": "Điểm",
+  "report.thanks": "Cảm ơn bạn đã làm Bài Kiểm Tra Người Dễ Mến miễn phí!",
+  "test.assessment": "Đánh giá tổng thể bài kiểm tra mức độ dễ mến của bạn",
+  "test.barText": "Làm bài kiểm tra mức độ dễ mến miễn phí và khám phá bạn thực sự được yêu mến đến đâu. Hãy trả lời trung thực để có kết quả chính xác.",
+  "test.barTitle": "Bài Kiểm Tra Người Dễ Mến Online Miễn Phí",
+  "test.copied": "Đã sao chép liên kết — gửi cho bạn bè nhé!",
+  "test.copy": "🔗 Sao chép liên kết",
+  "test.desc": "Bài kiểm tra mức độ dễ mến này sẽ đánh giá kỹ năng xã hội, sự đồng cảm và các đặc điểm giao tiếp của bạn. Hãy trả lời trung thực 25 câu hỏi để biết điểm dễ mến và nhận bản phân tích tính cách đầy đủ!",
+  "test.download": "📥 Tải báo cáo",
+  "test.eyebrow": "Bài kiểm tra",
+  "test.focusArea": "🎯 Lĩnh vực cần tập trung",
+  "test.getResults": "Xem kết quả",
+  "test.hook": "Sẵn sàng tìm hiểu \"Tôi có dễ mến không?\"",
+  "test.howToImprove": "Cách cải thiện →",
+  "test.lead": "Hãy trả lời trung thực cả 25 câu hỏi để biết bạn dễ mến đến mức nào. Kết quả có ngay và hoàn toàn riêng tư, không cần đăng ký. Bài kiểm tra người dễ mến này miễn phí 100%.",
+  "test.next": "Tiếp",
+  "test.of": "/",
+  "test.perkKeys": "⌨️ Phím 1–4 để trả lời, ← → để di chuyển",
+  "test.perkPrivate": "🔒 Riêng tư — câu trả lời chỉ lưu trên thiết bị của bạn",
+  "test.perkReport": "📄 Báo cáo miễn phí có thể tải xuống",
+  "test.previous": "Trước",
+  "test.radarLabel": "Biểu đồ radar chín điểm hạng mục của bạn",
+  "test.resultsTitle": "Kết quả bài kiểm tra mức độ dễ mến của bạn",
+  "test.resume": "Tiếp tục từ chỗ đã dừng ({n}/{total})",
+  "test.retry": "🔄 Làm lại bài kiểm tra",
+  "test.share": "↗ Chia sẻ kết quả",
+  "test.shareText": "Mình đạt {score}% trong Bài Kiểm Tra Người Dễ Mến miễn phí. Còn bạn dễ mến đến đâu?",
+  "test.shareTitle": "Kết quả Bài Kiểm Tra Người Dễ Mến của tôi",
+  "test.shared": "Bạn đang xem một kết quả được chia sẻ.",
+  "test.start": "Bắt đầu Bài Kiểm Tra Người Dễ Mến",
+  "test.takeYourself": "Tự làm bài kiểm tra →",
+  "test.title": "Bài Kiểm Tra Người Dễ Mến Miễn Phí — <em>Đánh giá mức độ dễ mến của bạn</em>",
+  "test.topStrength": "🏆 Điểm mạnh nhất"
+ },
+ "learnMore": {
+  "First Impressions": "/vi/how-to-make-a-great-first-impression/",
+  "Communication": "/vi/how-to-be-more-likable/",
+  "Social Skills": "/vi/likeability-in-friendships/",
+  "Empathy": "/vi/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/vi/am-i-likable-signs/"
+ }
+}

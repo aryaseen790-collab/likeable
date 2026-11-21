@@ -1,0 +1,371 @@
+{
+ "lang": "de",
+ "questions": [
+  {
+   "text": "Wie oft lächelst du, wenn du andere begrüßt?",
+   "options": [
+    "Immer",
+    "Oft",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Bereit herauszufinden, wie sympathisch du bist?",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Merkst du dir die Namen anderer und verwendest sie?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Namen sind wichtiger, als du denkst...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Wie gut hörst du anderen zu?",
+   "options": [
+    "Hervorragend",
+    "Gut",
+    "Durchschnittlich",
+    "Ausbaufähig"
+   ],
+   "hook": "Gute Zuhörer sind überall beliebt!",
+   "category": "Communication"
+  },
+  {
+   "text": "Wie oft machst du anderen Komplimente?",
+   "options": [
+    "Sehr oft",
+    "Oft",
+    "Gelegentlich",
+    "Selten"
+   ],
+   "hook": "Freundliche Worte können jemandem den Tag versüßen...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Zeigst du echtes Interesse an den Geschichten anderer?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Jeder fühlt sich gern gehört...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Wie gehst du mit Meinungsverschiedenheiten um?",
+   "options": [
+    "Ruhig und respektvoll",
+    "Meistens ruhig",
+    "Kann hitzig werden",
+    "Oft streitlustig"
+   ],
+   "hook": "Wie man Konflikte löst, zeigt den wahren Charakter...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Hältst du in Gesprächen Blickkontakt?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Die Augen sind das Fenster zur Verbindung...",
+   "category": "Communication"
+  },
+  {
+   "text": "Wie oft hilfst du anderen, ohne gefragt zu werden?",
+   "options": [
+    "Sehr oft",
+    "Oft",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Taten sagen mehr als Worte...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Bist du bei Meetings und Terminen pünktlich?",
+   "options": [
+    "Immer pünktlich",
+    "Meistens pünktlich",
+    "Manchmal zu spät",
+    "Oft zu spät"
+   ],
+   "hook": "Zeit ist die Währung des Respekts...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Bedankst du dich bei anderen für ihre Hilfe oder Freundlichkeit?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Dankbarkeit bewirkt viel...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Wie positiv ist deine Einstellung im Allgemeinen?",
+   "options": [
+    "Sehr positiv",
+    "Überwiegend positiv",
+    "Neutral",
+    "Oft negativ"
+   ],
+   "hook": "Deine Energie beeinflusst alle um dich herum...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Lästerst du über andere?",
+   "options": [
+    "Nie",
+    "Selten",
+    "Manchmal",
+    "Oft"
+   ],
+   "hook": "Worte können Vertrauen aufbauen oder zerstören...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Wie gut nimmst du konstruktive Kritik an?",
+   "options": [
+    "Sehr gut",
+    "Ziemlich gut",
+    "Eher schwer",
+    "Schlecht"
+   ],
+   "hook": "Wachstum braucht Offenheit für Feedback...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Gibst du zu, wenn du falschliegst?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Bescheidenheit ist eine starke Eigenschaft...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Wie oft bringst du andere zum Lachen?",
+   "options": [
+    "Sehr oft",
+    "Oft",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Lachen ist die universelle Sprache...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Respektierst du die Grenzen anderer?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Eher nicht"
+   ],
+   "hook": "Grenzen zeigen emotionale Intelligenz...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Wie einfühlsam bist du gegenüber den Gefühlen anderer?",
+   "options": [
+    "Sehr einfühlsam",
+    "Ziemlich einfühlsam",
+    "Etwas einfühlsam",
+    "Wenig einfühlsam"
+   ],
+   "hook": "Empathie schafft tiefe Verbindungen...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Unterbrichst du andere, wenn sie sprechen?",
+   "options": [
+    "Nie",
+    "Selten",
+    "Manchmal",
+    "Oft"
+   ],
+   "hook": "Geduld im Gespräch zählt...",
+   "category": "Communication"
+  },
+  {
+   "text": "Wie zuverlässig bist du bei Verpflichtungen?",
+   "options": [
+    "Sehr zuverlässig",
+    "Überwiegend zuverlässig",
+    "Manchmal unzuverlässig",
+    "Oft unzuverlässig"
+   ],
+   "hook": "Vertrauen entsteht Versprechen für Versprechen...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Teilst du die Anerkennung für Teamerfolge mit anderen?",
+   "options": [
+    "Immer",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Großzügigkeit bei Anerkennung vervielfacht den Erfolg...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Wie offen bist du für andere Meinungen?",
+   "options": [
+    "Sehr offen",
+    "Ziemlich offen",
+    "Etwas offen",
+    "Wenig offen"
+   ],
+   "hook": "Offenheit bereichert die Perspektiven...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Bleibst du unter Druck ruhig?",
+   "options": [
+    "Immer ruhig",
+    "Meistens ruhig",
+    "Manchmal gestresst",
+    "Oft gestresst"
+   ],
+   "hook": "Gelassenheit unter Druck inspiriert andere...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Wie oft fragst du andere, wie ihr Tag war?",
+   "options": [
+    "Sehr oft",
+    "Oft",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Kleine Fragen zeigen große Anteilnahme...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Freust du dich über die Erfolge anderer?",
+   "options": [
+    "Immer begeistert",
+    "Meistens",
+    "Manchmal",
+    "Selten"
+   ],
+   "hook": "Andere zu feiern kostet nichts und bedeutet alles...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Wie authentisch bist du im Umgang mit anderen?",
+   "options": [
+    "Immer echt",
+    "Meistens echt",
+    "Manchmal gespielt",
+    "Oft unaufrichtig"
+   ],
+   "hook": "Authentizität wirkt anziehend...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Überdurchschnittlich!",
+  "band.above.text": "Du hast ein ordentliches Maß an Sympathie. Du kommst mit den meisten Menschen gut aus, aber besseres Zuhören und mehr Empathie könnten dich noch zugänglicher machen.",
+  "band.average.label": "😐 Durchschnittlich",
+  "band.average.text": "Du hast eine mittlere Sympathie. Wenn du an deinen sozialen Fähigkeiten und deiner positiven Ausstrahlung arbeitest und echteres Interesse an anderen zeigst, würde das deutlich verbessern, wie andere dich wahrnehmen.",
+  "band.excellent.label": "😊 Ausgezeichnet!",
+  "band.excellent.text": "Du bist sehr sympathisch! Du hast starke zwischenmenschliche Fähigkeiten, und andere sind gern in deiner Gesellschaft. Du kümmerst dich aufrichtig um andere und pflegst mühelos positive Beziehungen.",
+  "band.exceptional.label": "🌟 Außergewöhnlich!",
+  "band.exceptional.text": "Du bist außerordentlich sympathisch! Menschen fühlen sich ganz natürlich zu dir hingezogen. Du hast herausragende soziale Fähigkeiten, echte Empathie und eine warmherzige Persönlichkeit, bei der sich andere wertgeschätzt und geschätzt fühlen.",
+  "band.good.label": "👍 Gut!",
+  "band.good.text": "Du bist ziemlich sympathisch! Du hast solide soziale Fähigkeiten und hinterlässt meist einen positiven Eindruck. Andere fühlen sich bei dir wohl – trotzdem gibt es immer Raum, deinen Sympathiewert zu steigern.",
+  "band.low.label": "💪 Ausbaufähig",
+  "band.low.text": "Bei der Sympathie hast du noch viel Luft nach oben. Konzentriere dich auf Empathie, Positivität, Zuverlässigkeit und Kommunikation. Jeder kann seinen Sympathiewert durch bewusstes Üben steigern!",
+  "cat.average": "Solide Basis. Hier ist noch Luft nach oben.",
+  "cat.excellent": "Herausragend! In diesem Bereich glänzt du.",
+  "cat.good": "Gute Arbeit! Hier machst du vieles richtig.",
+  "cat.low": "Entwicklungsfeld. Arbeite gezielt an dieser Fähigkeit.",
+  "dim.0.desc": "Wie du auf Menschen wirkst, die dich gerade erst kennenlernen. Dazu gehören deine Art zu grüßen, der Gebrauch von Namen und die Wärme, die du bei ersten Begegnungen ausstrahlst.",
+  "dim.0.name": "Erster Eindruck",
+  "dim.1.desc": "Wie du zuhörst, wie du dich in Gespräche einbringst und ob du Blickkontakt hältst und anderen das Gefühl gibst, wirklich gehört zu werden.",
+  "dim.1.name": "Kommunikation",
+  "dim.2.desc": "Die allgemeine emotionale Stimmung, die du in Begegnungen mitbringst. Dazu gehören deine Grundhaltung, wie oft du anderen Komplimente machst, und deine Gewohnheiten der Dankbarkeit.",
+  "dim.2.name": "Positivität",
+  "dim.3.desc": "Dein echtes Interesse an den Erfahrungen anderer und wie gut du dich auf ihre Gefühle einstellst. Das ist einer der stärksten einzelnen Prädiktoren für Sympathie.",
+  "dim.3.name": "Empathie",
+  "dim.4.desc": "Wie du mit Meinungsverschiedenheiten, Kritik und Druck umgehst. Dazu gehören Konfliktlösung, der Respekt vor Grenzen und Gelassenheit unter Stress.",
+  "dim.4.name": "Emotionale Intelligenz",
+  "dim.5.desc": "Ob du anderen hilfst, ohne gefragt zu werden, Anerkennung für gemeinsame Erfolge teilst und dich aufrichtig über die Erfolge anderer freust.",
+  "dim.5.name": "Freundlichkeit",
+  "dim.6.desc": "Ob man sich auf dich verlassen kann. Dazu gehören Pünktlichkeit, das Einhalten von Versprechen und ein über die Zeit beständiges Verhalten.",
+  "dim.6.name": "Zuverlässigkeit",
+  "dim.7.desc": "Deine Ehrlichkeit, ob du über andere lästerst und ob du zugibst, wenn du falschliegst. Vertrauen ist das Fundament, auf dem tiefe Sympathie aufbaut.",
+  "dim.7.name": "Vertrauenswürdigkeit",
+  "dim.8.desc": "Deine soziale Flexibilität insgesamt – ob du andere zum Lachen bringst, dich auf unterschiedliche Persönlichkeiten einstellst und offen für Ansichten bleibst, die von deinen abweichen.",
+  "dim.8.name": "Soziale Kompetenz",
+  "dim.shortEI": "EQ",
+  "hero.badge": "Kostenlos · 5 Minuten · 25 Fragen",
+  "nav.language": "Sprache",
+  "nav.privacy": "Datenschutz",
+  "nav.terms": "AGB",
+  "report.again": "Besuche uns wieder, um deinen Fortschritt zu verfolgen!",
+  "report.assessment": "GESAMTBEWERTUNG",
+  "report.breakdown": "DETAILLIERTE AUSWERTUNG NACH KATEGORIEN",
+  "report.date": "Datum",
+  "report.filename": "Sympathie_Test_Bericht",
+  "report.heading": "ERGEBNISSE DES SYMPATHIE-TESTS",
+  "report.overall": "Gesamter Sympathiewert",
+  "report.rating": "Bewertung",
+  "report.recommendation": "Arbeite an diesem Bereich, um deinen gesamten Sympathiewert zu steigern.",
+  "report.recommendations": "EMPFEHLUNGEN",
+  "report.score": "Wert",
+  "report.thanks": "Danke, dass du den kostenlosen Sympathie-Test gemacht hast!",
+  "test.assessment": "Gesamtbewertung deines Sympathie-Tests",
+  "test.barText": "Mach den kostenlosen Sympathie-Test und finde heraus, wie sympathisch du wirklich bist. Antworte ehrlich für genaue Ergebnisse.",
+  "test.barTitle": "Kostenloser Sympathie-Test online",
+  "test.copied": "Link kopiert – schick ihn an Freunde!",
+  "test.copy": "🔗 Link kopieren",
+  "test.desc": "Dieser Sympathie-Test bewertet deine sozialen Fähigkeiten, deine Empathie und deine zwischenmenschlichen Eigenschaften. Beantworte 25 Fragen ehrlich, um deinen Sympathiewert und eine vollständige Persönlichkeitsauswertung zu erhalten!",
+  "test.download": "📥 Bericht herunterladen",
+  "test.eyebrow": "Der Test",
+  "test.focusArea": "🎯 Entwicklungsfeld",
+  "test.getResults": "Ergebnis anzeigen",
+  "test.hook": "Bereit herauszufinden: „Bin ich ein sympathischer Mensch?“",
+  "test.howToImprove": "So verbesserst du dich →",
+  "test.lead": "Beantworte alle 25 Fragen ehrlich, um herauszufinden, wie sympathisch du bist. Die Ergebnisse kommen sofort und bleiben völlig privat – ohne Anmeldung. Dieser Sympathie-Test ist zu 100 % kostenlos.",
+  "test.next": "Weiter",
+  "test.of": "von",
+  "test.perkKeys": "⌨️ Tasten 1–4 zum Antworten, ← → zum Blättern",
+  "test.perkPrivate": "🔒 Privat – deine Antworten bleiben auf deinem Gerät",
+  "test.perkReport": "📄 Kostenloser Bericht zum Herunterladen",
+  "test.previous": "Zurück",
+  "test.radarLabel": "Netzdiagramm deiner neun Kategoriewerte",
+  "test.resultsTitle": "Dein Ergebnis im Sympathie-Test",
+  "test.resume": "Dort weitermachen, wo du aufgehört hast ({n}/{total})",
+  "test.retry": "🔄 Test wiederholen",
+  "test.share": "↗ Ergebnis teilen",
+  "test.shareText": "Ich habe im kostenlosen Sympathie-Test {score} % erreicht. Wie sympathisch bist du?",
+  "test.shareTitle": "Mein Ergebnis im Sympathie-Test",
+  "test.shared": "Du siehst ein geteiltes Ergebnis.",
+  "test.start": "Sympathie-Test starten",
+  "test.takeYourself": "Mach den Test selbst →",
+  "test.title": "Kostenloser Sympathie-Test — <em>Deine Sympathie-Auswertung</em>",
+  "test.topStrength": "🏆 Größte Stärke"
+ },
+ "learnMore": {
+  "First Impressions": "/de/how-to-make-a-great-first-impression/",
+  "Communication": "/de/how-to-be-more-likable/",
+  "Social Skills": "/de/likeability-in-friendships/",
+  "Empathy": "/de/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/de/am-i-likable-signs/"
+ }
+}

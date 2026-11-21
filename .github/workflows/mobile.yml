@@ -1,0 +1,28 @@
+name: Mobile app
+on:
+  push:
+    paths: ['mobile/**', 'shared/**', 'src/i18n/**', 'src/data/**', 'src/lib/**', 'src/pages/i18n/**', '.github/workflows/mobile.yml']
+  pull_request:
+    paths: ['mobile/**', 'shared/**', 'src/i18n/**', 'src/data/**', 'src/lib/**', 'src/pages/i18n/**', '.github/workflows/mobile.yml']
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            mobile/package-lock.json
+      # The site build produces the quiz bundles the app ships (checked by sync:check).
+      - run: npm ci
+      - run: npm run build
+      - run: npm ci
+        working-directory: mobile
+      - run: npm run verify
+        working-directory: mobile
+      - name: Audit runtime dependencies
+        run: npm audit --omit=dev --audit-level=high
+        working-directory: mobile

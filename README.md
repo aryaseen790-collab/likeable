@@ -30,6 +30,10 @@ Requires Node 22.12+ (`.nvmrc`).
 | `scripts/minify-html.mjs` | Post-build HTML minifier (see Performance). |
 | `scripts/check-links.mjs` | Fails the build if any internal link, image or legacy WordPress URL is missing. |
 
+## Mobile app
+
+`mobile/` is the iOS and Android app (Expo / React Native). It asks the same questions in the same 20 languages and scores them with the same code: `shared/scoring.ts` is imported by both the site's quiz and the app. See [`mobile/README.md`](mobile/README.md) for running, building, analytics setup, and the security, privacy and accessibility checklists.
+
 ## Updating content
 
 Content still lives in WordPress. To pull changes:

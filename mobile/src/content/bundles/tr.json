@@ -1,0 +1,371 @@
+{
+ "lang": "tr",
+ "questions": [
+  {
+   "text": "İnsanları selamlarken ne sıklıkla gülümsersiniz?",
+   "options": [
+    "Her zaman",
+    "Sık sık",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "\"Ne kadar sevildiğinizi\" öğrenmeye hazır mısınız?",
+   "category": "First Impressions"
+  },
+  {
+   "text": "İnsanların isimlerini hatırlayıp kullanır mısınız?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "İsimler sandığınızdan daha önemlidir...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Başkalarını dinlemekte ne kadar iyisiniz?",
+   "options": [
+    "Mükemmel dinleyiciyim",
+    "İyi dinleyiciyim",
+    "Ortalama dinleyiciyim",
+    "Geliştirmeliyim"
+   ],
+   "hook": "İyi dinleyiciler herkes tarafından sevilir!",
+   "category": "Communication"
+  },
+  {
+   "text": "Başkalarına ne sıklıkla iltifat edersiniz?",
+   "options": [
+    "Çok sık",
+    "Sık sık",
+    "Ara sıra",
+    "Nadiren"
+   ],
+   "hook": "Nazik sözler birinin gününü güzelleştirebilir...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Başkalarının hikâyelerine içten ilgi gösterir misiniz?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Herkes dinlendiğini hissetmeyi sever...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Anlaşmazlıklarla nasıl başa çıkarsınız?",
+   "options": [
+    "Sakin ve saygılı",
+    "Genellikle sakin",
+    "Gerilebilirim",
+    "Sık sık tartışırım"
+   ],
+   "hook": "Çatışma çözümü gerçek karakteri ortaya koyar...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Sohbetlerde göz temasını korur musunuz?",
+   "options": [
+    "Her zaman",
+    "Çoğu zaman",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Gözler bağ kurmanın penceresidir...",
+   "category": "Communication"
+  },
+  {
+   "text": "Başkalarına istenmeden ne sıklıkla yardım edersiniz?",
+   "options": [
+    "Çok sık",
+    "Sık sık",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Davranışlar sözlerden daha güçlüdür...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Toplantılara ve randevulara dakik misiniz?",
+   "options": [
+    "Her zaman zamanında",
+    "Genellikle zamanında",
+    "Bazen geç kalırım",
+    "Sık sık geç kalırım"
+   ],
+   "hook": "Zaman, saygının para birimidir...",
+   "category": "Reliability"
+  },
+  {
+   "text": "İnsanlara yardımları veya nezaketleri için teşekkür eder misiniz?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Şükran çok şey kazandırır...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Genel tutumunuz ne kadar olumlu?",
+   "options": [
+    "Çok olumlu",
+    "Çoğunlukla olumlu",
+    "Nötr",
+    "Sık sık olumsuz"
+   ],
+   "hook": "Enerjiniz çevrenizdeki herkesi etkiler...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Başkaları hakkında dedikodu yapar mısınız?",
+   "options": [
+    "Asla",
+    "Nadiren",
+    "Bazen",
+    "Sık sık"
+   ],
+   "hook": "Sözler güveni inşa edebilir ya da yıkabilir...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Yapıcı eleştiriyi ne kadar iyi kabul edersiniz?",
+   "options": [
+    "Çok iyi",
+    "Oldukça iyi",
+    "Kolay değil",
+    "Kötü"
+   ],
+   "hook": "Gelişmek geri bildirime açık olmayı gerektirir...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Hatalı olduğunuzda bunu kabul eder misiniz?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Alçakgönüllülük güçlü bir özelliktir...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Başkalarını ne sıklıkla güldürürsünüz?",
+   "options": [
+    "Çok sık",
+    "Sık sık",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Kahkaha evrensel bir dildir...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Başkalarının sınırlarına saygı duyar mısınız?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Pek değil"
+   ],
+   "hook": "Sınırlar duygusal zekânın göstergesidir...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Başkalarının duygularına karşı ne kadar empatiksiniz?",
+   "options": [
+    "Çok empatik",
+    "Oldukça empatik",
+    "Biraz empatik",
+    "Pek empatik değil"
+   ],
+   "hook": "Empati derin bağlar kurar...",
+   "category": "Empathy"
+  },
+  {
+   "text": "İnsanlar konuşurken sözlerini keser misiniz?",
+   "options": [
+    "Asla",
+    "Nadiren",
+    "Bazen",
+    "Sık sık"
+   ],
+   "hook": "Sohbette sabır önemlidir...",
+   "category": "Communication"
+  },
+  {
+   "text": "Taahhütlerinizde ne kadar güvenilirsiniz?",
+   "options": [
+    "Çok güvenilir",
+    "Çoğunlukla güvenilir",
+    "Bazen sözümü tutmam",
+    "Sık sık güvenilmezim"
+   ],
+   "hook": "Güven, her tutulan sözle inşa edilir...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Ekip başarılarının takdirini başkalarıyla paylaşır mısınız?",
+   "options": [
+    "Her zaman",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Takdiri cömertçe paylaşmak başarıyı katlar...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Farklı görüşlere ne kadar açıksınız?",
+   "options": [
+    "Çok açık",
+    "Oldukça açık",
+    "Biraz açık",
+    "Pek açık değil"
+   ],
+   "hook": "Açıklık bakış açılarını zenginleştirir...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Baskı altında sakin kalır mısınız?",
+   "options": [
+    "Her zaman sakin",
+    "Genellikle sakin",
+    "Bazen stresli",
+    "Sık sık stresli"
+   ],
+   "hook": "Baskı altındaki soğukkanlılık başkalarına ilham verir...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Başkalarına günlerinin nasıl geçtiğini ne sıklıkla sorarsınız?",
+   "options": [
+    "Çok sık",
+    "Sık sık",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Küçük sorular büyük ilgiyi gösterir...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Başkalarının başarılarını kutlar mısınız?",
+   "options": [
+    "Her zaman coşkuyla",
+    "Genellikle",
+    "Bazen",
+    "Nadiren"
+   ],
+   "hook": "Başkalarını kutlamak hiçbir şeye mal olmaz ama çok şey ifade eder...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Etkileşimlerinizde ne kadar samimisiniz?",
+   "options": [
+    "Her zaman içten",
+    "Genellikle içten",
+    "Bazen rol yaparım",
+    "Sık sık samimiyetsiz"
+   ],
+   "hook": "Samimiyet insanları çeker...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Ortalamanın üstünde!",
+  "band.above.text": "İyi bir sevilebilirlik düzeyiniz var. Çoğu insanla iyi geçiniyorsunuz, ancak dinleme becerilerinizi ve empatinizi geliştirmek sizi daha da yakın hale getirebilir.",
+  "band.average.label": "😐 Ortalama",
+  "band.average.text": "Orta düzeyde bir sevilebilirliğiniz var. Sosyal becerileriniz ve pozitifliğiniz üzerinde çalışmak ve başkalarına daha içten ilgi göstermek, insanların sizi algılayışını önemli ölçüde iyileştirir.",
+  "band.excellent.label": "😊 Mükemmel!",
+  "band.excellent.text": "Çok sevilen birisiniz! Harika kişilerarası becerileriniz var ve insanlar sizinle vakit geçirmekten keyif alıyor. Başkalarını içtenlikle önemsiyor ve olumlu ilişkileri kolayca sürdürüyorsunuz.",
+  "band.exceptional.label": "🌟 Olağanüstü!",
+  "band.exceptional.text": "Son derece sevilen birisiniz! İnsanlar doğal olarak size yöneliyor. Üstün sosyal becerilere, gerçek bir empatiye ve başkalarına değerli ve takdir edildiklerini hissettiren sıcak bir kişiliğe sahipsiniz.",
+  "band.good.label": "👍 İyi!",
+  "band.good.text": "Oldukça sevilen birisiniz! Sağlam sosyal becerileriniz var ve genelde olumlu bir izlenim bırakıyorsunuz. İnsanlar yanınızda rahat hissediyor; yine de sevilebilirlik puanınızı yükseltmek için her zaman alan var.",
+  "band.low.label": "💪 Geliştirilmeli",
+  "band.low.text": "Sevilebilirlik konusunda gelişmek için geniş bir alanınız var. Empati, pozitiflik, güvenilirlik ve iletişime odaklanın. Herkes bilinçli pratikle sevilebilirlik puanını yükseltebilir!",
+  "cat.average": "Sağlam bir temel. Gelişmeye açık.",
+  "cat.excellent": "Olağanüstü! Bu alanda çok başarılısınız.",
+  "cat.good": "Harika! Bu alanda iyi gidiyorsunuz.",
+  "cat.low": "Gelişim alanı. Bu beceriyi geliştirmeye çalışın.",
+  "dim.0.desc": "Sizinle yeni tanışan insanlara nasıl göründüğünüz. Selamlaşma biçiminizi, isim kullanmanızı ve ilk karşılaşmalarda yaydığınız sıcaklığı kapsar.",
+  "dim.0.name": "İlk izlenim",
+  "dim.1.desc": "Nasıl dinlediğiniz, sohbete nasıl katıldığınız, göz temasını koruyup korumadığınız ve insanlara gerçekten dinlendiklerini hissettirip hissettirmediğiniz.",
+  "dim.1.name": "İletişim",
+  "dim.2.desc": "Etkileşimlere kattığınız genel duygusal ton. Bakış açınızı, başkalarına ne sıklıkla iltifat ettiğinizi ve şükran alışkanlıklarınızı kapsar.",
+  "dim.2.name": "Pozitiflik",
+  "dim.3.desc": "Başkalarının deneyimlerine duyduğunuz içten ilgi ve onların duygularına ne kadar uyum sağladığınız. Sevilebilirliğin en güçlü bireysel göstergelerinden biridir.",
+  "dim.3.name": "Empati",
+  "dim.4.desc": "Anlaşmazlıklar, eleştiriler ve baskıyla nasıl başa çıktığınız. Çatışma çözümünü, sınırlara saygıyı ve stres altında soğukkanlılığı kapsar.",
+  "dim.4.name": "Duygusal zekâ",
+  "dim.5.desc": "Başkalarına istenmeden yardım edip etmediğiniz, ortak başarıların takdirini paylaşıp paylaşmadığınız ve başkalarının başarılarını içtenlikle kutlayıp kutlamadığınız.",
+  "dim.5.name": "İyilik",
+  "dim.6.desc": "İnsanların size güvenip güvenemeyeceği. Dakikliği, sözlerinizi tutmanızı ve davranışlarınızın zaman içindeki tutarlılığını kapsar.",
+  "dim.6.name": "Güvenilirlik",
+  "dim.7.desc": "Dürüstlüğünüz, dedikodu yapıp yapmadığınız ve hatalı olduğunuzda bunu kabul edip etmediğiniz. Güven, derin sevilebilirliğin üzerine kurulduğu temeldir.",
+  "dim.7.name": "Dürüstlük",
+  "dim.8.desc": "Genel sosyal esnekliğiniz: insanları güldürebilmeniz, farklı kişiliklere uyum sağlayabilmeniz ve sizinkinden farklı görüşlere açık kalabilmeniz.",
+  "dim.8.name": "Sosyal beceriler",
+  "dim.shortEI": "DZ",
+  "hero.badge": "Ücretsiz · 5 dakika · 25 soru",
+  "nav.language": "Dil",
+  "nav.privacy": "Gizlilik Politikası",
+  "nav.terms": "Şartlar ve Koşullar",
+  "report.again": "İlerlemenizi takip etmek için yine bekleriz!",
+  "report.assessment": "GENEL DEĞERLENDİRME",
+  "report.breakdown": "KATEGORİLERE GÖRE AYRINTILI ANALİZ",
+  "report.date": "Tarih",
+  "report.filename": "Sevilen_Kisi_Testi_Raporu",
+  "report.heading": "SEVİLEN KİŞİ TESTİ SONUÇLARI",
+  "report.overall": "Genel sevilebilirlik puanı",
+  "report.rating": "Değerlendirme",
+  "report.recommendation": "Genel sevilebilirlik puanınızı yükseltmek için bu alanı geliştirin.",
+  "report.recommendations": "ÖNERİLER",
+  "report.score": "Puan",
+  "report.thanks": "Ücretsiz Sevilen Kişi Testi'ni yaptığınız için teşekkürler!",
+  "test.assessment": "Sevilebilirlik testinizin genel değerlendirmesi",
+  "test.barText": "Ücretsiz sevilebilirlik testini yapın ve gerçekte ne kadar sevildiğinizi keşfedin. Doğru sonuçlar için dürüstçe yanıtlayın.",
+  "test.barTitle": "Ücretsiz Online Sevilen Kişi Testi",
+  "test.copied": "Bağlantı kopyalandı — bir arkadaşınıza gönderin!",
+  "test.copy": "🔗 Bağlantıyı kopyala",
+  "test.desc": "Bu sevilebilirlik testi sosyal becerilerinizi, empatinizi ve kişilerarası özelliklerinizi değerlendirecek. Sevilebilirlik puanınızı öğrenmek ve eksiksiz bir kişilik analizi almak için 25 soruyu dürüstçe yanıtlayın!",
+  "test.download": "📥 Raporu indir",
+  "test.eyebrow": "Test",
+  "test.focusArea": "🎯 Gelişim alanı",
+  "test.getResults": "Sonuçları gör",
+  "test.hook": "\"Sevilen biri miyim?\" sorusunun cevabını öğrenmeye hazır mısınız?",
+  "test.howToImprove": "Nasıl geliştirilir →",
+  "test.lead": "Ne kadar sevilen biri olduğunuzu öğrenmek için 25 sorunun hepsini dürüstçe yanıtlayın. Sonuçlar anında gelir ve tamamen gizlidir; üyelik gerekmez. Bu sevilen kişi testi %100 ücretsizdir.",
+  "test.next": "Sonraki",
+  "test.of": "/",
+  "test.perkKeys": "⌨️ Yanıtlamak için 1–4 tuşları, gezinmek için ← →",
+  "test.perkPrivate": "🔒 Gizli — yanıtlarınız cihazınızda kalır",
+  "test.perkReport": "📄 Ücretsiz indirilebilir rapor",
+  "test.previous": "Önceki",
+  "test.radarLabel": "Dokuz kategori puanınızın radar grafiği",
+  "test.resultsTitle": "Sevilebilirlik testi sonuçlarınız",
+  "test.resume": "Kaldığınız yerden devam edin ({n}/{total})",
+  "test.retry": "🔄 Testi yeniden yap",
+  "test.share": "↗ Sonucumu paylaş",
+  "test.shareText": "Ücretsiz Sevilen Kişi Testi'nde %{score} aldım. Peki sen ne kadar seviliyorsun?",
+  "test.shareTitle": "Sevilen Kişi Testi sonucum",
+  "test.shared": "Paylaşılan bir sonucu görüntülüyorsunuz.",
+  "test.start": "Sevilen Kişi Testine başla",
+  "test.takeYourself": "Testi kendiniz yapın →",
+  "test.title": "Ücretsiz Sevilen Kişi Testi — <em>Sevilebilirlik değerlendirmeniz</em>",
+  "test.topStrength": "🏆 En güçlü yön"
+ },
+ "learnMore": {
+  "First Impressions": "/tr/how-to-make-a-great-first-impression/",
+  "Communication": "/tr/how-to-be-more-likable/",
+  "Social Skills": "/tr/likeability-in-friendships/",
+  "Empathy": "/tr/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/tr/am-i-likable-signs/"
+ }
+}

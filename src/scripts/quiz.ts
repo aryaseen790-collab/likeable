@@ -2,7 +2,9 @@
 // as the original WordPress quiz; the experience around them is new.
 import { scrollToEl } from './motion';
 
-export type Question = { text: string; options: string[]; hook: string; category: string };
+import { CATEGORIES, COLORS, overallBand, categoryBand, score, decodeAnswers, encodeAnswers, type Question } from '../../shared/scoring';
+
+export { CATEGORIES, score, type Question };
 // Everything the quiz shows, in one language (built by quizBundle() in src/lib/i18n.ts
 // and served as /i18n/quiz-<lang>.json).
 export type QuizBundle = { lang: string; questions: Question[]; strings: Record<string, string>; learnMore: Record<string, string> };
@@ -13,41 +15,11 @@ export type QuizHooks = {
   onReset?(): void;
 };
 
-export const CATEGORIES = ['First Impressions', 'Communication', 'Positivity', 'Empathy', 'Emotional Intelligence', 'Kindness', 'Reliability', 'Trustworthiness', 'Social Skills'];
-const COLORS = ['#22b8e6', '#4f73ff', '#f5b301', '#ec4899', '#8b5cf6', '#10b981', '#3b82f6', '#f76a0c', '#d946ef'];
 // '/' in production; '/likeable/' on the GitHub Pages preview.
 const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const STORE = 'lpt-quiz-v1';
 
-type Strings = Record<string, string>;
 const fill = (str: string, vars: Record<string, string | number>) => str.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
-const overallBand = (S: Strings, overall: number) => {
-  const key = overall >= 90 ? 'exceptional' : overall >= 80 ? 'excellent' : overall >= 70 ? 'good' : overall >= 60 ? 'above' : overall >= 50 ? 'average' : 'low';
-  return { label: S[`band.${key}.label`], feedback: S[`band.${key}.text`] };
-};
-const categoryBand = (S: Strings, score: number) => {
-  if (score >= 85) return { cls: 'excellent', feedback: S['cat.excellent'] };
-  if (score >= 70) return { cls: 'good', feedback: S['cat.good'] };
-  if (score >= 55) return { cls: 'average', feedback: S['cat.average'] };
-  return { cls: 'needs-improvement', feedback: S['cat.low'] };
-};
-
-export function score(questions: Question[], answers: (number | null)[]) {
-  const per: Record<string, number[]> = Object.fromEntries(CATEGORIES.map((c) => [c, []]));
-  answers.forEach((a, i) => {
-    if (a !== null) per[questions[i].category].push(4 - a);
-  });
-  let total = 0;
-  let count = 0;
-  const categories = CATEGORIES.map((c) => {
-    const s = per[c];
-    const sum = s.reduce((x, y) => x + y, 0);
-    total += sum;
-    count += s.length;
-    return { name: c, score: s.length ? Math.round((sum / s.length / 4) * 100) : -1 };
-  });
-  return { overall: count ? Math.round((total / (count * 4)) * 100) : 0, categories };
-}
 
 const track = (name: string, params: Record<string, unknown> = {}) => (window as any).gtag?.('event', name, params);
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -280,7 +252,7 @@ export function initQuiz(root: HTMLElement, bundle: QuizBundle, hooks: QuizHooks
     start(false);
   }
 
-  const shareUrl = () => `${location.origin}${BASE}${lang === 'en' ? '' : `${lang}/`}?r=${answers.map((a) => a ?? 0).join('')}#take-test`;
+  const shareUrl = () => `${location.origin}${BASE}${lang === 'en' ? '' : `${lang}/`}?r=${encodeAnswers(answers)}#take-test`;
 
   async function share() {
     const { overall } = score(questions, answers);
@@ -385,9 +357,9 @@ export function initQuiz(root: HTMLElement, bundle: QuizBundle, hooks: QuizHooks
   });
 
   // Shared result link: /?r=0123...
-  const r = new URLSearchParams(location.search).get('r');
-  if (r && r.length === N && /^[0-3]+$/.test(r)) {
-    answers = [...r].map(Number);
+  const shared = decodeAnswers(new URLSearchParams(location.search).get('r'), N);
+  if (shared) {
+    answers = shared;
     showResult(true);
   } else show('start');
 }

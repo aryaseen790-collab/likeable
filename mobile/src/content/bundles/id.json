@@ -1,0 +1,371 @@
+{
+ "lang": "id",
+ "questions": [
+  {
+   "text": "Seberapa sering Anda tersenyum saat menyapa orang?",
+   "options": [
+    "Selalu",
+    "Sering",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Siap mengetahui \"seberapa disukainya Anda\"?",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Apakah Anda mengingat dan menggunakan nama orang?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Nama lebih penting daripada yang Anda kira...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Seberapa baik Anda mendengarkan orang lain?",
+   "options": [
+    "Pendengar yang sangat baik",
+    "Pendengar yang baik",
+    "Pendengar rata-rata",
+    "Perlu diperbaiki"
+   ],
+   "hook": "Pendengar yang baik disukai semua orang!",
+   "category": "Communication"
+  },
+  {
+   "text": "Seberapa sering Anda memuji orang lain?",
+   "options": [
+    "Sangat sering",
+    "Sering",
+    "Sesekali",
+    "Jarang"
+   ],
+   "hook": "Kata-kata baik bisa mencerahkan hari seseorang...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Apakah Anda menunjukkan minat tulus pada cerita orang lain?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Semua orang senang merasa didengar...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Bagaimana Anda menghadapi perbedaan pendapat?",
+   "options": [
+    "Tenang dan sopan",
+    "Biasanya tenang",
+    "Bisa memanas",
+    "Sering berdebat"
+   ],
+   "hook": "Penyelesaian konflik menunjukkan karakter sejati...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Apakah Anda menjaga kontak mata saat bercakap?",
+   "options": [
+    "Selalu",
+    "Hampir selalu",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Mata adalah jendela untuk terhubung...",
+   "category": "Communication"
+  },
+  {
+   "text": "Seberapa sering Anda membantu orang lain tanpa diminta?",
+   "options": [
+    "Sangat sering",
+    "Sering",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Tindakan lebih bermakna daripada kata-kata...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Apakah Anda tepat waktu untuk pertemuan dan janji temu?",
+   "options": [
+    "Selalu tepat waktu",
+    "Biasanya tepat waktu",
+    "Kadang terlambat",
+    "Sering terlambat"
+   ],
+   "hook": "Waktu adalah mata uang rasa hormat...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Apakah Anda berterima kasih atas bantuan atau kebaikan orang?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Rasa syukur membawa banyak manfaat...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Seberapa positif sikap Anda secara umum?",
+   "options": [
+    "Sangat positif",
+    "Sebagian besar positif",
+    "Netral",
+    "Sering negatif"
+   ],
+   "hook": "Energi Anda memengaruhi semua orang di sekitar...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Apakah Anda menggosipkan orang lain?",
+   "options": [
+    "Tidak pernah",
+    "Jarang",
+    "Kadang-kadang",
+    "Sering"
+   ],
+   "hook": "Kata-kata bisa membangun atau menghancurkan kepercayaan...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Seberapa baik Anda menerima kritik yang membangun?",
+   "options": [
+    "Sangat baik",
+    "Cukup baik",
+    "Sulit",
+    "Buruk"
+   ],
+   "hook": "Berkembang membutuhkan keterbukaan terhadap masukan...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Apakah Anda mengakui saat Anda salah?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Kerendahan hati adalah sifat yang kuat...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Seberapa sering Anda membuat orang lain tertawa?",
+   "options": [
+    "Sangat sering",
+    "Sering",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Tawa adalah bahasa universal...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Apakah Anda menghormati batasan orang lain?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Tidak terlalu"
+   ],
+   "hook": "Batasan menunjukkan kecerdasan emosional...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Seberapa empatik Anda terhadap perasaan orang lain?",
+   "options": [
+    "Sangat empatik",
+    "Cukup empatik",
+    "Agak empatik",
+    "Kurang empatik"
+   ],
+   "hook": "Empati menciptakan hubungan yang dalam...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Apakah Anda memotong pembicaraan orang lain?",
+   "options": [
+    "Tidak pernah",
+    "Jarang",
+    "Kadang-kadang",
+    "Sering"
+   ],
+   "hook": "Kesabaran dalam percakapan itu penting...",
+   "category": "Communication"
+  },
+  {
+   "text": "Seberapa bisa diandalkan Anda dalam menepati komitmen?",
+   "options": [
+    "Sangat bisa diandalkan",
+    "Sebagian besar bisa diandalkan",
+    "Kadang ingkar",
+    "Sering tidak bisa diandalkan"
+   ],
+   "hook": "Kepercayaan dibangun dari setiap janji yang ditepati...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Apakah Anda berbagi penghargaan atas keberhasilan tim?",
+   "options": [
+    "Selalu",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Berbagi penghargaan dengan murah hati melipatgandakan keberhasilan...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Seberapa terbuka Anda terhadap pendapat yang berbeda?",
+   "options": [
+    "Sangat terbuka",
+    "Cukup terbuka",
+    "Agak terbuka",
+    "Kurang terbuka"
+   ],
+   "hook": "Keterbukaan memperkaya sudut pandang...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Apakah Anda tetap tenang di bawah tekanan?",
+   "options": [
+    "Selalu tenang",
+    "Biasanya tenang",
+    "Kadang stres",
+    "Sering stres"
+   ],
+   "hook": "Ketenangan di bawah tekanan menginspirasi orang lain...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Seberapa sering Anda menanyakan kabar hari orang lain?",
+   "options": [
+    "Sangat sering",
+    "Sering",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Pertanyaan kecil menunjukkan kepedulian besar...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Apakah Anda merayakan pencapaian orang lain?",
+   "options": [
+    "Selalu dengan antusias",
+    "Biasanya",
+    "Kadang-kadang",
+    "Jarang"
+   ],
+   "hook": "Merayakan orang lain tidak memerlukan biaya, tetapi sangat berarti...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Seberapa tulus Anda dalam berinteraksi?",
+   "options": [
+    "Selalu tulus",
+    "Biasanya tulus",
+    "Kadang berpura-pura",
+    "Sering tidak tulus"
+   ],
+   "hook": "Ketulusan menarik orang...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Di atas rata-rata!",
+  "band.above.text": "Anda memiliki tingkat kesukaan yang baik. Anda akrab dengan kebanyakan orang, tetapi meningkatkan kemampuan mendengarkan dan empati dapat membuat Anda lebih mudah didekati.",
+  "band.average.label": "😐 Rata-rata",
+  "band.average.text": "Anda memiliki tingkat kesukaan yang sedang. Melatih keterampilan sosial dan sikap positif, serta menunjukkan minat yang lebih tulus pada orang lain, akan sangat memperbaiki cara orang memandang Anda.",
+  "band.excellent.label": "😊 Sangat baik!",
+  "band.excellent.text": "Anda sangat disukai! Anda memiliki keterampilan interpersonal yang hebat dan orang-orang senang menghabiskan waktu bersama Anda. Anda benar-benar peduli pada orang lain dan mudah menjaga hubungan yang positif.",
+  "band.exceptional.label": "🌟 Luar biasa!",
+  "band.exceptional.text": "Anda sangat disukai! Orang-orang secara alami tertarik kepada Anda. Anda memiliki keterampilan sosial yang unggul, empati yang tulus, dan kepribadian hangat yang membuat orang lain merasa dihargai.",
+  "band.good.label": "👍 Baik!",
+  "band.good.text": "Anda cukup disukai! Anda memiliki keterampilan sosial yang solid dan umumnya meninggalkan kesan positif. Orang merasa nyaman di dekat Anda, meski selalu ada ruang untuk meningkatkan skor kesukaan Anda.",
+  "band.low.label": "💪 Perlu ditingkatkan",
+  "band.low.text": "Ada banyak ruang untuk meningkatkan tingkat kesukaan Anda. Fokuslah pada empati, sikap positif, keandalan, dan komunikasi. Siapa pun bisa meningkatkan skor kesukaannya dengan latihan yang disengaja!",
+  "cat.average": "Dasar yang solid. Masih bisa ditingkatkan.",
+  "cat.excellent": "Luar biasa! Anda unggul di area ini.",
+  "cat.good": "Bagus! Anda melakukannya dengan baik di sini.",
+  "cat.low": "Area untuk berkembang. Fokuslah membangun keterampilan ini.",
+  "dim.0.desc": "Bagaimana Anda terlihat oleh orang yang baru Anda temui. Mencakup cara Anda menyapa, penggunaan nama, dan kehangatan yang Anda pancarkan saat pertama bertemu.",
+  "dim.0.name": "Kesan pertama",
+  "dim.1.desc": "Cara Anda mendengarkan, terlibat dalam percakapan, menjaga kontak mata, dan apakah Anda membuat orang merasa benar-benar didengar.",
+  "dim.1.name": "Komunikasi",
+  "dim.2.desc": "Nada emosional yang Anda bawa ke setiap interaksi. Mencakup pandangan hidup Anda, seberapa sering Anda memuji orang lain, dan kebiasaan bersyukur.",
+  "dim.2.name": "Sikap positif",
+  "dim.3.desc": "Minat tulus Anda pada pengalaman orang lain dan seberapa peka Anda terhadap perasaan mereka. Salah satu prediktor tunggal terkuat dari tingkat kesukaan.",
+  "dim.3.name": "Empati",
+  "dim.4.desc": "Cara Anda menghadapi perbedaan pendapat, kritik, dan tekanan. Mencakup penyelesaian konflik, menghormati batasan, dan ketenangan di bawah tekanan.",
+  "dim.4.name": "Kecerdasan emosional",
+  "dim.5.desc": "Apakah Anda membantu orang lain tanpa diminta, berbagi penghargaan atas keberhasilan bersama, dan tulus merayakan pencapaian orang lain.",
+  "dim.5.name": "Kebaikan",
+  "dim.6.desc": "Apakah orang bisa mengandalkan Anda. Mencakup ketepatan waktu, menepati janji, dan konsistensi perilaku Anda dari waktu ke waktu.",
+  "dim.6.name": "Keandalan",
+  "dim.7.desc": "Kejujuran Anda, apakah Anda bergosip, dan apakah Anda mengakui kesalahan. Kepercayaan adalah fondasi dari rasa suka yang mendalam.",
+  "dim.7.name": "Integritas",
+  "dim.8.desc": "Kelenturan sosial Anda secara umum: membuat orang tertawa, beradaptasi dengan berbagai kepribadian, dan tetap terbuka pada pandangan yang berbeda dari Anda.",
+  "dim.8.name": "Keterampilan sosial",
+  "dim.shortEI": "KE",
+  "hero.badge": "Gratis · 5 menit · 25 pertanyaan",
+  "nav.language": "Bahasa",
+  "nav.privacy": "Kebijakan Privasi",
+  "nav.terms": "Syarat dan Ketentuan",
+  "report.again": "Kembalilah lagi untuk memantau kemajuan Anda!",
+  "report.assessment": "PENILAIAN KESELURUHAN",
+  "report.breakdown": "RINCIAN PER KATEGORI",
+  "report.date": "Tanggal",
+  "report.filename": "Laporan_Tes_Orang_yang_Disukai",
+  "report.heading": "HASIL TES ORANG YANG DISUKAI",
+  "report.overall": "Skor kesukaan keseluruhan",
+  "report.rating": "Peringkat",
+  "report.recommendation": "Kembangkan area ini untuk meningkatkan skor kesukaan keseluruhan Anda.",
+  "report.recommendations": "REKOMENDASI",
+  "report.score": "Skor",
+  "report.thanks": "Terima kasih telah mengikuti Tes Orang yang Disukai gratis!",
+  "test.assessment": "Penilaian keseluruhan tes kesukaan Anda",
+  "test.barText": "Ikuti tes kesukaan gratis dan temukan seberapa disukainya Anda sebenarnya. Jawablah dengan jujur untuk hasil yang akurat.",
+  "test.barTitle": "Tes Orang yang Disukai Online Gratis",
+  "test.copied": "Tautan disalin — kirimkan ke teman!",
+  "test.copy": "🔗 Salin tautan",
+  "test.desc": "Tes kesukaan ini akan menilai keterampilan sosial, empati, dan sifat interpersonal Anda. Jawab 25 pertanyaan dengan jujur untuk mengetahui skor kesukaan Anda dan mendapatkan analisis kepribadian yang lengkap!",
+  "test.download": "📥 Unduh laporan",
+  "test.eyebrow": "Tes",
+  "test.focusArea": "🎯 Area fokus",
+  "test.getResults": "Lihat hasil",
+  "test.hook": "Siap mencari tahu \"Apakah saya disukai?\"",
+  "test.howToImprove": "Cara meningkatkannya →",
+  "test.lead": "Jawab ke-25 pertanyaan dengan jujur untuk mengetahui seberapa disukainya Anda. Hasil langsung muncul dan sepenuhnya bersifat pribadi, tanpa perlu mendaftar. Tes orang yang disukai ini 100% gratis.",
+  "test.next": "Berikutnya",
+  "test.of": "dari",
+  "test.perkKeys": "⌨️ Tombol 1–4 untuk menjawab, ← → untuk berpindah",
+  "test.perkPrivate": "🔒 Pribadi — jawaban tetap di perangkat Anda",
+  "test.perkReport": "📄 Laporan gratis yang bisa diunduh",
+  "test.previous": "Sebelumnya",
+  "test.radarLabel": "Grafik radar dari sembilan skor kategori Anda",
+  "test.resultsTitle": "Hasil tes kesukaan Anda",
+  "test.resume": "Lanjutkan dari terakhir ({n}/{total})",
+  "test.retry": "🔄 Ulangi tes",
+  "test.share": "↗ Bagikan hasil saya",
+  "test.shareText": "Saya mendapat skor {score}% di Tes Orang yang Disukai gratis. Seberapa disukaikah kamu?",
+  "test.shareTitle": "Hasil Tes Orang yang Disukai saya",
+  "test.shared": "Anda sedang melihat hasil yang dibagikan.",
+  "test.start": "Mulai Tes Orang yang Disukai",
+  "test.takeYourself": "Ikuti tesnya sendiri →",
+  "test.title": "Tes Orang yang Disukai Gratis — <em>Penilaian tingkat kesukaan Anda</em>",
+  "test.topStrength": "🏆 Kekuatan utama"
+ },
+ "learnMore": {
+  "First Impressions": "/id/how-to-make-a-great-first-impression/",
+  "Communication": "/id/how-to-be-more-likable/",
+  "Social Skills": "/id/likeability-in-friendships/",
+  "Empathy": "/id/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/id/am-i-likable-signs/"
+ }
+}

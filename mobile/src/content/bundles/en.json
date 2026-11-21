@@ -1,0 +1,371 @@
+{
+ "lang": "en",
+ "questions": [
+  {
+   "text": "How often do you smile when greeting people?",
+   "options": [
+    "Always",
+    "Often",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Ready to find out 'how Likeable are you?'",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Do you remember and use people's names?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Names matter more than you think...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "How good are you at listening to others?",
+   "options": [
+    "Excellent listener",
+    "Good listener",
+    "Average listener",
+    "Need improvement"
+   ],
+   "hook": "Great listeners are universally loved!",
+   "category": "Communication"
+  },
+  {
+   "text": "How often do you compliment others?",
+   "options": [
+    "Very often",
+    "Often",
+    "Occasionally",
+    "Rarely"
+   ],
+   "hook": "Kind words can brighten someone's day...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Do you show genuine interest in others' stories?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Everyone loves feeling heard...",
+   "category": "Empathy"
+  },
+  {
+   "text": "How do you handle disagreements?",
+   "options": [
+    "Calmly and respectfully",
+    "Usually calm",
+    "Can get heated",
+    "Often argumentative"
+   ],
+   "hook": "Conflict resolution reveals true character...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Do you maintain eye contact during conversations?",
+   "options": [
+    "Always",
+    "Most of the time",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Eyes are the window to connection...",
+   "category": "Communication"
+  },
+  {
+   "text": "How often do you help others without being asked?",
+   "options": [
+    "Very often",
+    "Often",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Actions speak louder than words...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Are you punctual for meetings and appointments?",
+   "options": [
+    "Always on time",
+    "Usually on time",
+    "Sometimes late",
+    "Often late"
+   ],
+   "hook": "Time is the currency of respect...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Do you thank people for their help or kindness?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Gratitude goes a long way...",
+   "category": "Positivity"
+  },
+  {
+   "text": "How positive is your attitude in general?",
+   "options": [
+    "Very positive",
+    "Mostly positive",
+    "Neutral",
+    "Often negative"
+   ],
+   "hook": "Your energy affects everyone around you...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Do you gossip about others?",
+   "options": [
+    "Never",
+    "Rarely",
+    "Sometimes",
+    "Often"
+   ],
+   "hook": "Words can build or destroy trust...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "How well do you accept constructive criticism?",
+   "options": [
+    "Very well",
+    "Pretty well",
+    "Not easily",
+    "Poorly"
+   ],
+   "hook": "Growth requires openness to feedback...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Do you admit when you're wrong?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Humility is a powerful trait...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "How often do you make others laugh?",
+   "options": [
+    "Very often",
+    "Often",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Laughter is the universal language...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Do you respect others' boundaries?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Not really"
+   ],
+   "hook": "Boundaries show emotional intelligence...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "How empathetic are you to others' feelings?",
+   "options": [
+    "Very empathetic",
+    "Quite empathetic",
+    "Somewhat empathetic",
+    "Not very empathetic"
+   ],
+   "hook": "Empathy creates deep connections...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Do you interrupt people when they're speaking?",
+   "options": [
+    "Never",
+    "Rarely",
+    "Sometimes",
+    "Often"
+   ],
+   "hook": "Patience in conversation matters...",
+   "category": "Communication"
+  },
+  {
+   "text": "How reliable are you with commitments?",
+   "options": [
+    "Very reliable",
+    "Mostly reliable",
+    "Sometimes flaky",
+    "Often unreliable"
+   ],
+   "hook": "Trust is built one promise at a time...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Do you share credit with others for team successes?",
+   "options": [
+    "Always",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Generosity with credit multiplies success...",
+   "category": "Kindness"
+  },
+  {
+   "text": "How open-minded are you to different opinions?",
+   "options": [
+    "Very open-minded",
+    "Quite open-minded",
+    "Somewhat open-minded",
+    "Not very open-minded"
+   ],
+   "hook": "Openness enriches perspectives...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Do you stay calm under pressure?",
+   "options": [
+    "Always calm",
+    "Usually calm",
+    "Sometimes stressed",
+    "Often stressed"
+   ],
+   "hook": "Grace under pressure inspires others...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "How often do you ask others about their day?",
+   "options": [
+    "Very often",
+    "Often",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Small questions show big care...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Do you celebrate others' achievements?",
+   "options": [
+    "Always enthusiastically",
+    "Usually",
+    "Sometimes",
+    "Rarely"
+   ],
+   "hook": "Celebrating others costs nothing but means everything...",
+   "category": "Kindness"
+  },
+  {
+   "text": "How authentic are you in your interactions?",
+   "options": [
+    "Always genuine",
+    "Usually genuine",
+    "Sometimes fake it",
+    "Often insincere"
+   ],
+   "hook": "Authenticity is magnetic...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Above Average!",
+  "band.above.text": "You have a decent level of likability. You get along well with most people, but enhancing your listening skills and empathy could make you even more approachable.",
+  "band.average.label": "😐 Average",
+  "band.average.text": "You have moderate likability. Working on your social skills, positivity, and showing more genuine interest in others would significantly improve how people perceive you.",
+  "band.excellent.label": "😊 Excellent!",
+  "band.excellent.text": "You are very likeable! You have great interpersonal skills and people enjoy your company. You show genuine care for others and maintain positive relationships with ease.",
+  "band.exceptional.label": "🌟 Exceptional!",
+  "band.exceptional.text": "You are extremely likeable! People naturally gravitate towards you. You possess outstanding social skills, genuine empathy, and a warm personality that makes others feel valued and appreciated.",
+  "band.good.label": "👍 Good!",
+  "band.good.text": "You are quite likeable! You have solid social skills and generally make a positive impression. People feel comfortable around you, though there's always room to grow your likability score.",
+  "band.low.label": "💪 Needs Work",
+  "band.low.text": "You have significant room to grow in terms of likability. Focus on empathy, positivity, reliability, and communication. Everyone can improve their likeability score with intentional practice!",
+  "cat.average": "Solid foundation. Room for improvement.",
+  "cat.excellent": "Outstanding! You excel in this area.",
+  "cat.good": "Great work! You're doing well here.",
+  "cat.low": "Focus area. Work on developing this skill.",
+  "dim.0.desc": "How you come across to people who have just met you. Covers greeting behaviour, use of names, and the warmth you signal in initial encounters.",
+  "dim.0.name": "First Impressions",
+  "dim.1.desc": "How you listen, how you engage in conversation, and whether you maintain eye contact and make people feel genuinely heard.",
+  "dim.1.name": "Communication",
+  "dim.2.desc": "The general emotional tone you bring to interactions. Covers your outlook, how often you compliment others, and your gratitude habits.",
+  "dim.2.name": "Positivity",
+  "dim.3.desc": "Your genuine interest in others’ experiences and how well you tune into their feelings. This is one of the strongest individual predictors of likeability.",
+  "dim.3.name": "Empathy",
+  "dim.4.desc": "How you handle disagreement, criticism, and pressure. Covers conflict resolution, boundary respect, and composure under stress.",
+  "dim.4.name": "Emotional Intelligence",
+  "dim.5.desc": "Whether you help others without being asked, share credit for shared successes, and celebrate others’ achievements genuinely.",
+  "dim.5.name": "Kindness",
+  "dim.6.desc": "Whether people can count on you. Covers punctuality, commitment to promises, and consistency in your behaviour over time.",
+  "dim.6.name": "Reliability",
+  "dim.7.desc": "Your honesty, whether you gossip, and whether you admit when you are wrong. Trust is the foundation on which deep likeability is built.",
+  "dim.7.name": "Trustworthiness",
+  "dim.8.desc": "Your broader social flexibility — whether you can make people laugh, adapt to different personalities, and stay open-minded to views different from your own.",
+  "dim.8.name": "Social Skills",
+  "dim.shortEI": "Emotional IQ",
+  "hero.badge": "Free · 5 Minutes · 25 Questions",
+  "nav.language": "Language",
+  "nav.privacy": "Privacy Policy",
+  "nav.terms": "Terms & Conditions",
+  "report.again": "Visit us again to track your progress!",
+  "report.assessment": "OVERALL ASSESSMENT",
+  "report.breakdown": "DETAILED CATEGORY BREAKDOWN",
+  "report.date": "Date",
+  "report.filename": "Likeable_Person_Test_Report",
+  "report.heading": "LIKEABLE PERSON TEST RESULTS",
+  "report.overall": "Overall Likability Score",
+  "report.rating": "Rating",
+  "report.recommendation": "Work on improving this area to boost your overall likability score.",
+  "report.recommendations": "RECOMMENDATIONS",
+  "report.score": "Score",
+  "report.thanks": "Thank you for taking the free Likeable Person Test!",
+  "test.assessment": "Your Likability Test Overall Assessment",
+  "test.barText": "Take the free likability test and discover how likeable you really are. Answer honestly for accurate results.",
+  "test.barTitle": "Free Likeable Person Test Online",
+  "test.copied": "Link copied — send it to a friend!",
+  "test.copy": "🔗 Copy link",
+  "test.desc": "This likeability test will assess your social skills, empathy, and interpersonal traits. Answer 25 questions honestly to discover your likability score and get a full personality breakdown!",
+  "test.download": "📥 Download Report",
+  "test.eyebrow": "The Test",
+  "test.focusArea": "🎯 Focus area",
+  "test.getResults": "Get Results",
+  "test.hook": "Ready to find out \"am I a likeable person?\"",
+  "test.howToImprove": "How to improve →",
+  "test.lead": "Answer all 25 questions honestly to find out how likeable you are. Results are instant and completely private — no login required. This likable person test is 100% free.",
+  "test.next": "Next",
+  "test.of": "of",
+  "test.perkKeys": "⌨️ Keys 1–4 to answer, ← → to move",
+  "test.perkPrivate": "🔒 Private — answers stay on your device",
+  "test.perkReport": "📄 Free downloadable report",
+  "test.previous": "Previous",
+  "test.radarLabel": "Radar chart of your nine category scores",
+  "test.resultsTitle": "Your Likability Test Results",
+  "test.resume": "Resume where you left off ({n}/{total})",
+  "test.retry": "🔄 Take the Test Again",
+  "test.share": "↗ Share my result",
+  "test.shareText": "I scored {score}% on the free Likeable Person Test. How likeable are you?",
+  "test.shareTitle": "My Likeable Person Test result",
+  "test.shared": "You're viewing a shared result.",
+  "test.start": "Start the Likeable Person Test",
+  "test.takeYourself": "Take the test yourself →",
+  "test.title": "Free Likeable Person Test — <em>Your Likability Assessment</em>",
+  "test.topStrength": "🏆 Top strength"
+ },
+ "learnMore": {
+  "First Impressions": "/how-to-make-a-great-first-impression/",
+  "Communication": "/how-to-be-more-likable/",
+  "Social Skills": "/likeability-in-friendships/",
+  "Empathy": "/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/am-i-likable-signs/"
+ }
+}

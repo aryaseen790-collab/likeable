@@ -1,0 +1,371 @@
+{
+ "lang": "pt",
+ "questions": [
+  {
+   "text": "Com que frequência você sorri ao cumprimentar as pessoas?",
+   "options": [
+    "Sempre",
+    "Frequentemente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Pronto para descobrir \"o quanto você é agradável\"?",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Você lembra e usa o nome das pessoas?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Nomes importam mais do que você imagina...",
+   "category": "First Impressions"
+  },
+  {
+   "text": "Você sabe ouvir bem os outros?",
+   "options": [
+    "Ouço muito bem",
+    "Ouço bem",
+    "Ouço razoavelmente",
+    "Preciso melhorar"
+   ],
+   "hook": "Todo mundo adora quem sabe ouvir!",
+   "category": "Communication"
+  },
+  {
+   "text": "Com que frequência você elogia os outros?",
+   "options": [
+    "Muito frequentemente",
+    "Frequentemente",
+    "De vez em quando",
+    "Raramente"
+   ],
+   "hook": "Palavras gentis podem alegrar o dia de alguém...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Você demonstra interesse genuíno pelas histórias dos outros?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Todo mundo gosta de se sentir ouvido...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Como você lida com discordâncias?",
+   "options": [
+    "Com calma e respeito",
+    "Geralmente com calma",
+    "Às vezes me exalto",
+    "Costumo discutir"
+   ],
+   "hook": "A forma de resolver conflitos revela o verdadeiro caráter...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Você mantém contato visual durante as conversas?",
+   "options": [
+    "Sempre",
+    "Na maioria das vezes",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Os olhos são a janela da conexão...",
+   "category": "Communication"
+  },
+  {
+   "text": "Com que frequência você ajuda os outros sem que peçam?",
+   "options": [
+    "Muito frequentemente",
+    "Frequentemente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "As ações falam mais alto que as palavras...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Você é pontual em reuniões e compromissos?",
+   "options": [
+    "Sempre pontual",
+    "Geralmente pontual",
+    "Às vezes me atraso",
+    "Frequentemente me atraso"
+   ],
+   "hook": "O tempo é a moeda do respeito...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Você agradece às pessoas pela ajuda ou gentileza?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "A gratidão vai longe...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Quão positiva é sua atitude em geral?",
+   "options": [
+    "Muito positiva",
+    "Quase sempre positiva",
+    "Neutra",
+    "Frequentemente negativa"
+   ],
+   "hook": "Sua energia afeta todos ao seu redor...",
+   "category": "Positivity"
+  },
+  {
+   "text": "Você faz fofoca sobre os outros?",
+   "options": [
+    "Nunca",
+    "Raramente",
+    "Às vezes",
+    "Frequentemente"
+   ],
+   "hook": "Palavras podem construir ou destruir a confiança...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Você aceita bem críticas construtivas?",
+   "options": [
+    "Muito bem",
+    "Bem",
+    "Com dificuldade",
+    "Mal"
+   ],
+   "hook": "Crescer exige abertura para opiniões...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Você admite quando está errado?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "A humildade é uma qualidade poderosa...",
+   "category": "Trustworthiness"
+  },
+  {
+   "text": "Com que frequência você faz os outros rirem?",
+   "options": [
+    "Muito frequentemente",
+    "Frequentemente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "O riso é a linguagem universal...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Você respeita os limites dos outros?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Não muito"
+   ],
+   "hook": "Limites mostram inteligência emocional...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Quão empático você é com os sentimentos dos outros?",
+   "options": [
+    "Muito empático",
+    "Bastante empático",
+    "Um pouco empático",
+    "Pouco empático"
+   ],
+   "hook": "A empatia cria conexões profundas...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Você interrompe as pessoas quando elas estão falando?",
+   "options": [
+    "Nunca",
+    "Raramente",
+    "Às vezes",
+    "Frequentemente"
+   ],
+   "hook": "Paciência na conversa faz diferença...",
+   "category": "Communication"
+  },
+  {
+   "text": "Quão confiável você é com seus compromissos?",
+   "options": [
+    "Muito confiável",
+    "Quase sempre confiável",
+    "Às vezes falho",
+    "Frequentemente não confiável"
+   ],
+   "hook": "A confiança se constrói uma promessa de cada vez...",
+   "category": "Reliability"
+  },
+  {
+   "text": "Você divide o mérito pelos sucessos da equipe?",
+   "options": [
+    "Sempre",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Ser generoso com o mérito multiplica o sucesso...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Quão aberto você é a opiniões diferentes?",
+   "options": [
+    "Muito aberto",
+    "Bastante aberto",
+    "Um pouco aberto",
+    "Pouco aberto"
+   ],
+   "hook": "A abertura enriquece as perspectivas...",
+   "category": "Social Skills"
+  },
+  {
+   "text": "Você mantém a calma sob pressão?",
+   "options": [
+    "Sempre calmo",
+    "Geralmente calmo",
+    "Às vezes estressado",
+    "Frequentemente estressado"
+   ],
+   "hook": "A serenidade sob pressão inspira os outros...",
+   "category": "Emotional Intelligence"
+  },
+  {
+   "text": "Com que frequência você pergunta aos outros como foi o dia deles?",
+   "options": [
+    "Muito frequentemente",
+    "Frequentemente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Pequenas perguntas mostram muito cuidado...",
+   "category": "Empathy"
+  },
+  {
+   "text": "Você comemora as conquistas dos outros?",
+   "options": [
+    "Sempre com entusiasmo",
+    "Geralmente",
+    "Às vezes",
+    "Raramente"
+   ],
+   "hook": "Celebrar os outros não custa nada e significa tudo...",
+   "category": "Kindness"
+  },
+  {
+   "text": "Quão autêntico você é nas suas interações?",
+   "options": [
+    "Sempre genuíno",
+    "Geralmente genuíno",
+    "Às vezes finjo",
+    "Frequentemente insincero"
+   ],
+   "hook": "A autenticidade é magnética...",
+   "category": "Trustworthiness"
+  }
+ ],
+ "strings": {
+  "band.above.label": "🙂 Acima da média!",
+  "band.above.text": "Você tem um bom nível de simpatia. Você se dá bem com a maioria das pessoas, mas melhorar sua escuta e sua empatia pode deixar você ainda mais acessível.",
+  "band.average.label": "😐 Na média",
+  "band.average.text": "Você tem um nível moderado de simpatia. Trabalhar suas habilidades sociais, sua positividade e demonstrar um interesse mais genuíno pelos outros melhoraria muito a forma como as pessoas percebem você.",
+  "band.excellent.label": "😊 Excelente!",
+  "band.excellent.text": "Você é muito agradável! Tem ótimas habilidades interpessoais e as pessoas gostam da sua companhia. Você demonstra cuidado genuíno com os outros e mantém relacionamentos positivos com facilidade.",
+  "band.exceptional.label": "🌟 Excepcional!",
+  "band.exceptional.text": "Você é extremamente agradável! As pessoas se sentem naturalmente atraídas por você. Você tem habilidades sociais excepcionais, empatia genuína e uma personalidade calorosa que faz os outros se sentirem valorizados e apreciados.",
+  "band.good.label": "👍 Bom!",
+  "band.good.text": "Você é bastante agradável! Tem boas habilidades sociais e costuma causar uma impressão positiva. As pessoas se sentem à vontade com você, embora sempre haja espaço para melhorar sua pontuação de simpatia.",
+  "band.low.label": "💪 Precisa melhorar",
+  "band.low.text": "Você tem muito espaço para crescer em simpatia. Concentre-se em empatia, positividade, confiabilidade e comunicação. Todo mundo pode melhorar sua pontuação de simpatia com prática intencional!",
+  "cat.average": "Boa base. Há espaço para melhorar.",
+  "cat.excellent": "Excepcional! Você se destaca nesta área.",
+  "cat.good": "Ótimo trabalho! Você está indo bem aqui.",
+  "cat.low": "Área de melhoria. Trabalhe para desenvolver esta habilidade.",
+  "dim.0.desc": "Como você é visto por quem acabou de conhecer você. Inclui sua forma de cumprimentar, o uso dos nomes e o calor humano que você transmite nos primeiros encontros.",
+  "dim.0.name": "Primeiras impressões",
+  "dim.1.desc": "Como você escuta, como participa da conversa e se mantém contato visual e faz as pessoas se sentirem realmente ouvidas.",
+  "dim.1.name": "Comunicação",
+  "dim.2.desc": "O tom emocional geral que você leva às interações. Inclui sua visão de mundo, a frequência com que elogia os outros e seus hábitos de gratidão.",
+  "dim.2.name": "Positividade",
+  "dim.3.desc": "Seu interesse genuíno pelas experiências dos outros e o quanto você se sintoniza com os sentimentos deles. É um dos maiores preditores individuais de simpatia.",
+  "dim.3.name": "Empatia",
+  "dim.4.desc": "Como você lida com discordâncias, críticas e pressão. Inclui resolução de conflitos, respeito aos limites e serenidade sob estresse.",
+  "dim.4.name": "Inteligência emocional",
+  "dim.5.desc": "Se você ajuda os outros sem que peçam, divide o mérito das conquistas em comum e comemora de verdade as conquistas alheias.",
+  "dim.5.name": "Gentileza",
+  "dim.6.desc": "Se as pessoas podem contar com você. Inclui pontualidade, cumprimento de promessas e coerência no seu comportamento ao longo do tempo.",
+  "dim.6.name": "Confiabilidade",
+  "dim.7.desc": "Sua sinceridade, se você faz fofoca e se admite quando está errado. A confiança é a base sobre a qual se constrói uma simpatia profunda.",
+  "dim.7.name": "Honestidade",
+  "dim.8.desc": "Sua flexibilidade social em geral: se você consegue fazer as pessoas rirem, se adaptar a diferentes personalidades e manter a mente aberta a opiniões diferentes da sua.",
+  "dim.8.name": "Habilidades sociais",
+  "dim.shortEI": "IE",
+  "hero.badge": "Grátis · 5 minutos · 25 perguntas",
+  "nav.language": "Idioma",
+  "nav.privacy": "Política de privacidade",
+  "nav.terms": "Termos e condições",
+  "report.again": "Volte sempre para acompanhar seu progresso!",
+  "report.assessment": "AVALIAÇÃO GERAL",
+  "report.breakdown": "ANÁLISE DETALHADA POR CATEGORIA",
+  "report.date": "Data",
+  "report.filename": "Relatorio_Teste_Pessoa_Agradavel",
+  "report.heading": "RESULTADOS DO TESTE DE PESSOA AGRADÁVEL",
+  "report.overall": "Pontuação geral de simpatia",
+  "report.rating": "Classificação",
+  "report.recommendation": "Trabalhe para melhorar esta área e aumentar sua pontuação geral de simpatia.",
+  "report.recommendations": "RECOMENDAÇÕES",
+  "report.score": "Pontuação",
+  "report.thanks": "Obrigado por fazer o Teste de Pessoa Agradável gratuito!",
+  "test.assessment": "Avaliação geral do seu teste de simpatia",
+  "test.barText": "Faça o teste de simpatia gratuito e descubra o quanto você é realmente agradável. Responda com sinceridade para obter resultados precisos.",
+  "test.barTitle": "Teste de Pessoa Agradável online grátis",
+  "test.copied": "Link copiado: envie para um amigo!",
+  "test.copy": "🔗 Copiar link",
+  "test.desc": "Este teste de simpatia vai avaliar suas habilidades sociais, sua empatia e seus traços interpessoais. Responda a 25 perguntas com sinceridade para descobrir sua pontuação de simpatia e receber uma análise completa da sua personalidade!",
+  "test.download": "📥 Baixar relatório",
+  "test.eyebrow": "O teste",
+  "test.focusArea": "🎯 Área de melhoria",
+  "test.getResults": "Ver resultados",
+  "test.hook": "Pronto para descobrir se \"eu sou uma pessoa agradável\"?",
+  "test.howToImprove": "Como melhorar →",
+  "test.lead": "Responda às 25 perguntas com sinceridade para descobrir o quanto você é agradável. Os resultados são imediatos e totalmente privados, sem cadastro. Este teste de pessoa agradável é 100% gratuito.",
+  "test.next": "Próxima",
+  "test.of": "de",
+  "test.perkKeys": "⌨️ Teclas 1–4 para responder, ← → para navegar",
+  "test.perkPrivate": "🔒 Privado: suas respostas ficam no seu dispositivo",
+  "test.perkReport": "📄 Relatório gratuito para baixar",
+  "test.previous": "Anterior",
+  "test.radarLabel": "Gráfico de radar das suas nove pontuações por categoria",
+  "test.resultsTitle": "Seus resultados no teste de simpatia",
+  "test.resume": "Continuar de onde parou ({n}/{total})",
+  "test.retry": "🔄 Refazer o teste",
+  "test.share": "↗ Compartilhar meu resultado",
+  "test.shareText": "Tirei {score}% no Teste de Pessoa Agradável gratuito. E você, o quanto é agradável?",
+  "test.shareTitle": "Meu resultado no Teste de Pessoa Agradável",
+  "test.shared": "Você está vendo um resultado compartilhado.",
+  "test.start": "Começar o Teste de Pessoa Agradável",
+  "test.takeYourself": "Faça o teste você também →",
+  "test.title": "Teste de Pessoa Agradável grátis — <em>Sua avaliação de simpatia</em>",
+  "test.topStrength": "🏆 Maior ponto forte"
+ },
+ "learnMore": {
+  "First Impressions": "/pt/how-to-make-a-great-first-impression/",
+  "Communication": "/pt/how-to-be-more-likable/",
+  "Social Skills": "/pt/likeability-in-friendships/",
+  "Empathy": "/pt/the-science-of-likeability-what-psychology-actually-says/",
+  "Positivity": "/pt/am-i-likable-signs/"
+ }
+}
