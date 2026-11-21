@@ -45,6 +45,7 @@ const pageUrls = (): LangUrl[] =>
     { enPath: '/', loc: abs('/'), lastmod: iso(newestPost()) },
     ...['blog', 'privacy-policy', 'terms-conditions'].map((s) => ({ enPath: pages[s].path, loc: abs(pages[s].path), lastmod: iso(s === 'blog' ? newestPost() : pages[s].modified) })),
     { enPath: '/about/', loc: abs('/about/') },
+    { enPath: '/app/', loc: abs('/app/') },
     { enPath: '/contact/', loc: abs('/contact/') },
   ]);
 

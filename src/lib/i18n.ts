@@ -235,7 +235,7 @@ export function alternates(enPath: string): { lang: Lang; href: string }[] {
     if (code === DEFAULT_LANG) return true;
     if (!isLive(code)) return false;
     const slug = enPath.replace(/^\/|\/$/g, '');
-    if (enPath === '/' || ['about', 'contact'].includes(slug)) return true;
+    if (enPath === '/' || ['about', 'contact', 'app'].includes(slug)) return true;
     if (slug === 'blog' || slug.startsWith('blog/')) return true;
     if (enPosts.some((p) => p.slug === slug)) return !!postIn(code, slug);
     if (enPages[slug]?.html) return !!pageIn(code, slug);

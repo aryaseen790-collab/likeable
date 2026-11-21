@@ -1,0 +1,164 @@
+---
+// /app/ (and /<lang>/app/): the Android app's own page, so searches for the app
+// have something to land on. The download block appears once an APK release exists
+// (scripts/app-release.mjs); until then the page says the app is coming.
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../CtaBand.astro';
+import { site } from '../../lib/data';
+import { t, lpath, alternates, liveLangs, langOf, DEFAULT_LANG } from '../../lib/i18n';
+import { appRelease, androidVersion, megabytes } from '../../lib/app-release';
+
+const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
+const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
+const strip = (s: string) => s.replace(/<[^>]+>/g, '');
+const L = (p: string) => (alternates(p).some((a) => a.lang.code === lang) ? lpath(lang, p) : p);
+const rel = appRelease();
+const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, { maximumFractionDigits: 1 }) : '';
+const path = lpath(lang, '/app/');
+const features = [1, 2, 3, 4, 5, 6].map((i) => ({ icon: ['📈', '📴', '🔒', '♿', '📤', '🌍'][i - 1], title: T(`apppage.f${i}title`), text: T(`apppage.f${i}text`) }));
+const shots = [1, 2, 3, 4].map((i) => ({ src: `/app/screen-${i}.webp`, small: `/app/screen-${i}-390.webp`, alt: T(`apppage.shot${i}`) }));
+const faq = [1, 2, 3, 4, 5].map((i) => ({ q: T(`apppage.q${i}`), a: T(`apppage.a${i}`) }));
+
+// Structured data: the app itself, and the FAQ. No ratings: there are no real reviews yet.
+const schema = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'MobileApplication',
+        name: site.name,
+        description: T('meta.appDescription'),
+        url: `${site.origin}${path}`,
+        operatingSystem: rel ? `Android ${androidVersion(rel.minSdk)}+` : 'Android',
+        applicationCategory: 'LifestyleApplication',
+        inLanguage: liveLangs().map((l) => l.tag),
+        image: `${site.origin}/app/icon-512.png`,
+        screenshot: shots.map((s) => `${site.origin}${s.src}`),
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        publisher: { '@type': 'Organization', name: site.name, url: `${site.origin}/` },
+        ...(rel && { softwareVersion: rel.version, fileSize: `${megabytes(rel.size)} MB`, downloadUrl: rel.url, datePublished: rel.published.slice(0, 10) }),
+      },
+      {
+        '@type': 'FAQPage',
+        inLanguage: langOf(lang).tag,
+        mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: T('nav.home'), item: `${site.origin}${lpath(lang, '/')}` },
+          { '@type': 'ListItem', position: 2, name: T('apppage.crumb'), item: `${site.origin}${path}` },
+        ],
+      },
+    ],
+  }),
+];
+---
+<Base path={path} enPath="/app/" lang={lang} title={T('meta.appTitle')} description={T('meta.appDescription')} image="/app/screen-3.webp" schema={schema} bodyClass="app-page">
+  <header class="article-hero">
+    <div class="article-hero__inner app-hero" data-reveal>
+      <ol class="breadcrumbs" aria-label={T('post.breadcrumb')}><li><a href={lpath(lang, '/')}>{T('nav.home')}</a></li><li aria-current="page">{T('apppage.crumb')}</li></ol>
+      <img class="app-hero__icon" src="/app/icon-512.png" width="96" height="96" alt="" />
+      <span class="eyebrow">{T('apppage.eyebrow')}</span>
+      <h1 set:html={T('apppage.title')} />
+      <p class="lead">{T('apppage.lead')}</p>
+
+      {rel ? (
+        <div class="app-hero__dl" data-app-download>
+          <a class="btn btn--primary btn--lg" href={rel.url} type="application/vnd.android.package-archive" data-app-apk>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
+            {T('app.download')}
+          </a>
+          <p class="app-hero__meta">{T('app.meta', { version: rel.version, size, android: androidVersion(rel.minSdk) })}</p>
+        </div>
+      ) : (
+        <p class="app-hero__soon">{T('apppage.soon')}</p>
+      )}
+      <p class="app-hero__ios" data-app-ios hidden>
+        {T('apppage.iphone')} <a href={`${lpath(lang, '/')}#take-test`}>{T('nav.cta')}</a>
+      </p>
+    </div>
+  </header>
+
+  <section class="container section app-features" aria-labelledby="app-features">
+    <h2 class="h2" id="app-features">{T('apppage.featuresTitle')}</h2>
+    <div class="app-features__grid">
+      {features.map((f) => (
+        <article class="card app-feature" data-reveal>
+          <span class="app-feature__icon" aria-hidden="true">{f.icon}</span>
+          <h3>{f.title}</h3>
+          <p>{f.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section app-shots" aria-labelledby="app-shots">
+    <h2 class="h2" id="app-shots">{T('apppage.shotsTitle')}</h2>
+    <ul class="app-shots__row">
+      {shots.map((s) => (
+        <li>
+          <figure>
+            <img src={s.small} srcset={`${s.small} 390w, ${s.src} 780w`} sizes="(max-width: 620px) 70vw, 260px" width="390" height="844" alt={s.alt} loading="lazy" decoding="async" />
+            <figcaption>{s.alt}</figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="article-layout article-layout--single">
+    <div class="prose">
+      {rel && (
+        <section data-app-download>
+          <h2 id="install">{T('app.howTitle')}</h2>
+          <ol>
+            <li>{T('app.how1')}</li>
+            <li>{T('app.how2')}</li>
+            <li>{T('app.how3')}</li>
+          </ol>
+          <p>{T('app.safety')}</p>
+          <p class="app-sha"><span>SHA-256</span> <code>{rel.sha256}</code></p>
+        </section>
+      )}
+
+      <h2 id="privacy">{T('apppage.privacyTitle')}</h2>
+      <p>{T('apppage.privacyText')}</p>
+      <p><a href={L('/privacy-policy/')}>{T('apppage.privacyLink')}</a></p>
+
+      <h2 id="faq">{T('apppage.faqTitle')}</h2>
+      {faq.map((f) => (
+        <details class="app-faq">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <CtaBand lang={lang} />
+</Base>
+
+<script>
+  document.querySelector('[data-app-apk]')?.addEventListener('click', () => (window as any).gtag?.('event', 'app_download', { platform: 'android', page: 'app' }));
+</script>
+<style>
+  .app-hero { display: grid; gap: 14px; justify-items: start; }
+  .app-hero__icon { border-radius: 22px; box-shadow: var(--shadow-sm); }
+  .app-hero__dl { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 8px; }
+  .app-hero__dl .btn { gap: 10px; }
+  .app-hero__meta, .app-hero__soon, .app-hero__ios { color: var(--text-2); }
+  .app-hero__soon { font-weight: 600; margin-top: 8px; }
+  .app-features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; margin-top: 28px; }
+  .app-feature { padding: 26px; display: grid; gap: 8px; align-content: start; }
+  .app-feature__icon { font-size: 30px; line-height: 1; }
+  .app-feature h3 { font-size: 1.15rem; }
+  .app-feature p { color: var(--text-2); }
+  .app-shots__row { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-auto-flow: column; grid-auto-columns: min(70vw, 260px); gap: 20px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+  .app-shots__row li { scroll-snap-align: start; }
+  .app-shots__row img { width: 100%; height: auto; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .app-shots__row figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 10px; }
+  .app-sha { font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
+  .app-faq { border-bottom: 1px solid var(--border); padding: 6px 0; }
+  .app-faq summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; color: var(--heading); }
+  .app-faq p { margin: 4px 0 14px; color: var(--text-2); }
+</style>

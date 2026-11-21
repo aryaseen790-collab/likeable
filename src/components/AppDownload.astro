@@ -1,7 +1,7 @@
 ---
 // "Get the Android app": a direct APK download from GitHub Releases. Only rendered
 // when a release exists; hidden on iPhone/iPad, where APKs can't be installed.
-import { t, DEFAULT_LANG } from '../lib/i18n';
+import { t, lpath, DEFAULT_LANG } from '../lib/i18n';
 import { appRelease, androidVersion, megabytes } from '../lib/app-release';
 const { lang = DEFAULT_LANG } = Astro.props as { lang?: string };
 const T = (k: string, v?: Record<string, string | number>) => t(lang, k, v);
@@ -23,6 +23,7 @@ const size = rel ? Number(megabytes(rel.size)).toLocaleString(lang, { maximumFra
               {T('app.download')}
             </a>
             <p class="app-dl__meta">{T('app.meta', { version: rel.version, size, android: androidVersion(rel.minSdk) })}</p>
+            <a class="app-dl__more" href={lpath(lang, '/app/')}>{T('app.learnMore')} <span aria-hidden="true">→</span></a>
           </div>
           <details class="app-dl__how">
             <summary>{T('app.howTitle')}</summary>
@@ -51,6 +52,7 @@ const size = rel ? Number(megabytes(rel.size)).toLocaleString(lang, { maximumFra
   .app-dl__actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
   .app-dl__actions .btn { gap: 10px; }
   .app-dl__meta { color: var(--muted); font-size: 0.95rem; }
+  .app-dl__more { font-weight: 600; }
   .app-dl__how summary { cursor: pointer; font-weight: 600; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
   .app-dl__how ol { padding-inline-start: 1.3em; display: grid; gap: 6px; color: var(--text-2); }
   .app-dl__note { margin-top: 10px; color: var(--text-2); }
