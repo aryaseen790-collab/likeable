@@ -85,6 +85,8 @@ const size = rel ? Number(megabytes(rel.size)).toLocaleString(langOf(lang).tag, 
   .hero-way__arrow { margin-inline-start: auto; flex: none; color: var(--accent); font-weight: 700; }
   :global([dir='rtl']) .hero-way--online .hero-way__arrow { transform: scaleX(-1); }
   .hero-way--online { background: var(--grad-on); color: #fff; border-color: transparent; }
+  /* Every line of text on the blue/violet button is white (the global <strong> colour is dark). */
+  .hero-way--online strong, .hero-way--online small { color: #fff; }
   .hero-way--online:hover { color: #fff; }
   .hero-way--online .hero-way__icon { background: rgba(255, 255, 255, 0.18); }
   .hero-way--online small, .hero-way--online .hero-way__arrow { color: #fff; }
